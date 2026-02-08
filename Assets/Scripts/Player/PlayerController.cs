@@ -17,7 +17,13 @@ public class PlayerController : MonoBehaviour
     public CameraManager camaraManager;
 
 
-    [SerializeField] private float speed = 5f;
+    [Header("Movement")]
+    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float acceleration = 1f;
+    [SerializeField] private float decceleration = 1f;
+    private float speed;
+    private Vector3 movement;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -74,19 +80,29 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer()
     {
-        Vector2 directionInput = moveAction.ReadValue<Vector2>();
-        Vector3 movement = Vector3.zero;
+        Vector2 directionInput = moveAction.ReadValue<Vector2>().normalized;
+        Vector3 direction = Vector3.zero;
 
         if(currentMovementMode == MovementMode.TopDown)
         {
             //WASD -> X / Z
-            movement = new Vector3(directionInput.x, 0f, directionInput.y);
+            direction = new Vector3(directionInput.x, 0f, directionInput.y);
         }
 
         else if(currentMovementMode == MovementMode.Side2D)
         {
             // WASD -> Y / Z
-            movement = new Vector3(0f, directionInput.x, directionInput.y);
+            direction = new Vector3(0f, directionInput.x, directionInput.y);
+        }
+
+        if (directionInput != Vector2.zero)
+        {
+            movement = direction;
+            speed = Mathf.MoveTowards(speed, maxSpeed, acceleration * Time.deltaTime);
+        }
+        else
+        {
+            speed = Mathf.MoveTowards(speed, 0f, decceleration * Time.deltaTime);
         }
 
         transform.position += movement * speed * Time.deltaTime;

@@ -1260,7 +1260,9 @@ MonoBehaviour:
   currentCamera: {fileID: 330585545}
   currentMovementMode: 0
   camaraManager: {fileID: 1140876695}
-  speed: 5
+  maxSpeed: 10
+  acceleration: 30
+  decceleration: 50
 --- !u!114 &1730071105
 MonoBehaviour:
   m_ObjectHideFlags: 0
