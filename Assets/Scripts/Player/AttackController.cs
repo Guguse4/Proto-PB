@@ -44,8 +44,6 @@ public class AttackController : MonoBehaviour
 
             bulletObject.transform.SetPositionAndRotation(muzzlePosition.position, muzzlePosition.rotation);
 
-            bulletObject.GetComponent<Rigidbody>().AddForce(bulletObject.transform.forward * speedBullet, ForceMode.Acceleration);
-
             bulletObject.Deactivate();
 
             nextTimeToShoot = 0;

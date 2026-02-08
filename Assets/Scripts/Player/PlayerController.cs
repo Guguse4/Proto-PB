@@ -51,17 +51,30 @@ public class PlayerController : MonoBehaviour
             {
                 camaraManager.SwitchToTopDown();
                 currentMovementMode = MovementMode.TopDown;
+                transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
             }
         }
 
-        if (currentMovementMode != MovementMode.TopDown && Mouse.current == null)
-            {
-                return;
-            }
+        if (Mouse.current == null)
+        {
+            return;
+        }
 
         Ray ray = currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-        Plane aimPlane = new Plane(Vector3.up, transform.position);
+
+        Plane aimPlane = new Plane(Vector3.zero, transform.position);
+
+        switch(currentMovementMode)
+        {
+            case MovementMode.TopDown:
+                aimPlane = new Plane(Vector3.up, transform.position);
+                break;
+
+            case MovementMode.Side2D:
+                aimPlane = new Plane(Vector3.right, transform.position);
+                break;
+        }
 
         if (aimPlane.Raycast(ray, out float hit))
         {

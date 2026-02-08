@@ -5,10 +5,16 @@ using UnityEngine.Pool;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float timeoutDelay = 3f;
+    [SerializeField] private float speed = 3f;
 
     private BulletPool objectPool;
 
     public BulletPool ObjectPool { set => objectPool = value; }
+
+    private void Update()
+    {
+        transform.position += transform.forward * speed * Time.deltaTime;
+    }
 
     public void Deactivate()
     {
@@ -18,10 +24,6 @@ public class Projectile : MonoBehaviour
     IEnumerator DeactivateRoutine(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = new Vector3(0f, 0f, 0f);
-        rb.angularVelocity = new Vector3(0f, 0f, 0f);
 
         objectPool.pool.Release(this);
     }
