@@ -5,45 +5,52 @@ using System;
 
 public class AttackController : MonoBehaviour
 {
-    private ObjectPool<GameObject> pool;
+    [Tooltip("Prefab to shoot")]
+    [SerializeField] private Projectile projectilePrefab;
+
+    [SerializeField] private ScriptableObject projectileDataSO;
+
+    private ObjectPool<Projectile> pool;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        pool = new ObjectPool<GameObject>(
-            createFunc: CreateBullet,
-            actionOnGet: OnGet,
-            actionOnRelease: OnRelease,
-            actionOnDestroy: OnDestroyBullet,
+        pool = new ObjectPool<Projectile>(
+            createFunc: CreateProjectile,
+            actionOnGet: OnGetFromPool,
+            actionOnRelease: OnReleaseToPool,
+            actionOnDestroy: OnDestroyPooledObject,
             collectionCheck: true,
-            defaultCapacity: 20
+            defaultCapacity: 20,
+            maxSize: 100
             );
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
     }
 
-    private GameObject CreateBullet()
+    private Projectile CreateProjectile()
     {
-        //GameObject gameObject = 
-        return gameObject;
+        Projectile projectileGO = Instantiate(projectilePrefab);
+        projectileGO.ObjectPool = pool;
+        return projectileGO;
     }
 
-    private void OnGet(GameObject gameObject)
+    private void OnGetFromPool(Projectile pooledObject)
     {
-        gameObject.SetActive(true);
+        pooledObject.gameObject.SetActive(true);
     }
 
-    private void OnRelease(GameObject gameObject)
+    private void OnReleaseToPool(Projectile pooledObject)
     {
-        gameObject.SetActive(false);
+        pooledObject.gameObject.SetActive(false);
     }
 
-    private void OnDestroyBullet(GameObject gameObject)
+    private void OnDestroyPooledObject(Projectile pooledObject)
     {
-        Destroy(gameObject);
+        Destroy(pooledObject);
     }
 
     private System.Collections.IEnumerator ReturnAfter(GameObject gameObject, float seconds)
