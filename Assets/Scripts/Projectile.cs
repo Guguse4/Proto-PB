@@ -6,9 +6,9 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float timeoutDelay = 3f;
 
-    private ObjectPool<Projectile> objectPool;
+    private BulletPool objectPool;
 
-    public ObjectPool<Projectile> ObjectPool { set => objectPool = value; }
+    public BulletPool ObjectPool { set => objectPool = value; }
 
     public void Deactivate()
     {
@@ -23,6 +23,6 @@ public class Projectile : MonoBehaviour
         rb.linearVelocity = new Vector3(0f, 0f, 0f);
         rb.angularVelocity = new Vector3(0f, 0f, 0f);
 
-        objectPool.Release(this);
+        objectPool.pool.Release(this);
     }
 }

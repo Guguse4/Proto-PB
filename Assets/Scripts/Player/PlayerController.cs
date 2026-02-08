@@ -1,22 +1,29 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class PlayerMovement : MonoBehaviour
+
+public enum MovementMode
+{
+    TopDown,
+    Side2D
+}
+
+public class PlayerController : MonoBehaviour
 {
     PlayerInput playerInput;
     InputAction moveAction;
-    InputAction shootAction;
+    InputAction switchCameraAction;
     public Camera currentCamera; //Change this to change Raycast when phase switch
-    public LayerMask groundLayer;
+    public MovementMode currentMovementMode;
+    public CameraManager camaraManager;
 
 
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float maxDistanceRayCast = 100f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
-        shootAction = playerInput.actions.FindAction("Fire");
+        switchCameraAction = playerInput.actions.FindAction("CameraSwitch");
 
         if (Mouse.current == null)
             return;
@@ -27,13 +34,34 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
 
+        if (switchCameraAction.WasPressedThisFrame())
+        {
+            if (currentMovementMode == MovementMode.TopDown)
+            {
+                camaraManager.SwitchToSide2D();
+                currentMovementMode = MovementMode.Side2D;
+            }
+            else
+            {
+                camaraManager.SwitchToTopDown();
+                currentMovementMode = MovementMode.TopDown;
+            }
+        }
+
+        if (currentMovementMode != MovementMode.TopDown && Mouse.current == null)
+            {
+                return;
+            }
+
         Ray ray = currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-        if (Physics.Raycast(ray, out RaycastHit hit, maxDistanceRayCast, groundLayer))
-        {
-            Vector3 targetPosition = hit.point;
+        Plane aimPlane = new Plane(Vector3.up, transform.position);
 
-            Vector3 direction = targetPosition - transform.position;
+        if (aimPlane.Raycast(ray, out float hit))
+        {
+            Vector3 hitPoint = ray.GetPoint(hit);
+
+            Vector3 direction = hitPoint - transform.position;
             direction.y = 0f;
 
             if (direction != Vector3.zero) //direction.sqrMagnitude > 0.0001f
@@ -46,15 +74,26 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
-        Vector2 direction = moveAction.ReadValue<Vector2>();
-        transform.position += new Vector3(direction.x, 0, direction.y) * speed * Time.deltaTime;
+        Vector2 directionInput = moveAction.ReadValue<Vector2>();
+        Vector3 movement = Vector3.zero;
+
+        if(currentMovementMode == MovementMode.TopDown)
+        {
+            //WASD -> X / Z
+            movement = new Vector3(directionInput.x, 0f, directionInput.y);
+        }
+
+        else if(currentMovementMode == MovementMode.Side2D)
+        {
+            // WASD -> Y / Z
+            movement = new Vector3(0f, directionInput.x, directionInput.y);
+        }
+
+        transform.position += movement * speed * Time.deltaTime;
     }
 
-    void OnFire(InputValue value)
+    public void SetMovementNode(MovementMode mode)
     {
-        if(value.isPressed)
-        {
-            //Initialize bullet from pool
-        }
+        currentMovementMode = mode;
     }
 }
