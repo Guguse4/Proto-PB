@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0829f19746663e4bab7e030a419fec9, type: 3}
+  m_Name: BasicEmitter
+  m_EditorClassIdentifier: Assembly-CSharp::FireNode
+  shape: {fileID: 11400000, guid: e89861bcddfa8f448af495bf2510bce4, type: 2}
+  bulletData: {fileID: 11400000, guid: 8a3e3a97af7981d4eae622fa63b02330, type: 2}
+  count: 8
+  fireInterval: 0.302
+  duration: -1
