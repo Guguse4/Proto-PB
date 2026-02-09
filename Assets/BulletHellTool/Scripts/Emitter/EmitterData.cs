@@ -1,54 +1,73 @@
+using System.Collections.Generic;
 using UnityEngine;
-using Tool.Bullet;
+using BulletHell.Bullet;
 
-namespace Tool.Emitter
+namespace BulletHell.Emitter
 {
     [CreateAssetMenu(menuName = "Bullet Hell/Emitter")]
     public class EmitterData : ScriptableObject
     {
-        [Header("Core Settings")] public BulletShape shape;
+        [Header("Emitter data informations")]
+        
+        [Header("Data")] 
         public BulletData bulletData;
 
-        [Header("Emission Properties")] [Range(1, 100)] [Tooltip("Number of projectiles per emission")]
+        [Header("Emitter Properties")] 
+        [Range(1, 100)] [Tooltip("Number of projectiles per emission")]
         public int count;
 
         [Range(0.01f, 2f)] [Tooltip("Time between two emission (in seconds)")]
         public float fireInterval = 0.2f;
 
-        [Min(-1f)] [Tooltip("Total active time. Set -1 for infinite.")]
-        public float duration;
+        [Min(-1f)] [Tooltip("Total active time. Set less than 0 for infinite.")]
+        public float duration = -1f;
 
-        private float _elapsed;
-        private float _fireTimer;
+        [Header("Shape Properties")]
+        public float rotationSpeed;
+        public float arcAngle = 360f;
 
-        public void OnStart()
-        {
-            _elapsed = 0f;
-            _fireTimer = 0f;
-        }
-
-        public void OnTick(Tool.Bullet.BulletPool pool, Vector3 position, float dt)
+        private float _elapsed = 0f;
+        private float _fireTimer = 0f;
+        
+        public void OnTick(BulletHell.Bullet.BulletPool pool, Transform transform, float dt)
         {
             _elapsed += dt;
             _fireTimer += dt;
 
-            if (duration > -1 && _elapsed >= duration)
+            if (duration > 0 && _elapsed >= duration)
                 return;
 
             while (_fireTimer >= fireInterval)
             {
-                Fire(pool, position);
+                Fire(pool, transform);
                 _fireTimer -= fireInterval;
             }
         }
 
-        private void Fire(Tool.Bullet.BulletPool pool, Vector3 position)
+        private void Fire(BulletHell.Bullet.BulletPool pool, Transform transform)
         {
-            var directions = shape.GetDirections(count, _elapsed);
+            IEnumerable<Vector3> directions = GetDirections(_elapsed, transform);
 
             foreach (var dir in directions)
             {
-                pool.Spawn(position, dir, bulletData);
+                pool.Spawn(transform.position, dir, bulletData);
+            }
+        }
+        
+        public IEnumerable<Vector3> GetDirections(float time, Transform transform)
+        {
+            if (count <= 0 || arcAngle <= 0f)
+                yield break;
+
+            float startAngle = -arcAngle * 0.5f;
+            float step = (count == 1) ? 0f : arcAngle / (count - 1);
+            float rotation = time * rotationSpeed;
+            
+            for (int i = 0; i < count; i++)
+            {
+                float angle = startAngle + step * i + rotation;
+                Quaternion rot = Quaternion.AngleAxis(angle, transform.up);
+                yield return rot * transform.forward;
             }
         }
     }

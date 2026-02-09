@@ -12,7 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50bfdf70a410284ba69822e1dfa0393, type: 3}
   m_Name: BasicBullet
   m_EditorClassIdentifier: Assembly-CSharp::BulletData
-  speed: 5
-  lifetime: 3
-  movement: {fileID: 11400000, guid: b481b6bc6ff565c40a81e68864293b87, type: 2}
-  behaviours: []
+  speedOvertime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  speedMultiplier: 10
+  maximumLifeTime: 5

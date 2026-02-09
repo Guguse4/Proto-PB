@@ -1,31 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Tool.Bullet.BulletMovement;
-using Tool.Bullet.BulletBehaviour;
 
-namespace Tool.Bullet
+namespace BulletHell.Bullet
 {
     public class Bullet : MonoBehaviour
     {
-        private BulletMovementInstance _movement;
-        private List<BulletBehaviour.BulletBehaviour> _behaviours;
+        private BulletData _data;
+        private Vector3 _startDirection;
         private BulletPool _pool;
-
         private float _life;
-        private float _maximumLifeTime;
 
-        public void Init(BulletData in_data, Vector2 in_direction)
+        public void Init(BulletData in_data, Vector3 in_direction)
         {
             _life = 0;
-            _movement = in_data.CreateMovement();
-            _behaviours = in_data.CreateBehaviours();
-            _maximumLifeTime = in_data.maximumLifeTime;
-            _movement.Init(transform, in_direction, in_data.speed);
-
-            foreach (var b in _behaviours)
-            {
-                b.OnSpawn(this);
-            }
+            _data = in_data;
+            _startDirection = in_direction;
         }
 
         public void SetPool(BulletPool in_pool)
@@ -36,16 +25,13 @@ namespace Tool.Bullet
         private void Update()
         {
             _life += Time.deltaTime;
-            if (_life >= _maximumLifeTime)
+            if (_life >= _data.maximumLifeTime)
             {
                 _pool.Recycle(this);
             }
 
-            _movement.Tick(Time.deltaTime);
-            foreach (var b in _behaviours)
-            {
-                b.Tick(Time.deltaTime);
-            }
+            float speed = _data.speedOvertime.Evaluate(_life/_data.maximumLifeTime);
+            transform.position += _startDirection * speed * _data.speedMultiplier * Time.deltaTime;
         }
     }
 }

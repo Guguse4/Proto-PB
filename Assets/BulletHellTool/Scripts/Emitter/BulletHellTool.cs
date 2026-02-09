@@ -1,27 +1,21 @@
 ﻿using UnityEngine;
 
-namespace Tool.Emitter
+namespace BulletHell.Emitter
 {
-public class BulletHellTool : MonoBehaviour
-{
-    public Tool.Bullet.BulletPool bulletPool;
-    public EmitterData emitterData;
-
-    void Start()
+    public class BulletHellTool : MonoBehaviour
     {
-        if (emitterData == null)
+        [Header("Default")]
+        public Bullet.Bullet bulletPrefab;
+        public EmitterData emitterData;
+
+        void Start()
         {
-            Debug.LogError("Emitter has no data", this);
-            gameObject.SetActive(false);
-            return;
+            Bullet.BulletPool pool = gameObject.AddComponent<Bullet.BulletPool>();
+            pool.bulletPrefab = bulletPrefab;
+            
+            Emitter emitter = gameObject.AddComponent<Emitter>();
+            emitter.emitterData = emitterData;
+            emitter.bulletPool = pool;
         }
-
-        emitterData.OnStart();
     }
-
-    void Update()
-    {
-        emitterData.OnTick(bulletPool, transform.position, Time.deltaTime);
-    }
-}
 }

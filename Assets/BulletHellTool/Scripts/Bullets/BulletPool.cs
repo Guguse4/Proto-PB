@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Tool.Bullet
+namespace BulletHell.Bullet
 {
     public class BulletPool : MonoBehaviour
     {
@@ -46,7 +44,7 @@ namespace Tool.Bullet
             Destroy(bullet.gameObject);
         }
 
-        public void Spawn(Vector3 position, Vector2 direction, BulletData data)
+        public void Spawn(Vector3 position, Vector3 direction, BulletData data)
         {
             Bullet bullet = _pool.Get();
             bullet.transform.position = position;

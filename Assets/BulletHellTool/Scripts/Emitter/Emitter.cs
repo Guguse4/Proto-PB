@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 
-namespace Tool.Emitter
+namespace BulletHell.Emitter
 {
     public class Emitter : MonoBehaviour
     {
-        public Tool.Bullet.BulletPool bulletPool;
+        public BulletHell.Bullet.BulletPool bulletPool;
         public EmitterData emitterData;
 
         void Start()
@@ -13,16 +12,17 @@ namespace Tool.Emitter
             if (emitterData == null)
             {
                 Debug.LogError("Emitter has no data", this);
-                gameObject.SetActive(false);
-                return;
             }
 
-            emitterData.OnStart();
+            if (bulletPool == null)
+            {
+                Debug.LogError("Emitter has no bullet pool", this);
+            }
         }
 
         void Update()
         {
-            emitterData.OnTick(bulletPool, transform.position, Time.deltaTime);
+            emitterData.OnTick(bulletPool, transform, Time.deltaTime);
         }
     }
 }
