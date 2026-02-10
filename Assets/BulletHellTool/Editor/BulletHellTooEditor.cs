@@ -5,10 +5,9 @@ namespace BulletHell.Emitter
 {
     [CustomEditor(typeof(BulletHellTool))]
     [CanEditMultipleObjects]
-    public class EmitterDataEditor : Editor
+    public class BulletHellTooEditor : Editor
     {
         private Editor emitterDataEditor;
-        private Editor bulletDataEditor;
 
         public override void OnInspectorGUI()
         {
@@ -27,19 +26,6 @@ namespace BulletHell.Emitter
                     emitterDataEditor = CreateEditor(comp.emitterData);
                 }
                 emitterDataEditor.OnInspectorGUI();
-                
-                // Show bullet data parameters
-                if (comp.emitterData.bulletData != null)
-                {
-                    if (bulletDataEditor == null || bulletDataEditor.target != comp.emitterData.bulletData)
-                    {
-                        if (bulletDataEditor != null)
-                            DestroyImmediate(bulletDataEditor);
-                        bulletDataEditor = CreateEditor(comp.emitterData.bulletData);
-                    }
-
-                    bulletDataEditor.OnInspectorGUI();
-                }
             }
 
             if (GUI.changed)
@@ -47,8 +33,6 @@ namespace BulletHell.Emitter
                 EditorUtility.SetDirty(comp);
                 if (comp.emitterData != null)
                     EditorUtility.SetDirty(comp.emitterData);
-                if(comp.emitterData.bulletData != null)
-                    EditorUtility.SetDirty(comp.emitterData.bulletData);
             }
         }
 
@@ -57,11 +41,6 @@ namespace BulletHell.Emitter
             if (emitterDataEditor != null)
             {
                 DestroyImmediate(emitterDataEditor);
-            }
-
-            if (bulletDataEditor != null)
-            {
-                DestroyImmediate(bulletDataEditor);
             }
         }
     }

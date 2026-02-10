@@ -12,10 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0829f19746663e4bab7e030a419fec9, type: 3}
   m_Name: BasicEmitter
   m_EditorClassIdentifier: Assembly-CSharp::FireNode
-  bulletData: {fileID: 11400000, guid: 8a3e3a97af7981d4eae622fa63b02330, type: 2}
+  bulletData:
+    speedOverLifeTime:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    speedMultiplier: 10
+    maximumLifeTime: 5
   count: 3
-  fireInterval: 0.5
+  fireInterval: 1
   duration: -1
-  plan: 2
+  isBurst: 1
+  burstCount: 20
   rotationSpeed: 0
-  arcAngle: 30
+  shotShape: 1
+  arcAngle: 360
+  lineLength: 10
+  useTelegraph: 1
+  telegraphDuration: 0.5

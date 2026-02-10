@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using BulletHell.Emitter;
 
 namespace BulletHell.Bullet
 {
@@ -30,7 +30,7 @@ namespace BulletHell.Bullet
                 _pool.Recycle(this);
             }
 
-            float speed = _data.speedOvertime.Evaluate(_life/_data.maximumLifeTime);
+            float speed = _data.speedOverLifeTime.Evaluate(_life/_data.maximumLifeTime);
             transform.position += _startDirection * speed * _data.speedMultiplier * Time.deltaTime;
         }
     }

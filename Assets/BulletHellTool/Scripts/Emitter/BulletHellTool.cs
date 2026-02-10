@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BulletHellTool.Telegraph;
+using UnityEngine;
 
 namespace BulletHell.Emitter
 {
@@ -7,6 +8,7 @@ namespace BulletHell.Emitter
         [Header("Default")]
         public Bullet.Bullet bulletPrefab;
         public EmitterData emitterData;
+        public TelegraphRenderer telegraphRenderer;
 
         void Start()
         {
@@ -16,6 +18,7 @@ namespace BulletHell.Emitter
             Emitter emitter = gameObject.AddComponent<Emitter>();
             emitter.emitterData = emitterData;
             emitter.bulletPool = pool;
+            emitter.telegraphRenderer = telegraphRenderer;
         }
     }
 }
