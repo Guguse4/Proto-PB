@@ -16,7 +16,7 @@ namespace BulletHell.Emitter
             pool.bulletPrefab = bulletPrefab;
             
             Emitter emitter = gameObject.AddComponent<Emitter>();
-            emitter.emitterData = emitterData;
+            emitter.emitterDataBase = emitterData;
             emitter.bulletPool = pool;
             emitter.telegraphRenderer = telegraphRenderer;
         }

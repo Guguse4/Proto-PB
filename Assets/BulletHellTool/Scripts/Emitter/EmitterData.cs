@@ -21,7 +21,8 @@ namespace BulletHell.Emitter
     public enum ShotPattern
     {
         Arc,
-        Line
+        Line,
+        RandomLine
     }
     
     public enum EmitterTickResult
@@ -63,20 +64,20 @@ namespace BulletHell.Emitter
         
         [Header("Line shape parameters")]
         public float lineLength = 5f;
-            
-        private float _elapsed = 0f;
-        private float _fireTimer = 0f;
-        private int _currentBurstCount = 0;
         
         [Header("Telegraph")]
         public bool useTelegraph = false;
 
         [Min(0f)]
         public float telegraphDuration = 0.5f;
+        
+        public GameObject telegraphPrefab;
 
+        private float _elapsed = 0f;
+        private float _fireTimer = 0f;
+        private int _currentBurstCount = 0;
         private bool _waitingForTelegraph = false;
         
-
         public void ResetState()
         {
             _elapsed = 0f;
@@ -124,15 +125,7 @@ namespace BulletHell.Emitter
                 _currentBurstCount++;
         }
 
-        # region Spawns
-        private void Fire(BulletHell.Bullet.BulletPool pool, Transform transform)
-        {
-            foreach (var spawn in GetSpawnData(_elapsed, transform))
-            {
-                pool.Spawn(spawn.position, spawn.direction, bulletData);
-            }
-        }
-        
+        # region Spawns Shapes
         public IEnumerable<SpawnData> GetSpawnData(float time, Transform transform)
         {
             switch (shotShape)
@@ -144,9 +137,7 @@ namespace BulletHell.Emitter
                     return GetArcSpawns(time, transform);
             }
         }
-        #endregion
-
-        #region Spawns shapes
+        
         public IEnumerable<SpawnData> GetLineSpawns(float time, Transform transform)
         {
             if (count <= 0)

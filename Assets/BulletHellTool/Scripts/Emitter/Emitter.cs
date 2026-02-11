@@ -1,3 +1,4 @@
+using System;
 using BulletHellTool.Telegraph;
 using UnityEngine;
 
@@ -6,25 +7,49 @@ namespace BulletHell.Emitter
     public class Emitter : MonoBehaviour
     {
         public BulletHell.Bullet.BulletPool bulletPool;
-        public EmitterData emitterData;
+        public EmitterData emitterDataBase;
         public TelegraphRenderer telegraphRenderer;
         
         private bool _isTelegraphing = false;
         private float _telegraphTimer = 0f;
+        private EmitterData _emitterData;
 
         void Start()
         {
-            if (emitterData == null)
+            if (emitterDataBase == null)
             {
                 Debug.LogError("Emitter has no data", this);
             }
+            else
+            {
+                emitterDataBase.ResetState();
+            }
 
-            emitterData.ResetState();
+            if (telegraphRenderer == null)
+            {
+                Debug.LogError("Emitter has no telegraph renderer", this);
+            }
+            else
+            {
+                telegraphRenderer.SetDecalPrefab(emitterDataBase.telegraphPrefab);
+            }
 
             if (bulletPool == null)
             {
                 Debug.LogError("Emitter has no bullet pool", this);
             }
+            
+            gameObject.SetActive(false);
+        }
+
+        private void OnEnable()
+        {
+            _emitterData = Instantiate(emitterDataBase);
+        }
+
+        private void OnDisable()
+        {
+            _emitterData = null;
         }
 
         void Update()
@@ -34,11 +59,11 @@ namespace BulletHell.Emitter
             {
                 _telegraphTimer += dt;
 
-                if (_telegraphTimer >= emitterData.telegraphDuration)
+                if (_telegraphTimer >= _emitterData.telegraphDuration)
                 {
                     telegraphRenderer.Hide();
                     Fire();
-                    emitterData.ConfirmFire();
+                    _emitterData.ConfirmFire();
 
                     _isTelegraphing = false;
                     _telegraphTimer = 0f;
@@ -47,7 +72,7 @@ namespace BulletHell.Emitter
                 return;
             }
             
-            var result = emitterData.OnTick(dt);
+            var result = _emitterData.OnTick(dt);
 
             switch (result)
             {
@@ -57,7 +82,7 @@ namespace BulletHell.Emitter
 
                 case EmitterTickResult.Fire:
                     Fire();
-                    emitterData.ConfirmFire();
+                    _emitterData.ConfirmFire();
                     break;
 
                 case EmitterTickResult.Finished:
@@ -68,9 +93,9 @@ namespace BulletHell.Emitter
         
         private void Fire()
         {
-            foreach (var spawn in emitterData.GetSpawnData(Time.time, transform))
+            foreach (var spawn in _emitterData.GetSpawnData(Time.time, transform))
             {
-                bulletPool.Spawn(spawn.position, spawn.direction, emitterData.bulletData);
+                bulletPool.Spawn(spawn.position, spawn.direction, _emitterData.bulletData);
             }
         }
 
@@ -79,8 +104,21 @@ namespace BulletHell.Emitter
             _isTelegraphing = true;
             _telegraphTimer = 0f;
 
-            var spawns = emitterData.GetSpawnData(Time.time, transform);
+            var spawns = _emitterData.GetSpawnData(Time.time, transform);
             telegraphRenderer.Show(spawns);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            
+            var spawns = emitterDataBase.GetSpawnData(Time.time, transform);
+            foreach (var spawn in spawns)
+            {
+                Gizmos.DrawLine(spawn.position, spawn.position + spawn.direction);
+                Gizmos.DrawSphere(spawn.position, 0.1f);
+                Gizmos.DrawSphere(spawn.position + spawn.direction, 0.1f);
+            }
         }
     }
 }
