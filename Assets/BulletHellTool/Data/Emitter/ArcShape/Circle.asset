@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0829f19746663e4bab7e030a419fec9, type: 3}
-  m_Name: 8bulletLine
-  m_EditorClassIdentifier: Assembly-CSharp::FireNode
+  m_Name: Circle
+  m_EditorClassIdentifier: Assembly-CSharp::BulletHell.Emitter.EmitterData
   bulletData:
     speedOverLifeTime:
       serializedVersion: 2
@@ -39,15 +39,15 @@ MonoBehaviour:
       m_RotationOrder: 4
     speedMultiplier: 10
     maximumLifeTime: 5
-  count: 11
+  count: 8
   fireInterval: 0.01
   duration: -1
   isBurst: 1
   burstCount: 1
   rotationSpeed: 0
-  shotShape: 1
+  shotShape: 0
   arcAngle: 360
-  lineLength: 21.5
+  lineLength: 12.52
   useTelegraph: 1
   telegraphDuration: 0.5
   telegraphPrefab: {fileID: 1839680576288587297, guid: 910bd5816fbd59e4aa2f9d5465b9c46d, type: 3}

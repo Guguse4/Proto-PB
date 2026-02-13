@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using BulletHell.Emitter;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 namespace BulletHellTool.Telegraph
 {

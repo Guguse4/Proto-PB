@@ -1,4 +1,3 @@
-using System;
 using BulletHellTool.Telegraph;
 using UnityEngine;
 
@@ -19,26 +18,25 @@ namespace BulletHell.Emitter
             if (emitterDataBase == null)
             {
                 Debug.LogError("Emitter has no data", this);
-            }
-            else
-            {
-                emitterDataBase.ResetState();
+                Destroy(gameObject);
+                return;
             }
 
             if (telegraphRenderer == null)
             {
                 Debug.LogError("Emitter has no telegraph renderer", this);
+                Destroy(gameObject);
+                return;
             }
-            else
-            {
-                telegraphRenderer.SetDecalPrefab(emitterDataBase.telegraphPrefab);
-            }
-
+            
             if (bulletPool == null)
             {
                 Debug.LogError("Emitter has no bullet pool", this);
+                Destroy(gameObject);
+                return;
             }
             
+            telegraphRenderer.SetDecalPrefab(emitterDataBase.telegraphPrefab);
             gameObject.SetActive(false);
         }
 

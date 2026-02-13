@@ -1,5 +1,4 @@
-﻿using System;
-using BulletHell.Emitter;
+﻿using BulletHell.Emitter;
 using UnityEngine;
 using UnityEngine.Playables;
 

@@ -16,23 +16,7 @@ MonoBehaviour:
   emitter:
     exposedName: 
     defaultValue: {fileID: 0}
---- !u!114 &-5803126365920025727
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01dba58fa1b448f79fbf35a947eded41, type: 3}
-  m_Name: Pattern Signal
-  m_EditorClassIdentifier: Assembly-CSharp::BulletHellTool.Timeline.PatternSignal
-  m_Time: 4
-  emitter:
-    exposedName: 3b3194aad9c4bd74fa85b5bae962fbd4
-    defaultValue: {fileID: 0}
---- !u!114 &-4328579151566674129
+--- !u!114 &-5237850745193565438
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,7 +30,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletHellTool.Timeline.PatternSignal
   m_Time: 2
   emitter:
-    exposedName: 5d67aec1506312847958edc16d5afde0
+    exposedName: b8afa6820c45d354fba894f62343c046
     defaultValue: {fileID: 0}
 --- !u!114 &-52182995307804830
 MonoBehaviour:
@@ -107,5 +91,21 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects:
-    - {fileID: -4328579151566674129}
-    - {fileID: -5803126365920025727}
+    - {fileID: -5237850745193565438}
+    - {fileID: 6843408756420527265}
+--- !u!114 &6843408756420527265
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01dba58fa1b448f79fbf35a947eded41, type: 3}
+  m_Name: Pattern Signal
+  m_EditorClassIdentifier: Assembly-CSharp::BulletHellTool.Timeline.PatternSignal
+  m_Time: 4
+  emitter:
+    exposedName: 2f48e8039a379e74cbe02e8957b5f07e
+    defaultValue: {fileID: 0}

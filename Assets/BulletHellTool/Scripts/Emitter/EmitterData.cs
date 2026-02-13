@@ -78,15 +78,6 @@ namespace BulletHell.Emitter
         private int _currentBurstCount = 0;
         private bool _waitingForTelegraph = false;
         
-        public void ResetState()
-        {
-            _elapsed = 0f;
-            _fireTimer = 0f;
-            _currentBurstCount = 0;
-            
-            _waitingForTelegraph = false;
-        }
-        
         public EmitterTickResult OnTick(float dt)
         {
             if (isBurst == false)
