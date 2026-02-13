@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: MechanicBase
   m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Mechanic
   patterns:
-  - _sourceRelativePosition: {x: -1, y: 0, z: -1}
-    _sourceRelativeDirection: {x: 1, y: 0, z: 0}
-    _action: {fileID: 11400000, guid: 7f4245062c9e02e4b86dd49f451d2119, type: 2}
-    _telegraphPrefab: {fileID: 0}
-  - _sourceRelativePosition: {x: 1, y: 0, z: 1}
+  - _sourceRelativePosition: {x: 0, y: 0, z: 0}
     _sourceRelativeDirection: {x: 0, y: 0, z: 0}
     _action: {fileID: 11400000, guid: 7f4245062c9e02e4b86dd49f451d2119, type: 2}
-    _telegraphPrefab: {fileID: 0}
+    _telegraphPrefab: {fileID: 1839680576288587297, guid: 52e259721853d4b4b8f23c199cc18d0f, type: 3}
+  - _sourceRelativePosition: {x: 0, y: 0, z: 0}
+    _sourceRelativeDirection: {x: 0, y: 0, z: 0}
+    _action: {fileID: 11400000, guid: 7f4245062c9e02e4b86dd49f451d2119, type: 2}
+    _telegraphPrefab: {fileID: 1839680576288587297, guid: 52e259721853d4b4b8f23c199cc18d0f, type: 3}
+  - _sourceRelativePosition: {x: 0, y: 0, z: 0}
+    _sourceRelativeDirection: {x: 0, y: 0, z: 0}
+    _action: {fileID: 11400000, guid: 7f4245062c9e02e4b86dd49f451d2119, type: 2}
+    _telegraphPrefab: {fileID: 1839680576288587297, guid: 52e259721853d4b4b8f23c199cc18d0f, type: 3}
   spawnPositionBehaviour: 0
   spawnRotationBehaviour: 0

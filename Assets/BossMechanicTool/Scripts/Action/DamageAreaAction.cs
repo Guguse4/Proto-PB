@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace BossMechanicTool.Action
 {
@@ -16,13 +15,10 @@ namespace BossMechanicTool.Action
         public int damage;
         
         // Circle
-        [NonSerialized]
         public float radius;
         
         // Rectangle
-        [NonSerialized]
         public float width;
-        [NonSerialized]
         public float height;
 
         public void ActivateAction()
@@ -32,6 +28,16 @@ namespace BossMechanicTool.Action
                 case ShapeType.Circle:
                     break;
                 case ShapeType.Rectangle:
+                    break;
+            }
+        }
+        
+        public override void DrawGizmos(Vector3 origin)
+        {
+            switch (shape)
+            {
+                case ShapeType.Circle:
+                    Gizmos.DrawSphere(origin, radius);
                     break;
             }
         }

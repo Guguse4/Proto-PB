@@ -1,31 +1,44 @@
 ﻿using BossMechanicTool.Action;
 using UnityEditor;
-using UnityEngine;
 
 namespace BossMechanicTool.Editor
 {
     [CustomEditor(typeof(DamageAreaAction))]
     public class DamageAreaActionEditor: UnityEditor.Editor
     {
+        SerializedProperty shapeProp;
+        SerializedProperty radiusProp;
+        SerializedProperty widthProp;
+        SerializedProperty heightProp;
+
+        private void OnEnable()
+        {
+            shapeProp = serializedObject.FindProperty("shape");
+            radiusProp = serializedObject.FindProperty("radius");
+            widthProp = serializedObject.FindProperty("width");
+            heightProp = serializedObject.FindProperty("height");
+        }
+
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
-            
-            DamageAreaAction damageAreaAction = (DamageAreaAction)target;
+            serializedObject.Update();
 
-            switch (damageAreaAction.shape)
+            EditorGUILayout.PropertyField(shapeProp);
+
+            ShapeType shape = (ShapeType)shapeProp.enumValueIndex;
+            switch (shape)
             {
                 case ShapeType.Circle:
-                    damageAreaAction.radius = EditorGUILayout.FloatField("Radius: ", damageAreaAction.radius);
+                    EditorGUILayout.PropertyField(radiusProp);
                     break;
+
                 case ShapeType.Rectangle:
-                    damageAreaAction.width = EditorGUILayout.FloatField("Width: ", damageAreaAction.width);
-                    damageAreaAction.height = EditorGUILayout.FloatField("Height: ", damageAreaAction.height);
+                    EditorGUILayout.PropertyField(widthProp);
+                    EditorGUILayout.PropertyField(heightProp);
                     break;
             }
-            
-            if (GUI.changed)
-                EditorUtility.SetDirty(damageAreaAction);
+
+            serializedObject.ApplyModifiedProperties();
         }
     }
 }
