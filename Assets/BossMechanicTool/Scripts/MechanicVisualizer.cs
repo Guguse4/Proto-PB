@@ -14,7 +14,8 @@ namespace BossMechanicTool
             Gizmos.color = Color.yellow;
             foreach(Pattern pattern in mechanic.patterns)
             {
-                pattern.Action.DrawGizmos(transform.position + pattern.SourceRelativePosition);
+                if(pattern != null && pattern.Action != null)
+                    pattern.Action.DrawGizmos(transform.position + pattern.SourceRelativePosition, pattern.SourceRelativeDirection);
             }
         }
     }

@@ -1,27 +1,20 @@
 ﻿using System.Collections.Generic;
-using BulletHell.Emitter;
 using UnityEngine;
 
-namespace BulletHellTool.Telegraph
+namespace BossMechanicTool.Telegraph
 {
     public class TelegraphRenderer: MonoBehaviour
     {
-        private GameObject _decalPrefab;
         private readonly List<GameObject> _decals = new();
 
-        public void SetDecalPrefab(GameObject in_decalPrefab)
+        public void Show(List<Pattern> in_patterns, Vector3 origin)
         {
-            _decalPrefab = in_decalPrefab;
-        }
-
-        public void Show(IEnumerable<SpawnData> spawns)
-        {
-            Hide();
-            
-            foreach (var spawn in spawns)
+            foreach (var pattern in in_patterns)
             {
+                Vector3 position = origin + pattern.SourceRelativePosition;
+                
                 Vector3 normal = transform.up;
-                Vector3 localDirection = transform.InverseTransformDirection(spawn.direction);
+                Vector3 localDirection = transform.InverseTransformDirection(pattern.SourceRelativeDirection);
                 Vector3 projectedLocal = Vector3.ProjectOnPlane(localDirection, Vector3.up).normalized;
                 
                 if(projectedLocal.sqrMagnitude < 0.0001f)
@@ -33,8 +26,8 @@ namespace BulletHellTool.Telegraph
                 Quaternion rotation = Quaternion.LookRotation(normal, yAxis);
                     
                 var decal = Instantiate(
-                    _decalPrefab,
-                    spawn.position,
+                    pattern.TelegraphPrefab,
+                    position,
                     rotation,
                     transform
                 );
@@ -46,7 +39,7 @@ namespace BulletHellTool.Telegraph
         public void Hide()
         {
             foreach (var decal in _decals)
-                Destroy(decal.gameObject);
+                DestroyImmediate(decal.gameObject);
 
             _decals.Clear();
         }

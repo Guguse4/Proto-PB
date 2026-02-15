@@ -6,6 +6,7 @@ namespace BossMechanicTool
     [RequireComponent(typeof(TelegraphRenderer))]
     public class MechanicPlayer: MonoBehaviour
     {
+        // Tool to draw telegraph
         private TelegraphRenderer _telegraphRenderer;
         
         private void Start()
@@ -15,7 +16,6 @@ namespace BossMechanicTool
 
         public void ShowMechanicTelegraph(Mechanic mechanic)
         {
-            Debug.Log("Show Mechanic Telegraph");
             if(_telegraphRenderer == null)
                 _telegraphRenderer = GetComponent<TelegraphRenderer>();
             
@@ -24,7 +24,6 @@ namespace BossMechanicTool
 
         public void HideMechanicTelegraph(Mechanic mechanic)
         {
-            Debug.Log("Hide Mechanic Telegraph");
             if(_telegraphRenderer == null)
                 _telegraphRenderer = GetComponent<TelegraphRenderer>();
             
@@ -33,7 +32,11 @@ namespace BossMechanicTool
 
         public void ActivateMechanic(Mechanic mechanic)
         {
-            Debug.Log("Activate Mechanic");
+            foreach (Pattern pattern in mechanic.patterns)
+            {
+                if(pattern != null && pattern.Action != null)
+                    pattern.Action.ActivateAction(transform.position + pattern.SourceRelativePosition, pattern.SourceRelativeDirection);
+            }
         }
     }
 }
