@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,11 +24,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float decceleration = 1f;
     private float speed;
     private Vector3 movement;
+    private Rigidbody rb;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
+        rb = GetComponent<Rigidbody>();
         moveAction = playerInput.actions.FindAction("Move");
         switchCameraAction = playerInput.actions.FindAction("CameraSwitch");
 
@@ -38,8 +41,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
-
         if (switchCameraAction.WasPressedThisFrame())
         {
             if (currentMovementMode == MovementMode.TopDown)
@@ -91,6 +92,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
     void MovePlayer()
     {
         Vector2 directionInput = moveAction.ReadValue<Vector2>().normalized;
@@ -118,7 +124,8 @@ public class PlayerController : MonoBehaviour
             speed = Mathf.MoveTowards(speed, 0f, decceleration * Time.deltaTime);
         }
 
-        transform.position += movement * speed * Time.deltaTime;
+        //transform.position += movement * speed * Time.deltaTime;
+        rb.MovePosition(transform.position + movement * speed * Time.fixedDeltaTime);
     }
 
     public void SetMovementNode(MovementMode mode)
