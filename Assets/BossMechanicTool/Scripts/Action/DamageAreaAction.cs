@@ -41,6 +41,19 @@ namespace BossMechanicTool.Action
         public Mesh meshRef;
         public Vector3 scale;
 
+        public override Vector3 GetSize()
+        {
+            switch (shape)
+            {
+                case ShapeType.Circle:
+                    return new Vector3(radius, 1, radius);
+                case ShapeType.Rectangle:
+                    return new Vector3(width, 1, height);
+                default:
+                    return Vector3.one;
+            }
+        }
+
         #region Activation
         public override void ActivateAction(Vector3 position, Vector3 direction)
         {

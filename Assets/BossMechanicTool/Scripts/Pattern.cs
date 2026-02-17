@@ -65,5 +65,10 @@ namespace BossMechanicTool
         {
             _sourceRelativeDirection = relativeDirection;
         }
+
+        public Vector3 GetActionSize()
+        {
+            return Action.GetSize();
+        }
     }
 }

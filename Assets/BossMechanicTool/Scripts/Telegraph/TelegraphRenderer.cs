@@ -31,6 +31,8 @@ namespace BossMechanicTool.Telegraph
                     rotation,
                     transform
                 );
+                
+                decal.transform.localScale = pattern.GetActionSize();
 
                 _decals.Add(decal);
             }
