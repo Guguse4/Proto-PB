@@ -131,6 +131,7 @@ namespace BossMechanicTool.Action
         private void ApplyDamage(Collider col)
         {
             // TODO : damage system
+            Debug.Log("Collider : " + col.gameObject.name);
         }
         
         #endregion

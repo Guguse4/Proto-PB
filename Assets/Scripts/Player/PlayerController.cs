@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
             {
                 camaraManager.SwitchToTopDown();
                 currentMovementMode = MovementMode.TopDown;
-                transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+                //transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
             }
         }
 
@@ -125,11 +125,16 @@ public class PlayerController : MonoBehaviour
         }
 
         //transform.position += movement * speed * Time.deltaTime;
-        rb.MovePosition(transform.position + movement * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
     public void SetMovementNode(MovementMode mode)
     {
         currentMovementMode = mode;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("Hit: " + other.gameObject.name);
     }
 }
