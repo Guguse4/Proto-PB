@@ -5,14 +5,15 @@ using UnityEngine.Serialization;
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private PlayerData playerData;
-    private float _currentHealth;
+    private int _currentHealth;
+    public int CurrentHealth => _currentHealth;
 
     private void Awake()
     {
         _currentHealth = playerData.maxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
 

@@ -135,7 +135,7 @@ namespace BossMechanicTool.Action
             IDamageable damageable = col.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.TakeDamage(damage);
+                damageable.TakeDamage(10); //damage
             }
         }
         

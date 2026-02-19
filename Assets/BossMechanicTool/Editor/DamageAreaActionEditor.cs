@@ -9,6 +9,8 @@ namespace BossMechanicTool.Editor
     {
         SerializedProperty shapeProp;
         
+        SerializedProperty damageProp;
+        
         SerializedProperty radiusProp;
         
         SerializedProperty widthProp;
@@ -80,6 +82,7 @@ namespace BossMechanicTool.Editor
             float y = position.y + LineHeight + Spacing;
 
             SerializedProperty shapeProp = property.FindPropertyRelative("shape");
+            SerializedProperty damageProp = property.FindPropertyRelative("damage");
             SerializedProperty radiusProp = property.FindPropertyRelative("radius");
             SerializedProperty widthProp = property.FindPropertyRelative("width");
             SerializedProperty heightProp = property.FindPropertyRelative("height");
