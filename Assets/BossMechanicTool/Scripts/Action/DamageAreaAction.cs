@@ -132,6 +132,11 @@ namespace BossMechanicTool.Action
         {
             // TODO : damage system
             Debug.Log("Collider : " + col.gameObject.name);
+            IDamageable damageable = col.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damage);
+            }
         }
         
         #endregion
