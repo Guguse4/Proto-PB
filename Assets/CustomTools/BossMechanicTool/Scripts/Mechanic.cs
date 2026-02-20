@@ -38,5 +38,7 @@ namespace BossMechanicTool
         
         // Define the rotation behaviour of the mechanic
         public SpawnRotationBehaviour spawnRotationBehaviour;
+        
+        public float activationDelay = 0f;
     }
 }

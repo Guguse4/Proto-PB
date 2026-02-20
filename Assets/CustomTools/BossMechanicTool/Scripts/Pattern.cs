@@ -67,6 +67,10 @@ namespace BossMechanicTool
         private GameObject _telegraphPrefab;
         public GameObject TelegraphPrefab{get{return _telegraphPrefab;}}
 
+        [SerializeField] 
+        private GameObject _activationVFX;
+        public GameObject ActivationVFX{get{return _activationVFX;}}
+
         #region  Setter/Getter
             public void SetRelativePosition(Vector3 relativePosition)
             {

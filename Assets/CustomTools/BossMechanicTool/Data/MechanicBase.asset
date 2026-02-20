@@ -20,14 +20,15 @@ MonoBehaviour:
       shape: 0
       damage: 1
       radius: 1
-      width: 0
-      height: 0
+      width: 2
+      height: 5
       innerRadius: 0
       outerRadius: 0
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
-    _telegraphPrefab: {fileID: 1759086989054397525, guid: 3e075753f80da0248af0df0bce78427c, type: 3}
+    _telegraphPrefab: {fileID: 7957833072274404953, guid: 088e00b0c0de1c747a0b7ded79d74644, type: 3}
+    _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   - _sourceRelativePosition: {x: 1.5450848, y: 0, z: 4.755283}
     _sourceRelativeDirection: {x: 0, y: 0, z: 0}
     _actionType: 0
@@ -42,7 +43,8 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
-    _telegraphPrefab: {fileID: 1759086989054397525, guid: 3e075753f80da0248af0df0bce78427c, type: 3}
+    _telegraphPrefab: {fileID: 7957833072274404953, guid: 088e00b0c0de1c747a0b7ded79d74644, type: 3}
+    _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   - _sourceRelativePosition: {x: -4.0450854, y: 0, z: 2.938926}
     _sourceRelativeDirection: {x: 0, y: 0, z: 0}
     _actionType: 0
@@ -57,7 +59,8 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
-    _telegraphPrefab: {fileID: 1759086989054397525, guid: 3e075753f80da0248af0df0bce78427c, type: 3}
+    _telegraphPrefab: {fileID: 7957833072274404953, guid: 088e00b0c0de1c747a0b7ded79d74644, type: 3}
+    _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   - _sourceRelativePosition: {x: -4.0450854, y: 0, z: -2.9389257}
     _sourceRelativeDirection: {x: 0, y: 0, z: 0}
     _actionType: 0
@@ -72,7 +75,8 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
-    _telegraphPrefab: {fileID: 1759086989054397525, guid: 3e075753f80da0248af0df0bce78427c, type: 3}
+    _telegraphPrefab: {fileID: 7957833072274404953, guid: 088e00b0c0de1c747a0b7ded79d74644, type: 3}
+    _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   - _sourceRelativePosition: {x: 1.5450857, y: 0, z: -4.7552824}
     _sourceRelativeDirection: {x: 0, y: 0, z: 0}
     _actionType: 0
@@ -87,6 +91,8 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
-    _telegraphPrefab: {fileID: 1759086989054397525, guid: 3e075753f80da0248af0df0bce78427c, type: 3}
+    _telegraphPrefab: {fileID: 7957833072274404953, guid: 088e00b0c0de1c747a0b7ded79d74644, type: 3}
+    _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   spawnPositionBehaviour: 0
   spawnRotationBehaviour: 0
+  activationDelay: 0.5

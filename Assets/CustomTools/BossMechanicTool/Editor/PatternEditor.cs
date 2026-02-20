@@ -32,6 +32,7 @@ namespace BossMechanicTool.Editor
             }
 
             height += LineHeight + Spacing; // Telegraph
+            height += LineHeight + Spacing; // activation vfx
 
             return height;
         }
@@ -57,6 +58,7 @@ namespace BossMechanicTool.Editor
             SerializedProperty directionProp = property.FindPropertyRelative("_sourceRelativeDirection");
             SerializedProperty actionTypeProp = property.FindPropertyRelative("_actionType");
             SerializedProperty telegraphProp = property.FindPropertyRelative("_telegraphPrefab");
+            SerializedProperty activationVFXProp = property.FindPropertyRelative("_activationVFX");
 
             // Position
             y = DrawField(position, y, positionProp);
@@ -80,7 +82,8 @@ namespace BossMechanicTool.Editor
             }
 
             // Telegraph
-            DrawField(position, y, telegraphProp);
+            y = DrawField(position, y, telegraphProp);
+            y = DrawField(position, y, activationVFXProp);
 
             EditorGUI.indentLevel--;
             

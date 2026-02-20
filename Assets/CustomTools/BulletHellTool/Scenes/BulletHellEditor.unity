@@ -662,17 +662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd75c4850d5443ca29dce650799da2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletHellTool.Timeline.PatternSignalReceiver
---- !u!114 &775670257 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5134927648481022904, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
-  m_PrefabInstance: {fileID: 5684384519547595811}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f70f950123d4dc2870619504511bbf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletHellTool.Telegraph.TelegraphRenderer
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +783,7 @@ PrefabInstance:
     - target: {fileID: 7481091364862718188, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
       propertyPath: telegraphRenderer
       value: 
-      objectReference: {fileID: 1238093329}
+      objectReference: {fileID: 0}
     - target: {fileID: 8158296462281343320, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -840,17 +829,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
---- !u!114 &1238093329 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5134927648481022904, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
-  m_PrefabInstance: {fileID: 1238093328}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f70f950123d4dc2870619504511bbf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletHellTool.Telegraph.TelegraphRenderer
 --- !u!114 &1238093330 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7481091364862718188, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
@@ -905,7 +883,7 @@ PrefabInstance:
     - target: {fileID: 7481091364862718188, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
       propertyPath: telegraphRenderer
       value: 
-      objectReference: {fileID: 1743238425}
+      objectReference: {fileID: 0}
     - target: {fileID: 8158296462281343320, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -1004,17 +982,6 @@ Transform:
   - {fileID: 1517967611}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1743238425 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5134927648481022904, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
-  m_PrefabInstance: {fileID: 1517967610}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f70f950123d4dc2870619504511bbf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletHellTool.Telegraph.TelegraphRenderer
 --- !u!114 &1993141395 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8614396606454415982, guid: 2bc9be9131c9d7b44931acb32cec7e34, type: 3}
@@ -1118,7 +1085,7 @@ PrefabInstance:
     - target: {fileID: 7481091364862718188, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
       propertyPath: telegraphRenderer
       value: 
-      objectReference: {fileID: 775670257}
+      objectReference: {fileID: 0}
     - target: {fileID: 8158296462281343320, guid: 233e8dff113f71a42b0084c69f7fe17e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

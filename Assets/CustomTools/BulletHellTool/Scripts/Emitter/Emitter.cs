@@ -1,4 +1,3 @@
-using BulletHellTool.Telegraph;
 using UnityEngine;
 
 namespace BulletHell.Emitter
@@ -7,7 +6,7 @@ namespace BulletHell.Emitter
     {
         public BulletHell.Bullet.BulletPool bulletPool;
         public EmitterData emitterDataBase;
-        public TelegraphRenderer telegraphRenderer;
+        public BossMechanicTool.Telegraph.TelegraphRenderer telegraphRenderer;
         
         private bool _isTelegraphing = false;
         private float _telegraphTimer = 0f;
@@ -36,7 +35,7 @@ namespace BulletHell.Emitter
                 return;
             }
             
-            telegraphRenderer.SetDecalPrefab(emitterDataBase.telegraphPrefab);
+            // telegraphRenderer.SetDecalPrefab(emitterDataBase.telegraphPrefab);
             gameObject.SetActive(false);
         }
 
@@ -59,7 +58,7 @@ namespace BulletHell.Emitter
 
                 if (_telegraphTimer >= _emitterData.telegraphDuration)
                 {
-                    telegraphRenderer.Hide();
+                    // telegraphRenderer.Hide();
                     Fire();
                     _emitterData.ConfirmFire();
 
@@ -103,7 +102,7 @@ namespace BulletHell.Emitter
             _telegraphTimer = 0f;
 
             var spawns = _emitterData.GetSpawnData(Time.time, transform);
-            telegraphRenderer.Show(spawns);
+            // telegraphRenderer.Show(spawns);
         }
 
         private void OnDrawGizmos()

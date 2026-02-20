@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Playables;
 
 namespace BossMechanicTool.Timeline
@@ -14,6 +15,7 @@ namespace BossMechanicTool.Timeline
     {
         [SerializeField]
         private Mechanic _mechanicToPlay;
+        private string uniqueMechanicId;
         
         [SerializeField] 
         private MechanicControlAction _action;
@@ -32,15 +34,15 @@ namespace BossMechanicTool.Timeline
             {
                 _firstFrameHeppened = true;
                 // Save area
-                
+                uniqueMechanicId = Guid.NewGuid().ToString();
                 // Do once
                 switch (_action)
                 {
                     case MechanicControlAction.ShowMechanicTelegraph:
-                        _mechanicPlayer.ShowMechanicTelegraph(_mechanicToPlay);
+                        _mechanicPlayer.ShowMechanicTelegraph(_mechanicToPlay, uniqueMechanicId);
                         break;
                     case  MechanicControlAction.ActivateMechanic:
-                        _mechanicPlayer.ActivateMechanic(_mechanicToPlay);
+                        _mechanicPlayer.ActivateMechanic(_mechanicToPlay, uniqueMechanicId);
                         break;
                 }
 
@@ -55,7 +57,8 @@ namespace BossMechanicTool.Timeline
                 return;
 
             // Reset area
-            _mechanicPlayer.HideMechanicTelegraph(_mechanicToPlay);
+            _mechanicPlayer.HideMechanicTelegraph(uniqueMechanicId);
+            uniqueMechanicId = null;
             
             base.OnBehaviourPause(playable, info);
         }
