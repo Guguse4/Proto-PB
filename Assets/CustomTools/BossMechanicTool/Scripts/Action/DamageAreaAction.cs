@@ -20,7 +20,7 @@ namespace BossMechanicTool.Action
         public ShapeType shape;
         
         // The damage amount of the damage area
-        public int damage;
+        public int damage = 1;
         
         // Parameters according to the given shape
         // Circle parameters

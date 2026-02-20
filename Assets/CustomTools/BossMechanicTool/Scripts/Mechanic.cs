@@ -16,13 +16,16 @@ namespace BossMechanicTool
         OnGivenObject,      // The mechanic will be centered on a given object/position
     }
     
-    // TODO: Useless ? Move ?
+    /*
+     * Define the rotation behaviour
+     */
     public enum SpawnRotationBehaviour
     {
-        ToNearestPlayer,
-        ToRandomPlayer,
-        ToAllPlayers
+        ToNearestPlayer,    // Rotate pattern to focus nearest player
+        ToRandomPlayer,     // Rotate pattern to focus random player
+        ToAllPlayers        // Rotate pattern to focus all players
     }
+
     
     [CreateAssetMenu(menuName = "BossMechanics/Mechanic")]
     public class Mechanic: ScriptableObject
@@ -33,7 +36,7 @@ namespace BossMechanicTool
         // Define the attached source of the mechanic  
         public SpawnPositionBehaviour spawnPositionBehaviour;
         
-        // TODO: Useless ? Move ?
+        // Define the rotation behaviour of the mechanic
         public SpawnRotationBehaviour spawnRotationBehaviour;
     }
 }

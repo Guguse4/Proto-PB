@@ -37,6 +37,7 @@ namespace BossMechanicTool.Editor
             var shape = (ShapeType)shapeProp.enumValueIndex;
 
             height += LineHeight + Spacing; // shape field
+            height += LineHeight + Spacing; // damage field
 
             switch (shape)
             {
@@ -93,9 +94,8 @@ namespace BossMechanicTool.Editor
             SerializedProperty scaleProp = property.FindPropertyRelative("scale");
 
             // Draw Shape
-            Rect shapeRect = new Rect(position.x, y, position.width, LineHeight);
-            EditorGUI.PropertyField(shapeRect, shapeProp);
-            y += LineHeight + Spacing;
+            DrawField(ref y, position, shapeProp);
+            DrawField(ref y, position, damageProp);
 
             ShapeType shape = (ShapeType)shapeProp.enumValueIndex;
 

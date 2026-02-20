@@ -83,6 +83,7 @@ namespace BossMechanicTool.Editor
             DrawField(position, y, telegraphProp);
 
             EditorGUI.indentLevel--;
+            
             EditorGUI.EndProperty();
         }
 
