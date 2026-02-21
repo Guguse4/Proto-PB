@@ -39,9 +39,6 @@ namespace BossMechanicTool.Editor
         
         #region Default properties
         SerializedProperty patternsProp;
-        SerializedProperty spawnPositionBehaviourProp;
-        SerializedProperty spawnRotationBehaviourProp;
-        private SerializedProperty movementBehaviourProp;
         private SerializedProperty activationDelayProp;
         #endregion
 
@@ -53,23 +50,6 @@ namespace BossMechanicTool.Editor
             
             patternsProp = serializedObject.FindProperty("patterns");
             EditorGUILayout.PropertyField(patternsProp);
-            
-            spawnPositionBehaviourProp = serializedObject.FindProperty("spawnPositionBehaviour");
-            EditorGUILayout.PropertyField(spawnPositionBehaviourProp);
-            SpawnPositionBehaviour spawnPositionBehaviour = (SpawnPositionBehaviour)spawnPositionBehaviourProp.enumValueIndex;
-            if (spawnPositionBehaviour == SpawnPositionBehaviour.OnGivenPosition)
-            {
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("spawnPosition"));
-            }
-            
-            spawnRotationBehaviourProp = serializedObject.FindProperty("spawnRotationBehaviour");
-            EditorGUILayout.PropertyField(spawnRotationBehaviourProp);
-                
-            movementBehaviourProp =  serializedObject.FindProperty("movementBehaviour");
-            if (spawnPositionBehaviour != SpawnPositionBehaviour.OnGivenPosition)
-            {
-                EditorGUILayout.PropertyField(movementBehaviourProp);
-            }
             
             activationDelayProp =  serializedObject.FindProperty("activationDelay");
             EditorGUILayout.PropertyField(activationDelayProp);

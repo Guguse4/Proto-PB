@@ -663,7 +663,6 @@ GameObject:
   m_Component:
   - component: {fileID: 619428081}
   - component: {fileID: 619428084}
-  - component: {fileID: 619428085}
   m_Layer: 0
   m_Name: CombatTimeline
   m_TagString: Untagged
@@ -711,18 +710,6 @@ PlayableDirector:
     - dff309ae139cd9846927f4a03f06f1cf: {fileID: 1238093330}
     - 3b3194aad9c4bd74fa85b5bae962fbd4: {fileID: 1517967612}
     - f56c7fc5d8eba3e48a2574746d843f83: {fileID: 1516754454}
---- !u!114 &619428085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619428080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd75c4850d5443ca29dce650799da2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletHellTool.Timeline.PatternSignalReceiver
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

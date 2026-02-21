@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using BossMechanicTool.VFX;
-using NUnit.Framework;
 using UnityEngine;
 
 namespace BossMechanicTool
@@ -10,84 +8,61 @@ namespace BossMechanicTool
     [RequireComponent(typeof(VFXPlayer))]
     public class MechanicPlayer: MonoBehaviour
     {
-        private struct BehavioursData
-        {
-            public Vector3 position;
-            public Vector3 direction;
-            public GameObject target;
-        }
-        
         // Tool to draw telegraph
         private VFXPlayer _vfxPlayer;
-        private List<Player> _players;
         
         private Dictionary<string, Mechanic> _idToMechanic = new Dictionary<string, Mechanic>();
         
         private void Start()
         {
             _vfxPlayer = GetComponent<VFXPlayer>();
-            _players = FindObjectsByType<Player>(FindObjectsSortMode.None).ToList();
         }
 
         #region Telegraph
-        public void ShowMechanicTelegraph(string id, Mechanic mechanic)
+        public void ShowMechanicTelegraph(string id, Mechanic mechanic, Vector3 origin, GameObject target)
         {
             #if UNITY_EDITOR
-            
-            Start();
-            
+            _vfxPlayer = GetComponent<VFXPlayer>();
             #endif
 
             RegisterMechanic(id, mechanic);
                 
             if (mechanic.activationDelay > 0f)
             {
-                StartCoroutine(ShowMechanicTelegraphDelayed(id, mechanic));
+                StartCoroutine(ShowMechanicTelegraphDelayed(id, mechanic, origin, target));
             }
             else
             {
-                List<BehavioursData> behaviours = ComputeBehaviourData(mechanic);
-
-                foreach (BehavioursData behaviourData in behaviours)
+                foreach (var pattern in mechanic.patterns)
                 {
-                    foreach (var pattern in mechanic.patterns)
-                    {
-                        _vfxPlayer.ShowTelegraphPattern(id, pattern, behaviourData.position, behaviourData.target);
-                    }
+                    _vfxPlayer.ShowTelegraphPattern(id, pattern, origin, target); 
                 }
             }
         }
 
-        private IEnumerator ShowMechanicTelegraphDelayed(string id, Mechanic mechanic)
+        private IEnumerator ShowMechanicTelegraphDelayed(string id, Mechanic mechanic, Vector3 origin, GameObject target)
         {
             WaitForSeconds wait = new WaitForSeconds(mechanic.activationDelay);
-            List<BehavioursData> behaviours = ComputeBehaviourData(mechanic);
-
-            foreach (BehavioursData behaviourData in behaviours)
+            foreach (var pattern in mechanic.patterns)
             {
-                foreach (var pattern in mechanic.patterns)
-                {
-                    _vfxPlayer.ShowTelegraphPattern(id, pattern, behaviourData.position, behaviourData.target);
-                    yield return wait;
-                }
+                _vfxPlayer.ShowTelegraphPattern(id, pattern, origin, target);
+                yield return wait;
             }
         }
         #endregion
 
         #region Activation
-        public void ActivateMechanic(string id, Mechanic mechanic)
+        public void ActivateMechanic(string id, Mechanic mechanic, Vector3 origin)
         {
             #if UNITY_EDITOR
-            
-            Start();
-            
+            _vfxPlayer = GetComponent<VFXPlayer>();
             #endif
 
             RegisterMechanic(id, mechanic);
                 
             if (mechanic.activationDelay > 0f)
             {
-                StartCoroutine(ActivateMechanicDelayed(id, mechanic));
+                StartCoroutine(ActivateMechanicDelayed(id, mechanic, origin));
             }
             else
             {
@@ -99,13 +74,13 @@ namespace BossMechanicTool
                         pattern.Action.ActivateAction(transform.position + pattern.SourceRelativePosition,
                             pattern.SourceRelativeDirection);
                         // play vfx
-                        _vfxPlayer.ShowActivationPattern(id, pattern, mechanic.spawnPosition);
+                        _vfxPlayer.ShowActivationPattern(id, pattern, origin);
                     }
                 }
             }
         }
 
-        private IEnumerator ActivateMechanicDelayed(string id, Mechanic mechanic)
+        private IEnumerator ActivateMechanicDelayed(string id, Mechanic mechanic, Vector3 origin)
         {
             WaitForSeconds wait = new WaitForSeconds(mechanic.activationDelay);
             foreach (var pattern in mechanic.patterns)
@@ -116,7 +91,7 @@ namespace BossMechanicTool
                     pattern.Action.ActivateAction(transform.position + pattern.SourceRelativePosition,
                         pattern.SourceRelativeDirection);
                     // play vfx
-                    _vfxPlayer.ShowActivationPattern(id, pattern, mechanic.spawnPosition);
+                    _vfxPlayer.ShowActivationPattern(id, pattern, origin);
                     // wait delay
                     yield return wait;
                 }
@@ -128,9 +103,7 @@ namespace BossMechanicTool
         public void HideMechanic(string id)
         {
             #if UNITY_EDITOR
-            
-            Start();
-            
+            _vfxPlayer = GetComponent<VFXPlayer>();
             #endif
             
             if (_idToMechanic.ContainsKey(id))
@@ -173,86 +146,5 @@ namespace BossMechanicTool
                 _idToMechanic.Add(id, mechanic);
             }
         }
-        
-        #region Compute pattern position and movement
-        private List<BehavioursData> ComputeBehaviourData(Mechanic mechanic)
-        {
-            List<BehavioursData> behaviours = new List<BehavioursData>();
-            switch (mechanic.movementBehaviour)
-            {
-                case MovementBehaviour.Static:
-                    List<Vector3> origins = ComputeSpawnPosition(mechanic);
-                    foreach (var origin in origins)
-                    {
-                        BehavioursData data = new BehavioursData();
-                        data.position = origin;
-                        data.direction = Vector3.zero;
-                        data.target = null;
-                        behaviours.Add(data);
-                    }
-                    return behaviours;
-                
-                case MovementBehaviour.FollowSpawnPositionObject:
-                    List<GameObject> targets = ComputeSpawnTarget(mechanic);
-                    foreach (var target in targets)
-                    {
-                        BehavioursData data = new BehavioursData();
-                        data.position = Vector3.zero;
-                        data.direction = Vector3.zero;
-                        data.target = target;
-                        behaviours.Add(data);
-                    }
-                    return behaviours;
-            }
-
-            return null;
-        }
-
-        private List<Vector3> ComputeSpawnPosition(Mechanic mechanic)
-        {
-            List<Vector3> positions = new List<Vector3>();
-            
-            switch (mechanic.spawnPositionBehaviour)
-            {
-                case SpawnPositionBehaviour.OnGivenPosition:
-                    positions.Add(mechanic.spawnPosition);
-                    break;
-                case SpawnPositionBehaviour.OnAllPlayers:
-                    foreach (Player player in _players)
-                    {
-                        positions.Add(player.transform.position);
-                    }
-                    break;
-                case SpawnPositionBehaviour.OnRandomPlayer:
-                    positions.Add(_players[Random.Range(0, _players.Count)].transform.position);
-                    break;
-            }
-
-            return positions;
-        }
-
-        private List<GameObject> ComputeSpawnTarget(Mechanic mechanic)
-        {
-            List<GameObject> targets = new List<GameObject>();
-            
-            switch (mechanic.spawnPositionBehaviour)
-            {
-                case SpawnPositionBehaviour.OnGivenObject:
-                    targets.Add(null);
-                    break;
-                case SpawnPositionBehaviour.OnAllPlayers:
-                    foreach (Player player in _players)
-                    {
-                        targets.Add(player.gameObject);
-                    }
-                    break;
-                case SpawnPositionBehaviour.OnRandomPlayer:
-                    targets.Add(_players[Random.Range(0, _players.Count)].gameObject);
-                    break;
-            }
-            
-            return targets;
-        }
-        #endregion
     }
 }
