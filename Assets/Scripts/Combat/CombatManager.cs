@@ -8,12 +8,6 @@ public class CombatManager : NetworkBehaviour
         
     private GameObject _playerPrefabInstance;
     private bool _loaded = false;
-    
-    void Start()
-    {
-        _playerPrefabInstance = Instantiate(_playerPrefab, transform.position, Quaternion.identity);
-        _playerPrefabInstance.GetComponent<NetworkObject>().Spawn();
-    }
 
     public override void OnNetworkSpawn()
     {
@@ -24,7 +18,7 @@ public class CombatManager : NetworkBehaviour
                 return;
 
             _loaded = true;
-            if (IsSessionOwner)
+            if (IsServer)
             {
                 SpawnAllPlayerInScene();
             }
@@ -41,7 +35,9 @@ public class CombatManager : NetworkBehaviour
 
     public void SpawnPlayer(ulong cliendId)
     {
-        GameObject player = Instantiate(_playerPrefab, transform.position, Quaternion.identity);
+        Vector3 position = transform.position;
+        position.x = Random.Range(-10, 10);
+        GameObject player = Instantiate(_playerPrefab, position, Quaternion.identity);
         player.GetComponent<NetworkObject>().SpawnAsPlayerObject(cliendId);
     }
 }
