@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         moveAction = playerInput.actions.FindAction("Move");
         switchCameraAction = playerInput.actions.FindAction("CameraSwitch");
+        currentCamera = FindAnyObjectByType<Camera>();
 
         if (Mouse.current == null)
             return;
