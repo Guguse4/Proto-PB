@@ -24,6 +24,8 @@ namespace BossMechanicTool.Timeline
         private bool _firstFrameHeppened;
         private MechanicPlayer _mechanicPlayer;
 
+        private Mechanic _mechanicCopy;
+
         public override void ProcessFrame(Playable playable, FrameData info, object playerData)
         {
             _mechanicPlayer = playerData as MechanicPlayer;
@@ -35,6 +37,7 @@ namespace BossMechanicTool.Timeline
                 _firstFrameHeppened = true;
                 // Save area
                 uniqueMechanicId = Guid.NewGuid().ToString();
+                _mechanicCopy = _mechanicToPlay;
                 // Do once
                 switch (_action)
                 {

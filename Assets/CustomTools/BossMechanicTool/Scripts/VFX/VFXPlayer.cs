@@ -9,11 +9,14 @@ namespace BossMechanicTool.VFX
 
         public void ShowTelegraphPattern(string id, Pattern pattern, Vector3 origin, GameObject attachedObject)
         {
+            Transform parent = attachedObject != null ? attachedObject.transform : transform;
+            Vector3 position = attachedObject != null ? attachedObject.transform.position : origin;
+            
             var visual = Instantiate(
                 pattern.TelegraphPrefab,
-                origin + pattern.SourceRelativePosition,
+                position + pattern.SourceRelativePosition,
                 Quaternion.identity,
-                attachedObject != null ? attachedObject.transform : transform
+                parent
             );
 
             visual.transform.localScale = pattern.GetActionSize();
@@ -21,13 +24,13 @@ namespace BossMechanicTool.VFX
             RegisterVisual(id, visual);
         }
 
-        public void ShowActivationPattern(string id, Pattern pattern, Vector3 origin, GameObject attachedObject)
+        public void ShowActivationPattern(string id, Pattern pattern, Vector3 origin)
         {
             var visual = Instantiate(
                 pattern.ActivationVFX,
                 origin + pattern.SourceRelativePosition,
                 Quaternion.identity,
-                attachedObject != null ? attachedObject.transform : transform
+                transform
             );
 
             visual.transform.localScale = pattern.GetActionSize();
@@ -42,7 +45,9 @@ namespace BossMechanicTool.VFX
             
             Queue<GameObject> visuals = _idToVisuals[id];
             GameObject visual = visuals.Dequeue();
-            DestroyImmediate(visual);
+            
+            if(visual != null)
+                DestroyImmediate(visual);
             
             if (_idToVisuals[id].Count == 0)
             {
@@ -62,6 +67,16 @@ namespace BossMechanicTool.VFX
                 visuals.Enqueue(visual);
                 _idToVisuals.Add(id, visuals);
             }
+        }
+
+        public int GetVFXNumber(string id)
+        {
+            if (_idToVisuals.ContainsKey(id))
+            {
+                return _idToVisuals[id].Count;
+            }
+
+            return 0;
         }
     }
 }
