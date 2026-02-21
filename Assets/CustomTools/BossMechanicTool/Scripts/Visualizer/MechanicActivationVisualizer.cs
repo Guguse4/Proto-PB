@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MeschanicActivationVisualizer : MonoBehaviour
+public class MechanicActivationVisualizer : MonoBehaviour
 {
     #if UNITY_EDITOR
     void OnDrawGizmos()

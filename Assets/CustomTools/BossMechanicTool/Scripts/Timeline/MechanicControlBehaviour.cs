@@ -59,6 +59,7 @@ namespace BossMechanicTool.Timeline
         private MechanicPlayer _mechanicPlayer;
         private string uniqueMechanicId;
         private List<Player> _players;
+        private List<BehavioursData> _behaviours;
 
         public override void PrepareData(Playable playable, FrameData info)
         {
@@ -88,11 +89,15 @@ namespace BossMechanicTool.Timeline
                 if (_telegraphDisplayed == false)
                 {
                     _telegraphDisplayed = true;
-                    List<BehavioursData> behaviours = new List<BehavioursData>();
-                    behaviours = ComputeBehaviourData(_mechanicToPlay);
-                    foreach (var behaviour in behaviours)
+                    _behaviours = ComputeBehaviourData(_mechanicToPlay);
+                    foreach (var behaviour in _behaviours)
                     {
-                        _mechanicPlayer.ShowMechanicTelegraph(uniqueMechanicId, _mechanicToPlay, behaviour.position, behaviour.target);
+                        _mechanicPlayer.ShowMechanicTelegraph(
+                            uniqueMechanicId, 
+                            _mechanicToPlay, 
+                            behaviour.position, 
+                            behaviour.target
+                            );
                     }
                 }
             }
@@ -103,14 +108,21 @@ namespace BossMechanicTool.Timeline
                     _telegraphDisplayed = false;
                     _mechanicPlayer.HideMechanic(uniqueMechanicId);
                 }
+                else
+                {
+                    _behaviours = ComputeBehaviourData(_mechanicToPlay);
+                }
+                
                 if (_activationDone == false)
                 {
                     _activationDone = true;
-                    List<BehavioursData> behaviours = new List<BehavioursData>();
-                    behaviours = ComputeBehaviourData(_mechanicToPlay);
-                    foreach (var behaviour in behaviours)
+                    foreach (var behaviour in _behaviours)
                     {
-                        _mechanicPlayer.ActivateMechanic(uniqueMechanicId, _mechanicToPlay, behaviour.position);
+                        _mechanicPlayer.ActivateMechanic(
+                            uniqueMechanicId, 
+                            _mechanicToPlay, 
+                            behaviour.target != null? behaviour.target.transform.position: behaviour.position
+                            );
                     }
                 }
             }

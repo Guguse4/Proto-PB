@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Version: 0
   m_Tracks:
   - {fileID: 6619878044350173421}
-  m_FixedDuration: 4.05
+  m_FixedDuration: 6
   m_EditorSettings:
     m_Framerate: 60
     m_ScenePreview: 1
@@ -67,10 +67,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Timeline.MechanicControlClip
   _template:
     _mechanicToPlay: {fileID: 11400000, guid: be1e1b8af87074449ad4b127468fc2e0, type: 2}
-    spawnPositionBehaviour: 3
+    spawnPositionBehaviour: 2
     spawnPosition: {x: 0, y: 0, z: 0}
     movementBehaviour: 1
-    telegraphDuration: 1
+    telegraphDuration: 0.8
 --- !u!114 &6314827181218359745
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,7 +119,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 1816932726342465528}
-    m_Duration: 3
+    m_Duration: 1.5833333333333333
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6619878044350173421}
     m_EaseInDuration: 0

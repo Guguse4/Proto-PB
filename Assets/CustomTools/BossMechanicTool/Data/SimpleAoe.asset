@@ -19,7 +19,7 @@ MonoBehaviour:
     _damageArea:
       shape: 0
       damage: 1
-      radius: 1
+      radius: 2
       width: 2
       height: 5
       innerRadius: 0
@@ -29,8 +29,4 @@ MonoBehaviour:
       scale: {x: 0, y: 0, z: 0}
     _telegraphPrefab: {fileID: 7957833072274404953, guid: 088e00b0c0de1c747a0b7ded79d74644, type: 3}
     _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
-  spawnPositionBehaviour: 3
-  spawnPosition: {x: 0, y: 0, z: 0}
-  spawnRotationBehaviour: 0
-  movementBehaviour: 1
   activationDelay: 0

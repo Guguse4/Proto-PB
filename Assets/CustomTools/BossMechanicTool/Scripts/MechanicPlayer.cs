@@ -71,8 +71,7 @@ namespace BossMechanicTool
                     if (pattern != null && pattern.Action != null)
                     {
                         // activate action
-                        pattern.Action.ActivateAction(transform.position + pattern.SourceRelativePosition,
-                            pattern.SourceRelativeDirection);
+                        pattern.Action.ActivateAction(origin, pattern.SourceRelativeDirection);
                         // play vfx
                         _vfxPlayer.ShowActivationPattern(id, pattern, origin);
                     }
