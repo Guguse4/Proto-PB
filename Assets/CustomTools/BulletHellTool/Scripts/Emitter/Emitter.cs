@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BulletHell.Emitter
 {
@@ -6,7 +7,7 @@ namespace BulletHell.Emitter
     {
         public BulletHell.Bullet.BulletPool bulletPool;
         public EmitterData emitterDataBase;
-        public BossMechanicTool.Telegraph.TelegraphRenderer telegraphRenderer;
+        // [FormerlySerializedAs("telegraphRenderer")] public BossMechanicTool.VFXPlayer vfxPlayer;
         
         private bool _isTelegraphing = false;
         private float _telegraphTimer = 0f;
@@ -21,12 +22,14 @@ namespace BulletHell.Emitter
                 return;
             }
 
-            if (telegraphRenderer == null)
+            /*
+            if (vfxPlayer == null)
             {
                 Debug.LogError("Emitter has no telegraph renderer", this);
                 Destroy(gameObject);
                 return;
             }
+            */
             
             if (bulletPool == null)
             {

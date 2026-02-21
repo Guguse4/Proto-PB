@@ -17,7 +17,7 @@ namespace BossMechanicTool
             foreach(Pattern pattern in mechanic.patterns)
             {
                 if(pattern != null && pattern.Action != null)
-                    pattern.Action.DrawGizmos(transform.position + pattern.SourceRelativePosition, pattern.SourceRelativeDirection);
+                    pattern.Action.DrawGizmos(mechanic.spawnPosition + pattern.SourceRelativePosition, pattern.SourceRelativeDirection);
             }
         }
         

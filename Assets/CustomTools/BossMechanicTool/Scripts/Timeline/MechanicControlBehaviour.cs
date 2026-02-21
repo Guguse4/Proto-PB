@@ -39,10 +39,10 @@ namespace BossMechanicTool.Timeline
                 switch (_action)
                 {
                     case MechanicControlAction.ShowMechanicTelegraph:
-                        _mechanicPlayer.ShowMechanicTelegraph(_mechanicToPlay, uniqueMechanicId);
+                        _mechanicPlayer.ShowMechanicTelegraph(uniqueMechanicId, _mechanicToPlay);
                         break;
                     case  MechanicControlAction.ActivateMechanic:
-                        _mechanicPlayer.ActivateMechanic(_mechanicToPlay, uniqueMechanicId);
+                        _mechanicPlayer.ActivateMechanic(uniqueMechanicId, _mechanicToPlay);
                         break;
                 }
 
@@ -57,7 +57,7 @@ namespace BossMechanicTool.Timeline
                 return;
 
             // Reset area
-            _mechanicPlayer.HideMechanicTelegraph(uniqueMechanicId);
+            _mechanicPlayer.HideMechanic(uniqueMechanicId);
             uniqueMechanicId = null;
             
             base.OnBehaviourPause(playable, info);

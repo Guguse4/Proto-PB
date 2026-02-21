@@ -1,79 +1,144 @@
-﻿using System.Collections.Generic;
-using BossMechanicTool.Telegraph;
+﻿using System.Collections;
+using System.Collections.Generic;
+using BossMechanicTool.VFX;
 using UnityEngine;
 
 namespace BossMechanicTool
 {
-    public struct MechanicPlayerData
-    {
-        public string id;
-        public Mechanic data;
-        public Vector3 origin;
-        public Vector3 direction;
-        public bool isTelegraph;
-    }
-    
-    [RequireComponent(typeof(TelegraphRenderer))]
+    [RequireComponent(typeof(VFXPlayer))]
     public class MechanicPlayer: MonoBehaviour
     {
         // Tool to draw telegraph
-        private TelegraphRenderer _telegraphRenderer;
+        private VFXPlayer _vfxPlayer;
         
-        private Dictionary<string, MechanicPlayerData> _mechanicPlayerData = new Dictionary<string, MechanicPlayerData>();
+        private Dictionary<string, Mechanic> _idToMechanic = new Dictionary<string, Mechanic>();
         
         private void Start()
         {
-            _telegraphRenderer = GetComponent<TelegraphRenderer>();
+            _vfxPlayer = GetComponent<VFXPlayer>();
         }
 
-        public void ShowMechanicTelegraph(Mechanic mechanic, string id)
+        public void ShowMechanicTelegraph(string id, Mechanic mechanic)
         {
-            if(_telegraphRenderer == null)
-                _telegraphRenderer = GetComponent<TelegraphRenderer>();
-
-            GenerateDataForMechanic(mechanic, id);
-            MechanicPlayerData mechanicPlayerData = _mechanicPlayerData[id];
-            mechanicPlayerData.isTelegraph = true;
+            #if UNITY_EDITOR
             
-            _telegraphRenderer.PlayMechanic(mechanicPlayerData);
-        }
+            if(_vfxPlayer == null)
+                _vfxPlayer = GetComponent<VFXPlayer>();
+            
+            #endif
 
-        public void ActivateMechanic(Mechanic mechanic, string id)
-        {
-            foreach (Pattern pattern in mechanic.patterns)
+            RegisterMechanic(id, mechanic);
+                
+            if (mechanic.activationDelay > 0f)
             {
-                if(pattern != null && pattern.Action != null)
-                    pattern.Action.ActivateAction(transform.position + pattern.SourceRelativePosition, pattern.SourceRelativeDirection);
+                StartCoroutine(ShowMechanicTelegraphDelayed(id, mechanic));
             }
+            else
+            {
+                foreach (var pattern in mechanic.patterns)
+                {
+                    _vfxPlayer.ShowTelegraphPattern(id, pattern, mechanic.spawnPosition, null);
+                }
+            }
+        }
+
+        private IEnumerator ShowMechanicTelegraphDelayed(string id, Mechanic mechanic)
+        {
+            foreach (var pattern in mechanic.patterns)
+            {
+                _vfxPlayer.ShowTelegraphPattern(id, pattern, mechanic.spawnPosition, null);
+                yield return new WaitForSeconds(mechanic.activationDelay);
+            }
+        }
+
+        public void ActivateMechanic(string id, Mechanic mechanic)
+        {
+            #if UNITY_EDITOR
             
-            GenerateDataForMechanic(mechanic, id);
-            MechanicPlayerData mechanicPlayerData = _mechanicPlayerData[id];
-            mechanicPlayerData.isTelegraph = false;
+            if(_vfxPlayer == null)
+                _vfxPlayer = GetComponent<VFXPlayer>();
             
-            _telegraphRenderer.PlayMechanic(mechanicPlayerData);
+            #endif
+
+            RegisterMechanic(id, mechanic);
+                
+            if (mechanic.activationDelay > 0f)
+            {
+                StartCoroutine(ActivateMechanicDelayed(id, mechanic));
+            }
+            else
+            {
+                foreach (var pattern in mechanic.patterns)
+                {
+                    if (pattern != null && pattern.Action != null)
+                    {
+                        pattern.Action.ActivateAction(transform.position + pattern.SourceRelativePosition,
+                            pattern.SourceRelativeDirection);
+                        _vfxPlayer.ShowActivationPattern(id, pattern, mechanic.spawnPosition, null);
+                    }
+                }
+            }
+        }
+
+        private IEnumerator ActivateMechanicDelayed(string id, Mechanic mechanic)
+        {
+            foreach (var pattern in mechanic.patterns)
+            {
+                if (pattern != null && pattern.Action != null)
+                {
+                    pattern.Action.ActivateAction(transform.position + pattern.SourceRelativePosition,
+                        pattern.SourceRelativeDirection);
+                    _vfxPlayer.ShowActivationPattern(id, pattern, mechanic.spawnPosition, null);
+                    yield return new WaitForSeconds(mechanic.activationDelay);
+                }
+            }
         }
         
-        public void HideMechanicTelegraph(string id)
+        public void HideMechanic(string id)
         {
-            if(_telegraphRenderer == null)
-                _telegraphRenderer = GetComponent<TelegraphRenderer>();
+            #if UNITY_EDITOR
             
-            if(_mechanicPlayerData.ContainsKey(id))
-                _telegraphRenderer.Hide(_mechanicPlayerData[id]);
+            if(_vfxPlayer == null)
+                _vfxPlayer = GetComponent<VFXPlayer>();
             
-            _mechanicPlayerData.Remove(id);
+            #endif
+            
+            if (_idToMechanic.ContainsKey(id))
+            {
+                Mechanic mechanic = _idToMechanic[id];
+
+                if (mechanic.activationDelay > 0f)
+                {
+                    StartCoroutine(HideMechanicDelayed(id, mechanic));
+                }
+                else
+                {
+                    foreach (var pattern in mechanic.patterns)
+                    {
+                        _vfxPlayer.HidePattern(id);
+                    }
+                    _idToMechanic.Remove(id);
+                }
+                
+                
+            }
         }
 
-        private void GenerateDataForMechanic(Mechanic mechanic, string id)
+        private IEnumerator HideMechanicDelayed(string id, Mechanic mechanic)
         {
-            if (_mechanicPlayerData.ContainsKey(id) == false)
+            foreach (var pattern in mechanic.patterns)
             {
-                MechanicPlayerData mechanicPlayerData =  new MechanicPlayerData();
-                mechanicPlayerData.id = id;
-                mechanicPlayerData.data = mechanic;
-                mechanicPlayerData.origin = transform.position;
-                mechanicPlayerData.direction = transform.forward;
-                _mechanicPlayerData.Add(id, mechanicPlayerData);
+                _vfxPlayer.HidePattern(id);
+                yield return new WaitForSeconds(mechanic.activationDelay);
+            }
+            _idToMechanic.Remove(id);
+        }
+
+        private void RegisterMechanic(string id, Mechanic mechanic)
+        {
+            if (_idToMechanic.ContainsKey(id) == false)
+            {
+                _idToMechanic.Add(id, mechanic);
             }
         }
     }
