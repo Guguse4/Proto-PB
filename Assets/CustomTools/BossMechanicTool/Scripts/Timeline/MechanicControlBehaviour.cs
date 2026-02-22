@@ -9,17 +9,17 @@ namespace BossMechanicTool.Timeline
      */
     public enum SpawnPositionBehaviour
     {
-        OnGivenPosition,
+        OnGivenPosition,    // The mechanic will be centered on the given position
         OnNearestPlayer,    // The mechanic will be centered on the nearest player
         OnRandomPlayer,     // The mechanic will be centered on a random player
-        OnAllPlayers,       // The mechanic will be played on all players
-        OnAllPlayersAlive,  // The mechanic will be played on all alive players
-        OnAllPlayersDead,   // The mechanic will be played on all dead players
+        OnAllPlayers,       // The mechanic will be spawned on all players
+        OnAllPlayersAlive,  // The mechanic will be spawned on all alive players
+        OnAllPlayersDead,   // The mechanic will be spawned on all dead players
         OnGivenObject,      // The mechanic will be centered on a given object/position
     }
 
     /*
-     * Define if the pattern should stay static or follow the spawn position
+     * Define if the mechanic should stay static or follow the spawn position object
      */
     public enum MovementBehaviour
     {
@@ -27,67 +27,88 @@ namespace BossMechanicTool.Timeline
         FollowSpawnPositionObject
     }
 
+    /*
+     * Define the global spawn behaviour information
+     */
     [Serializable]
     public struct SpawnBehaviour
     {
         public SpawnPositionBehaviour spawnPositionBehaviour;
-        public Vector3 spawnPosition;
-        public MovementBehaviour movementBehaviour;
+        public Vector3 spawnPosition;   // if spawnPositionBehaviour is set OnGivenPosition
+        public MovementBehaviour movementBehaviour; 
     }
     
     /*
      * This class is used in timeline to define mechanic durations and spawn behaviour
-     * It only calls mechanic player to show/hide/activate mechanic
+     * It only calls mechanic player to show/hide/activate the given mechanic with the given spawn behaviour
      */
     [Serializable]
     public class MechanicControlBehaviour: PlayableBehaviour
     {
         [Header("Mechanic parameters")]
+        // The mechanic data reference to play
         [SerializeField] private Mechanic _mechanicToPlay;
         
-        // Define the attached source of the mechanic  
+        // Define the global spawn behaviour of the mechanic  
         [SerializeField] private SpawnBehaviour _spawnBehaviour;
-
+        
+        [Header("Durations parameters")]
+        // Percent duration of telegraph phase in total clip duration
         [SerializeField][Range(0,1)] private float telegraphDuration = 0.5f;
         public float TelegraphDuration{get{return telegraphDuration;}}
 
+        // use to do stuff once at the first frame
         private bool _firstFrameHeppened;
+        // use to save if the mechanic player has already displayed the telegraph of the mechanic
         private bool _telegraphDisplayed;
+        // use to save if the mechanic player has already activated the mechanic
         private bool _activationDone;
         
+        // reference to mechanic player that can show/hide/activate the mechanic
         private MechanicPlayer _mechanicPlayer;
+        
+        // a unique id generated at the first frame to manager multiple dynamic in the same time
         private string uniqueMechanicId;
-
+        
         public override void ProcessFrame(Playable playable, FrameData info, object playerData)
         {
+            // Save mechanic player
             _mechanicPlayer = playerData as MechanicPlayer;
-            if(_mechanicPlayer == null) 
+            if (_mechanicPlayer == null)
+            {
+                Debug.LogWarning("MechanicControlBehaviour: Mechanic player is null.");
                 return;
+            }
 
+            // Do once at the first frame
             if (_firstFrameHeppened == false)
             {
                 _firstFrameHeppened = true;
 
-                // Save area
+                // Generate random id
                 uniqueMechanicId = Guid.NewGuid().ToString();
             }
 
+            // If the current frame time is in the range of the telegraph phase
             if (playable.GetTime() < telegraphDuration * playable.GetDuration())
             {
+                // Display telegraph if not already displayed
                 if (_telegraphDisplayed == false)
                 {
                     _telegraphDisplayed = true;
                     _mechanicPlayer.ShowMechanicTelegraph(uniqueMechanicId, _mechanicToPlay, _spawnBehaviour);
                 }
             }
+            // If the current frame time is in the range of the activation phase
             else
             {
+                // Hide telegraph if necessary
                 if (_telegraphDisplayed)
                 {
                     _telegraphDisplayed = false;
                     _mechanicPlayer.HideMechanic(uniqueMechanicId);
                 }
-                
+                // Activate mechanic if not already done
                 if (_activationDone == false)
                 {
                     _activationDone = true;
@@ -95,18 +116,24 @@ namespace BossMechanicTool.Timeline
                 }
             }
         }
-
+        
         public override void OnBehaviourPause(Playable playable, FrameData info)
         {
+            // Reset do once booleans
             _firstFrameHeppened = false;
             _telegraphDisplayed = false;
             _activationDone = false;
-            
-            if (_mechanicPlayer == null)
-                return;
 
-            // Reset area
+            if (_mechanicPlayer == null)
+            {
+                Debug.LogWarning("MechanicControlBehaviour: Mechanic player is null.");
+                return;
+            }
+
+            // Hide all instantiated mechanic information
             _mechanicPlayer.HideMechanic(uniqueMechanicId);
+            
+            // reset mechanic id
             uniqueMechanicId = null;
             
             base.OnBehaviourPause(playable, info);

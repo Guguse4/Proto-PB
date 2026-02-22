@@ -14,6 +14,9 @@ namespace BossMechanicTool
         Bullet
     }
     
+    /*
+     * Data class to define a pattern
+     */
     [Serializable]
     public class Pattern
     {
@@ -42,7 +45,7 @@ namespace BossMechanicTool
         private BulletAction _bullet;
 
         /*
-         * return the correct action type
+         * return the correct action parameters according to the current action type
          */
         public PatternAction Action
         {
@@ -62,11 +65,12 @@ namespace BossMechanicTool
             }
         }
 
-        // TODO: Move ?
+        // VFX asset to use has telegraph
         [SerializeField]
         private GameObject _telegraphPrefab;
         public GameObject TelegraphPrefab{get{return _telegraphPrefab;}}
 
+        // VFX asset to use has execution
         [SerializeField] 
         private GameObject _activationVFX;
         public GameObject ActivationVFX{get{return _activationVFX;}}
@@ -82,6 +86,10 @@ namespace BossMechanicTool
                 _sourceRelativeDirection = relativeDirection;
             }
             
+            /*
+             * Return the global visual size of the current action
+             * i.e: for damage area, return the size of the shape
+             */
             public Vector3 GetActionSize()
             {
                 if(Action != null)

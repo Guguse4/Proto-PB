@@ -13,6 +13,9 @@ namespace BossMechanicTool.Action
         Mesh
     }
     
+    /*
+     * Data class to define a damage area pattern action
+     */
     [Serializable]
     public class DamageAreaAction: PatternAction
     {
@@ -34,13 +37,14 @@ namespace BossMechanicTool.Action
         public float innerRadius;
         public float outerRadius;
         
-        // Pizza
+        // Pizza (also use radius)
         public float angle;
         
         // Mesh
         public Mesh meshRef;
         public Vector3 scale;
 
+        // Return the pattern action shape according to the current shape
         public override Vector3 GetSize()
         {
             switch (shape)
@@ -55,8 +59,12 @@ namespace BossMechanicTool.Action
         }
 
         #region Activation
+        /*
+         * Function called when mechanic containing this pattern action need to activate it
+         */
         public override void ActivateAction(Vector3 position, Vector3 direction)
         {
+            // Activation according to the shape
             switch (shape)
             {
                 case ShapeType.Circle:
@@ -74,12 +82,18 @@ namespace BossMechanicTool.Action
             }
         }
         
+        /*
+         *  Find players in circle range and apply damage 
+         */
         private void ActivateCircle(Vector3 origin)
         {
             Collider[] hits = Physics.OverlapSphere(origin, radius);
             ApplyDamage(hits);
         }
 
+        /*
+         *  Find players in rectangle range and apply damage
+         */
         private void ActivateRectangle(Vector3 origin, Vector3 direction)
         {
             Vector3 halfExtents = new Vector3(width/2f, 1f, height/2f);
@@ -88,6 +102,9 @@ namespace BossMechanicTool.Action
             ApplyDamage(hits);
         }
 
+        /*
+         *  Find players in donut range and apply damage
+         */
         private void ActivateDonut(Vector3 origin)
         {
             Collider[] hits = Physics.OverlapSphere(origin, radius);
@@ -101,6 +118,9 @@ namespace BossMechanicTool.Action
             }
         }
 
+        /*
+         *  Find players in pizza range and apply damage
+         */
         private void ActivatePizza(Vector3 origin,  Vector3 direction)
         {
             Collider[] hits = Physics.OverlapSphere(origin, radius);
@@ -122,12 +142,18 @@ namespace BossMechanicTool.Action
         
         #region Damage
 
+        /*
+         * Apply damage to all given players
+         */
         private void ApplyDamage(Collider[] colliders)
         {
             foreach (var col in colliders)
                 ApplyDamage(col);
         }
         
+        /*
+         * Apply damage to given player
+         */
         private void ApplyDamage(Collider col)
         {
             Debug.Log("Collider : " + col.gameObject.name);
