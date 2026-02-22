@@ -160,7 +160,7 @@ namespace BossMechanicTool.Action
             IDamageable damageable = col.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.TakeDamage(10); //damage
+                damageable.TakeDamage(0); //damage
             }
         }
         

@@ -93,8 +93,4 @@ MonoBehaviour:
       scale: {x: 0, y: 0, z: 0}
     _telegraphPrefab: {fileID: 7957833072274404953, guid: 088e00b0c0de1c747a0b7ded79d74644, type: 3}
     _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
-  spawnPositionBehaviour: 0
-  spawnPosition: {x: 5, y: 0, z: -5}
-  spawnRotationBehaviour: 0
-  movementBehaviour: 0
   activationDelay: 0.5

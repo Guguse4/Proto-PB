@@ -106,7 +106,7 @@ namespace BossMechanicTool.Timeline
                 if (_telegraphDisplayed)
                 {
                     _telegraphDisplayed = false;
-                    _mechanicPlayer.HideMechanic(uniqueMechanicId);
+                    _mechanicPlayer.HideMechanicTelegraph(uniqueMechanicId);
                 }
                 // Activate mechanic if not already done
                 if (_activationDone == false)
@@ -126,12 +126,13 @@ namespace BossMechanicTool.Timeline
 
             if (_mechanicPlayer == null)
             {
-                Debug.LogWarning("MechanicControlBehaviour: Mechanic player is null.");
                 return;
             }
 
             // Hide all instantiated mechanic information
-            _mechanicPlayer.HideMechanic(uniqueMechanicId);
+            _mechanicPlayer.HideMechanicTelegraph(uniqueMechanicId);
+
+            _mechanicPlayer.DestroyMechanicObject(uniqueMechanicId);
             
             // reset mechanic id
             uniqueMechanicId = null;
