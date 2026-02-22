@@ -10,7 +10,7 @@ namespace BossMechanicTool.VFX
 
         public void ShowVfx(string id, GameObject vfxRef, Vector3 position, Quaternion rotation, Vector3 size, Transform parent)
         {
-            var visual = Instantiate(
+            GameObject visual = Instantiate(
                 vfxRef,
                 position,
                 rotation,
