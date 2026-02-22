@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: decee734d2844d9cb79e003bba96c368, type: 3}
+  m_Name: LineFromBossToPlayer
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Mechanic
+  patterns:
+  - _sourceRelativePosition: {x: 0, y: 0, z: 5}
+    _sourceRelativeDirection: {x: -0, y: -0, z: -1}
+    _actionType: 0
+    _damageArea:
+      shape: 1
+      damage: 0
+      radius: 0
+      width: 5
+      height: 10
+      innerRadius: 0
+      outerRadius: 0
+      angle: 0
+      meshRef: {fileID: 0}
+      scale: {x: 0, y: 0, z: 0}
+    _telegraphPrefab: {fileID: 3660295101186772001, guid: e86e26707ed6fdc4f93c96ab97d22dd5, type: 3}
+    _activationVFX: {fileID: 3660295101186772001, guid: d8d10c398072e094ca2ee7d4b325aaeb, type: 3}
+  activationDelay: 0
