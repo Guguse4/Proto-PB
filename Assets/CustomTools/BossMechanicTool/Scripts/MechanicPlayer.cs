@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using BossMechanicTool.Timeline;
 using BossMechanicTool.VFX;
 using UnityEngine;
 
@@ -19,40 +20,79 @@ namespace BossMechanicTool
         }
 
         #region Telegraph
-        public void ShowMechanicTelegraph(string id, Mechanic mechanic, Vector3 origin, GameObject target)
+        
+        /*
+         * Function called to draw mechanic telegraph phase
+         * id: unique mechanic id for save
+         * mechanic: mechanic data to use
+         * data: origin position, direction and target
+         */
+        public void ShowMechanicTelegraph(string id, Mechanic mechanic, BehavioursData data)
         {
             #if UNITY_EDITOR
             _vfxPlayer = GetComponent<VFXPlayer>();
             #endif
 
+            // Register mechanic in dictionary to use it latter
             RegisterMechanic(id, mechanic);
-                
+            
+            // Switch activation delay, start coroutine or execute immediately
             if (mechanic.activationDelay > 0f)
             {
-                StartCoroutine(ShowMechanicTelegraphDelayed(id, mechanic, origin, target));
+                StartCoroutine(ShowMechanicTelegraphDelayed(id, mechanic, data));
             }
             else
             {
+                // Show telegraph for each pattern in mechanic
                 foreach (var pattern in mechanic.patterns)
                 {
-                    _vfxPlayer.ShowTelegraphPattern(id, pattern, origin, target); 
+                    ShowPatternTelegraph(id, pattern, data);
                 }
             }
         }
 
-        private IEnumerator ShowMechanicTelegraphDelayed(string id, Mechanic mechanic, Vector3 origin, GameObject target)
+        /*
+         * Delayed version of the function above
+         */
+        private IEnumerator ShowMechanicTelegraphDelayed(string id, Mechanic mechanic, BehavioursData data)
         {
             WaitForSeconds wait = new WaitForSeconds(mechanic.activationDelay);
             foreach (var pattern in mechanic.patterns)
             {
-                _vfxPlayer.ShowTelegraphPattern(id, pattern, origin, target);
+                ShowPatternTelegraph(id, pattern, data);
                 yield return wait;
             }
+        }
+
+        private void ShowPatternTelegraph(string id, Pattern pattern, BehavioursData data)
+        {
+            Transform parent = null;
+            Vector3 origin = pattern.SourceRelativePosition;
+            if (data.target != null)
+            {
+                parent = data.target.transform;
+                origin += parent.position;
+            }
+            else
+            {
+                origin += data.position;
+            }
+                    
+            Vector3 direction = data.rotation + pattern.SourceRelativeDirection;
+            
+            if (direction == Vector3.zero)
+                direction = Vector3.forward;
+            
+            direction.y = 0f;
+            direction.Normalize();
+            Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
+                
+            _vfxPlayer.ShowVfx(id, pattern.TelegraphPrefab, origin, rotation, pattern.GetActionSize(), parent);
         }
         #endregion
 
         #region Activation
-        public void ActivateMechanic(string id, Mechanic mechanic, Vector3 origin)
+        public void ActivateMechanic(string id, Mechanic mechanic, BehavioursData data)
         {
             #if UNITY_EDITOR
             _vfxPlayer = GetComponent<VFXPlayer>();
@@ -62,7 +102,7 @@ namespace BossMechanicTool
                 
             if (mechanic.activationDelay > 0f)
             {
-                StartCoroutine(ActivateMechanicDelayed(id, mechanic, origin));
+                StartCoroutine(ActivateMechanicDelayed(id, mechanic, data));
             }
             else
             {
@@ -70,31 +110,51 @@ namespace BossMechanicTool
                 {
                     if (pattern != null && pattern.Action != null)
                     {
-                        // activate action
-                        pattern.Action.ActivateAction(origin, pattern.SourceRelativeDirection);
-                        // play vfx
-                        _vfxPlayer.ShowActivationPattern(id, pattern, origin);
+                        ActivatePattern(id, pattern, data);
                     }
                 }
             }
         }
 
-        private IEnumerator ActivateMechanicDelayed(string id, Mechanic mechanic, Vector3 origin)
+        private IEnumerator ActivateMechanicDelayed(string id, Mechanic mechanic, BehavioursData data)
         {
             WaitForSeconds wait = new WaitForSeconds(mechanic.activationDelay);
             foreach (var pattern in mechanic.patterns)
             {
                 if (pattern != null && pattern.Action != null)
                 {
-                    // activate action
-                    pattern.Action.ActivateAction(transform.position + pattern.SourceRelativePosition,
-                        pattern.SourceRelativeDirection);
-                    // play vfx
-                    _vfxPlayer.ShowActivationPattern(id, pattern, origin);
+                    ActivatePattern(id, pattern, data);
                     // wait delay
                     yield return wait;
                 }
             }
+        }
+
+        private void ActivatePattern(string id, Pattern pattern, BehavioursData data)
+        {
+            Vector3 origin = pattern.SourceRelativePosition;
+            if (data.target != null)
+            {
+                origin += data.target.transform.position;
+            }
+            else
+            {
+                origin += data.position;
+            }
+            
+            Vector3 direction = data.rotation + pattern.SourceRelativeDirection;
+            
+            if (direction == Vector3.zero)
+                direction = Vector3.forward;
+            
+            direction.y = 0f;
+            direction.Normalize();
+            Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
+                        
+            // activate action
+            pattern.Action.ActivateAction(origin, direction);
+            // play vfx
+            _vfxPlayer.ShowVfx(id, pattern.ActivationVFX, origin, rotation, pattern.GetActionSize(), null);
         }
         #endregion
         

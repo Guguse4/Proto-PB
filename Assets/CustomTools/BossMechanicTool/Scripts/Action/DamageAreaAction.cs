@@ -83,7 +83,7 @@ namespace BossMechanicTool.Action
         private void ActivateRectangle(Vector3 origin, Vector3 direction)
         {
             Vector3 halfExtents = new Vector3(width/2f, 1f, height/2f);
-            Quaternion rotation = Quaternion.LookRotation(direction);
+            Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
             Collider[] hits = Physics.OverlapBox(origin, halfExtents, rotation);
             ApplyDamage(hits);
         }
@@ -130,7 +130,6 @@ namespace BossMechanicTool.Action
         
         private void ApplyDamage(Collider col)
         {
-            // TODO : damage system
             Debug.Log("Collider : " + col.gameObject.name);
             IDamageable damageable = col.GetComponent<IDamageable>();
             if (damageable != null)

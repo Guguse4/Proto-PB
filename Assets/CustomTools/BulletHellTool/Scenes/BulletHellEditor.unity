@@ -641,6 +641,8 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 6619878044350173421, guid: 5211181baab385d4ba9316f57a738a5d, type: 2}
     value: {fileID: 423258906}
+  - key: {fileID: 6928964607675392273, guid: 5211181baab385d4ba9316f57a738a5d, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 2f48e8039a379e74cbe02e8957b5f07e: {fileID: 1517967612}
@@ -742,7 +744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea0e62fe6cd4caa8556930bf023a956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.MechanicVisualizer
-  mechanic: {fileID: 11400000, guid: be1e1b8af87074449ad4b127468fc2e0, type: 2}
+  mechanic: {fileID: 11400000, guid: f2eb732799bc7ef409052569b196b822, type: 2}
 --- !u!1 &1236752551
 GameObject:
   m_ObjectHideFlags: 0

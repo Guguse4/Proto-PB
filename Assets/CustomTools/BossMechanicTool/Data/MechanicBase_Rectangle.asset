@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: decee734d2844d9cb79e003bba96c368, type: 3}
+  m_Name: MechanicBase_Rectangle
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Mechanic
+  patterns:
+  - _sourceRelativePosition: {x: 5, y: 0, z: 0}
+    _sourceRelativeDirection: {x: -1, y: -0, z: -0}
+    _actionType: 0
+    _damageArea:
+      shape: 1
+      damage: 1
+      radius: 1
+      width: 2
+      height: 5
+      innerRadius: 0
+      outerRadius: 0
+      angle: 0
+      meshRef: {fileID: 0}
+      scale: {x: 0, y: 0, z: 0}
+    _telegraphPrefab: {fileID: 3660295101186772001, guid: e86e26707ed6fdc4f93c96ab97d22dd5, type: 3}
+    _activationVFX: {fileID: 3660295101186772001, guid: d8d10c398072e094ca2ee7d4b325aaeb, type: 3}
+  - _sourceRelativePosition: {x: 1.5450848, y: 0, z: 4.755283}
+    _sourceRelativeDirection: {x: -0.30901694, y: -0, z: -0.9510565}
+    _actionType: 0
+    _damageArea:
+      shape: 1
+      damage: 1
+      radius: 1
+      width: 2
+      height: 5
+      innerRadius: 0
+      outerRadius: 0
+      angle: 0
+      meshRef: {fileID: 0}
+      scale: {x: 0, y: 0, z: 0}
+    _telegraphPrefab: {fileID: 3660295101186772001, guid: e86e26707ed6fdc4f93c96ab97d22dd5, type: 3}
+    _activationVFX: {fileID: 3660295101186772001, guid: d8d10c398072e094ca2ee7d4b325aaeb, type: 3}
+  - _sourceRelativePosition: {x: -4.0450854, y: 0, z: 2.938926}
+    _sourceRelativeDirection: {x: 0.80901706, y: -0, z: -0.5877852}
+    _actionType: 0
+    _damageArea:
+      shape: 1
+      damage: 1
+      radius: 0.5
+      width: 2
+      height: 5
+      innerRadius: 0
+      outerRadius: 0
+      angle: 0
+      meshRef: {fileID: 0}
+      scale: {x: 0, y: 0, z: 0}
+    _telegraphPrefab: {fileID: 3660295101186772001, guid: e86e26707ed6fdc4f93c96ab97d22dd5, type: 3}
+    _activationVFX: {fileID: 3660295101186772001, guid: d8d10c398072e094ca2ee7d4b325aaeb, type: 3}
+  - _sourceRelativePosition: {x: -4.0450854, y: 0, z: -2.9389257}
+    _sourceRelativeDirection: {x: 0.80901706, y: -0, z: 0.5877851}
+    _actionType: 0
+    _damageArea:
+      shape: 1
+      damage: 1
+      radius: 1
+      width: 2
+      height: 5
+      innerRadius: 0
+      outerRadius: 0
+      angle: 0
+      meshRef: {fileID: 0}
+      scale: {x: 0, y: 0, z: 0}
+    _telegraphPrefab: {fileID: 3660295101186772001, guid: e86e26707ed6fdc4f93c96ab97d22dd5, type: 3}
+    _activationVFX: {fileID: 3660295101186772001, guid: d8d10c398072e094ca2ee7d4b325aaeb, type: 3}
+  - _sourceRelativePosition: {x: 1.5450857, y: 0, z: -4.7552824}
+    _sourceRelativeDirection: {x: -0.30901712, y: -0, z: 0.9510565}
+    _actionType: 0
+    _damageArea:
+      shape: 1
+      damage: 1
+      radius: 1
+      width: 2
+      height: 5
+      innerRadius: 0
+      outerRadius: 0
+      angle: 0
+      meshRef: {fileID: 0}
+      scale: {x: 0, y: 0, z: 0}
+    _telegraphPrefab: {fileID: 3660295101186772001, guid: e86e26707ed6fdc4f93c96ab97d22dd5, type: 3}
+    _activationVFX: {fileID: 3660295101186772001, guid: d8d10c398072e094ca2ee7d4b325aaeb, type: 3}
+  activationDelay: 0

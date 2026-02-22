@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BossMechanicTool.Timeline;
 using UnityEngine;
 
 namespace BossMechanicTool.VFX
@@ -7,33 +8,16 @@ namespace BossMechanicTool.VFX
     {
         private readonly Dictionary<string, Queue<GameObject>> _idToVisuals = new();
 
-        public void ShowTelegraphPattern(string id, Pattern pattern, Vector3 origin, GameObject attachedObject)
-        {
-            Transform parent = attachedObject != null ? attachedObject.transform : transform;
-            Vector3 position = attachedObject != null ? attachedObject.transform.position : origin;
-            
-            var visual = Instantiate(
-                pattern.TelegraphPrefab,
-                position + pattern.SourceRelativePosition,
-                Quaternion.identity,
-                parent
-            );
-
-            visual.transform.localScale = pattern.GetActionSize();
-            
-            RegisterVisual(id, visual);
-        }
-
-        public void ShowActivationPattern(string id, Pattern pattern, Vector3 origin)
+        public void ShowVfx(string id, GameObject vfxRef, Vector3 position, Quaternion rotation, Vector3 size, Transform parent)
         {
             var visual = Instantiate(
-                pattern.ActivationVFX,
-                origin + pattern.SourceRelativePosition,
-                Quaternion.identity,
-                transform
+                vfxRef,
+                position,
+                rotation,
+                parent != null ? parent : transform
             );
 
-            visual.transform.localScale = pattern.GetActionSize();
+            visual.transform.localScale = size;
             
             RegisterVisual(id, visual);
         }

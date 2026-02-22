@@ -31,15 +31,16 @@ namespace BossMechanicTool.Timeline
         FollowSpawnPositionObject
     }
     
+    public struct BehavioursData
+    {
+        public Vector3 position;
+        public Vector3 rotation;
+        public GameObject target;
+    }
+    
     [Serializable]
     public class MechanicControlBehaviour: PlayableBehaviour
     {
-        private struct BehavioursData
-        {
-            public Vector3 position;
-            public GameObject target;
-        }
-        
         [Header("Mechanic parameters")]
         [SerializeField] private Mechanic _mechanicToPlay;
         
@@ -92,12 +93,7 @@ namespace BossMechanicTool.Timeline
                     _behaviours = ComputeBehaviourData(_mechanicToPlay);
                     foreach (var behaviour in _behaviours)
                     {
-                        _mechanicPlayer.ShowMechanicTelegraph(
-                            uniqueMechanicId, 
-                            _mechanicToPlay, 
-                            behaviour.position, 
-                            behaviour.target
-                            );
+                        _mechanicPlayer.ShowMechanicTelegraph(uniqueMechanicId, _mechanicToPlay, behaviour);
                     }
                 }
             }
@@ -118,11 +114,7 @@ namespace BossMechanicTool.Timeline
                     _activationDone = true;
                     foreach (var behaviour in _behaviours)
                     {
-                        _mechanicPlayer.ActivateMechanic(
-                            uniqueMechanicId, 
-                            _mechanicToPlay, 
-                            behaviour.target != null? behaviour.target.transform.position: behaviour.position
-                            );
+                        _mechanicPlayer.ActivateMechanic(uniqueMechanicId, _mechanicToPlay, behaviour);
                     }
                 }
             }
@@ -157,6 +149,7 @@ namespace BossMechanicTool.Timeline
                         BehavioursData data = new BehavioursData();
                         data.position = origin;
                         data.target = null;
+                        data.rotation = Vector3.zero;
                         behaviours.Add(data);
                     }
                     return behaviours;
@@ -168,6 +161,7 @@ namespace BossMechanicTool.Timeline
                         BehavioursData data = new BehavioursData();
                         data.position = Vector3.zero;
                         data.target = target;
+                        data.rotation = Vector3.zero;
                         behaviours.Add(data);
                     }
                     return behaviours;
