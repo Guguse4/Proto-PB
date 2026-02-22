@@ -192,7 +192,8 @@ namespace BossMechanicTool.Timeline
                     }
                     break;
                 case SpawnPositionBehaviour.OnRandomPlayer:
-                    positions.Add(_players[Random.Range(0, _players.Count)].transform.position);
+                    if(_players.Count > 0)
+                        positions.Add(_players[Random.Range(0, _players.Count)].transform.position);
                     break;
             }
 
@@ -215,7 +216,8 @@ namespace BossMechanicTool.Timeline
                     }
                     break;
                 case SpawnPositionBehaviour.OnRandomPlayer:
-                    targets.Add(_players[Random.Range(0, _players.Count)].gameObject);
+                    if(_players.Count > 0)
+                        targets.Add(_players[Random.Range(0, _players.Count)].gameObject);
                     break;
             }
             
