@@ -455,7 +455,6 @@ GameObject:
   m_Component:
   - component: {fileID: 423258907}
   - component: {fileID: 423258906}
-  - component: {fileID: 423258908}
   m_Layer: 0
   m_Name: MechanicPlayer
   m_TagString: Untagged
@@ -490,18 +489,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &423258908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423258905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f70f950123d4dc2870619504511bbf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Telegraph.TelegraphRenderer
 --- !u!1 &443505542
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +629,7 @@ PlayableDirector:
   - key: {fileID: 6619878044350173421, guid: 5211181baab385d4ba9316f57a738a5d, type: 2}
     value: {fileID: 423258906}
   - key: {fileID: -1661221888467622912, guid: 5211181baab385d4ba9316f57a738a5d, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 423258906}
   m_ExposedReferences:
     m_References:
     - 2f48e8039a379e74cbe02e8957b5f07e: {fileID: 1517967612}

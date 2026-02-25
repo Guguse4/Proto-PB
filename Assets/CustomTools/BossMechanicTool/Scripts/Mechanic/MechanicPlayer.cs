@@ -22,11 +22,8 @@ namespace BossMechanicTool
     /*
      * Main mechanic class used to play all mechanics in the game
      */
-    [RequireComponent(typeof(VFXPlayer))]
     public class MechanicPlayer: MonoBehaviour
     {
-        // Tool to draw telegraph
-        private VFXPlayer _vfxPlayer;
         // Save already computed mechanics
         private Dictionary<string, List<MechanicObject>> _idToMechanic = new Dictionary<string, List<MechanicObject>>();
         // List of all players
@@ -34,7 +31,6 @@ namespace BossMechanicTool
         
         private void Start()
         {
-            _vfxPlayer = GetComponent<VFXPlayer>();
             _players = FindObjectsByType<Player>(FindObjectsSortMode.None).ToList();
             _idToMechanic = new Dictionary<string, List<MechanicObject>>();
         }
@@ -65,7 +61,6 @@ namespace BossMechanicTool
         public void ShowMechanicTelegraph(string id, Mechanic mechanic, SpawnBehaviour spawnBehaviour)
         {
             #if UNITY_EDITOR
-            _vfxPlayer = GetComponent<VFXPlayer>();
             _players = FindObjectsByType<Player>(FindObjectsSortMode.None).ToList();
             #endif
             
@@ -91,7 +86,6 @@ namespace BossMechanicTool
         public void ActivateMechanic(string id, Mechanic mechanic, SpawnBehaviour spawnBehaviour)
         {
             #if UNITY_EDITOR
-            _vfxPlayer = GetComponent<VFXPlayer>();
             _players = FindObjectsByType<Player>(FindObjectsSortMode.None).ToList();
             #endif
 

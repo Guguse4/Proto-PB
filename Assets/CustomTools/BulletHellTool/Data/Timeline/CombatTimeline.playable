@@ -356,7 +356,7 @@ MonoBehaviour:
   _template:
     _mechanicToPlay: {fileID: 11400000, guid: 7bda5ee4e07130b4bbc42751b9fe8295, type: 2}
     _spawnBehaviour:
-      spawnPositionBehaviour: 2
+      spawnPositionBehaviour: 0
       spawnPosition: {x: 0, y: 0, z: 0}
       movementBehaviour: 1
     telegraphDuration: 0.8
