@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BossMechanicTool
@@ -28,7 +27,7 @@ namespace BossMechanicTool
                 // Show telegraph for each pattern in mechanic
                 foreach (var pattern in _mechanic.patterns)
                 {
-                    ShowPatternTelegraph(pattern);
+                    PlayPattern(pattern, true);
                 }
             }
             else
@@ -43,7 +42,7 @@ namespace BossMechanicTool
             // Show telegraph for each pattern in mechanic
             foreach (var pattern in _mechanic.patterns)
             {
-                ShowPatternTelegraph(pattern);
+                PlayPattern(pattern, true);
                 yield return wait;
             }
         }
@@ -59,7 +58,7 @@ namespace BossMechanicTool
                 {
                     if (pattern != null && pattern.Action != null)
                     {
-                        ActivatePattern(pattern);
+                        PlayPattern(pattern, false);
                     }
                 }
             }
@@ -77,7 +76,7 @@ namespace BossMechanicTool
             {
                 if (pattern != null && pattern.Action != null)
                 {
-                    ActivatePattern(pattern);
+                    PlayPattern(pattern, false);
                     yield return wait;
                 }
             }
@@ -121,7 +120,7 @@ namespace BossMechanicTool
         /*
          * Function used to spawn telegraph for the given pattern with the given spawn information
          */
-        private void ShowPatternTelegraph(Pattern pattern)
+        private void PlayPattern(Pattern pattern, bool isTelegraph)
         {
             // Init the origin of the pattern
             Vector3 origin = transform.position + pattern.SourceRelativePosition;
@@ -136,50 +135,35 @@ namespace BossMechanicTool
             
             // Compute rotation according to the computed direction
             Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
-            
-            // Instantiate vfx
-            GameObject visual = Instantiate(
-                pattern.TelegraphPrefab,
-                origin,
-                rotation,
-                transform
-            );
-            
-            // Scale it
-            visual.transform.localScale = pattern.GetActionSize();
-            
-            _telegraphVFX.Enqueue(visual);
-        }
-        
-        /*
-         * Function called to activate a given pattern with the given spawn information
-         */
-        private void ActivatePattern(Pattern pattern)
-        {
-            // Compute the origin if the pattern is attached to a moving object
-            Vector3 origin = transform.position + pattern.SourceRelativePosition;
-            Vector3 direction = pattern.SourceRelativeDirection;
-            
-            if (direction == Vector3.zero)
-                direction = Vector3.forward;
-            
-            direction.y = 0f;
-            direction.Normalize();
-            Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
-                        
-            // activate action
-            pattern.Action.ActivateAction(origin, direction);
-            
-            // Instantiate vfx
-            GameObject visual = Instantiate(
-                pattern.ActivationVFX,
-                origin,
-                rotation,
-                transform
-            );
-            
-            // Scale it
-            visual.transform.localScale = pattern.GetActionSize();
+
+            GameObject visual;
+            if (isTelegraph)
+            {
+                // Instantiate vfx
+                visual = Instantiate(
+                    pattern.TelegraphPrefab,
+                    origin,
+                    rotation,
+                    transform
+                );
+                // Scale it
+                visual.transform.localScale = pattern.GetActionSize();
+                // Save it
+                _telegraphVFX.Enqueue(visual);
+            }
+            else
+            {
+                visual = Instantiate(
+                    pattern.ActivationVFX,
+                    origin,
+                    rotation,
+                    transform
+                );
+                // Scale it
+                visual.transform.localScale = pattern.GetActionSize();
+                // activate action
+                pattern.Action.ActivateAction(origin, direction);
+            }
         }
     }
 }
