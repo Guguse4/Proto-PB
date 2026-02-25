@@ -42,8 +42,18 @@ namespace BossMechanicTool.Editor
             EditorGUI.BeginProperty(position, label, property);
 
             Rect foldoutRect = new Rect(position.x, position.y, position.width, LineHeight);
-            property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, label, true);
-
+            
+            SerializedProperty actionTypePropTpm = property.FindPropertyRelative("_actionType");
+            ActionType typeTpm = (ActionType)actionTypePropTpm.enumValueIndex;
+            
+            Color textColor = GetColor(typeTpm);
+            GUIStyle coloredFoldout = new GUIStyle(EditorStyles.foldout);
+            coloredFoldout.normal.textColor = textColor;
+            coloredFoldout.onNormal.textColor = textColor;
+            coloredFoldout.focused.textColor = textColor;
+            coloredFoldout.onFocused.textColor = textColor;
+            
+            property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, label, true, coloredFoldout);
             if (!property.isExpanded)
             {
                 EditorGUI.EndProperty();
@@ -113,6 +123,21 @@ namespace BossMechanicTool.Editor
             Rect rect = new Rect(position.x, y, position.width, LineHeight);
             EditorGUI.PropertyField(rect, prop, true);
             return y + LineHeight + Spacing;
+        }
+
+        private Color GetColor(ActionType type)
+        {
+            switch (type)
+            {
+                case ActionType.DamageArea:
+                    return Color.lightGreen;
+                case ActionType.SpawnMob:
+                    return Color.aquamarine;
+                case ActionType.Bullet:
+                    return Color.darkGoldenRod;
+                default:
+                    return Color.white;
+            }
         }
     }
 }
