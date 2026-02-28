@@ -27,6 +27,6 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
-    _telegraphPrefab: {fileID: 7957833072274404953, guid: 088e00b0c0de1c747a0b7ded79d74644, type: 3}
+    _telegraphPrefab: {fileID: 7964172533017538653, guid: 7161a4ed458f6894aa231c0e45d58610, type: 3}
     _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   activationDelay: 0

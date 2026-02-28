@@ -78,6 +78,21 @@ namespace BossMechanicTool.Editor
             {
                 TranslateAllPatterns(mechanic);
             }
+            
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Previsualization", EditorStyles.boldLabel);
+            if (GUILayout.Button("Previsualize"))
+            {
+                MechanicVisualizer visualizer = FindFirstObjectByType<MechanicVisualizer>();
+                if (visualizer == null)
+                {
+                    Debug.LogError("No MechanicVisualizer found in scene. You must add MechanicManager");
+                    return;
+                }
+
+                visualizer.SetMechanic(mechanic);
+                EditorUtility.SetDirty(visualizer);
+            }
         }
         
         private void DrawLayoutSettings()

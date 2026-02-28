@@ -27,8 +27,8 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
-    _telegraphPrefab: {fileID: 3660295101186772001, guid: e86e26707ed6fdc4f93c96ab97d22dd5, type: 3}
-    _activationVFX: {fileID: 3660295101186772001, guid: d8d10c398072e094ca2ee7d4b325aaeb, type: 3}
+    _telegraphPrefab: {fileID: 4566031297166048307, guid: 32017ecc005fcd441ad11087053dcbce, type: 3}
+    _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   - _sourceRelativePosition: {x: -1.5727236, y: 0, z: 4.7462134}
     _sourceRelativeDirection: {x: 0.31454474, y: -0, z: -0.9492427}
     _actionType: 0
@@ -43,8 +43,8 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
-    _telegraphPrefab: {fileID: 3660295101186772001, guid: e86e26707ed6fdc4f93c96ab97d22dd5, type: 3}
-    _activationVFX: {fileID: 3660295101186772001, guid: d8d10c398072e094ca2ee7d4b325aaeb, type: 3}
+    _telegraphPrefab: {fileID: 4566031297166048307, guid: 32017ecc005fcd441ad11087053dcbce, type: 3}
+    _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   - _sourceRelativePosition: {x: 1.572724, y: 0, z: 4.7462134}
     _sourceRelativeDirection: {x: -0.31454477, y: -0, z: -0.9492426}
     _actionType: 0
@@ -59,8 +59,8 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
-    _telegraphPrefab: {fileID: 3660295101186772001, guid: e86e26707ed6fdc4f93c96ab97d22dd5, type: 3}
-    _activationVFX: {fileID: 3660295101186772001, guid: d8d10c398072e094ca2ee7d4b325aaeb, type: 3}
+    _telegraphPrefab: {fileID: 4566031297166048307, guid: 32017ecc005fcd441ad11087053dcbce, type: 3}
+    _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   - _sourceRelativePosition: {x: 4.0957603, y: 0, z: 2.867882}
     _sourceRelativeDirection: {x: -0.81915206, y: -0, z: -0.5735764}
     _actionType: 0
@@ -75,6 +75,6 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
-    _telegraphPrefab: {fileID: 3660295101186772001, guid: e86e26707ed6fdc4f93c96ab97d22dd5, type: 3}
-    _activationVFX: {fileID: 3660295101186772001, guid: d8d10c398072e094ca2ee7d4b325aaeb, type: 3}
+    _telegraphPrefab: {fileID: 4566031297166048307, guid: 32017ecc005fcd441ad11087053dcbce, type: 3}
+    _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   activationDelay: 0

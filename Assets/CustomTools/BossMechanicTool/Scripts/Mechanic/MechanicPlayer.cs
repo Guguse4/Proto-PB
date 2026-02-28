@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BossMechanicTool.Timeline;
-using BossMechanicTool.VFX;
 using UnityEngine;
 
 namespace BossMechanicTool

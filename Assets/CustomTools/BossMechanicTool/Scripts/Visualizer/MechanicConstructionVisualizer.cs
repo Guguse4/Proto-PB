@@ -6,15 +6,23 @@ namespace BossMechanicTool
     {
         #if UNITY_EDITOR
         
-        public Mechanic mechanic;
+        private Mechanic _mechanic;
+
+        public void SetMechanic(Mechanic in_mechanic)
+        {
+            _mechanic = in_mechanic;
+        }
 
         void OnDrawGizmos()
         {
+            if (_mechanic == null)
+                return;
+            
             Gizmos.color = Color.blue;
             Gizmos.DrawSphere(transform.position, 0.2f);
             
             Gizmos.color = Color.yellow;
-            foreach(Pattern pattern in mechanic.patterns)
+            foreach(Pattern pattern in _mechanic.patterns)
             {
                 if(pattern != null && pattern.Action != null)
                     pattern.Action.DrawGizmos(transform.position + pattern.SourceRelativePosition, pattern.SourceRelativeDirection);
