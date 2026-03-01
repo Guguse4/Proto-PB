@@ -1,4 +1,5 @@
 ﻿using System;
+using Combat;
 using UnityEngine;
 
 namespace BossMechanicTool.Action
@@ -43,6 +44,8 @@ namespace BossMechanicTool.Action
         // Mesh
         public Mesh meshRef;
         public Vector3 scale;
+        
+        private LayerMask playerLayer;
 
         // Return the pattern action shape according to the current shape
         public override Vector3 GetSize()
@@ -64,6 +67,8 @@ namespace BossMechanicTool.Action
          */
         public override void ActivateAction(Vector3 position, Vector3 direction)
         {
+            playerLayer = CombatManager.Instance.GetSettings()._playerLayerMask;
+            
             // Activation according to the shape
             switch (shape)
             {
@@ -87,7 +92,7 @@ namespace BossMechanicTool.Action
          */
         private void ActivateCircle(Vector3 origin)
         {
-            Collider[] hits = Physics.OverlapSphere(origin, radius);
+            Collider[] hits = Physics.OverlapSphere(origin, radius, playerLayer);
             ApplyDamage(hits);
         }
 
@@ -98,7 +103,7 @@ namespace BossMechanicTool.Action
         {
             Vector3 halfExtents = new Vector3(width/2f, 1f, height/2f);
             Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
-            Collider[] hits = Physics.OverlapBox(origin, halfExtents, rotation);
+            Collider[] hits = Physics.OverlapBox(origin, halfExtents, rotation,playerLayer);
             ApplyDamage(hits);
         }
 
@@ -107,7 +112,7 @@ namespace BossMechanicTool.Action
          */
         private void ActivateDonut(Vector3 origin)
         {
-            Collider[] hits = Physics.OverlapSphere(origin, radius);
+            Collider[] hits = Physics.OverlapSphere(origin, radius, playerLayer);
             foreach (var col in hits)
             {
                 float dist = Vector3.Distance(origin, col.transform.position);
@@ -123,7 +128,7 @@ namespace BossMechanicTool.Action
          */
         private void ActivatePizza(Vector3 origin,  Vector3 direction)
         {
-            Collider[] hits = Physics.OverlapSphere(origin, radius);
+            Collider[] hits = Physics.OverlapSphere(origin, radius, playerLayer);
 
             foreach (var col in hits)
             {
@@ -156,7 +161,6 @@ namespace BossMechanicTool.Action
          */
         private void ApplyDamage(Collider col)
         {
-            Debug.Log("Collider : " + col.gameObject.name);
             IDamageable damageable = col.GetComponent<IDamageable>();
             if (damageable != null)
             {

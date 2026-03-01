@@ -21,6 +21,7 @@ public class AttackController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _bulletPool = FindFirstObjectByType<BulletPool>();
         playerInput = GetComponent<PlayerInput>();
         fireAction = playerInput.actions.FindAction("Fire");
 
@@ -34,7 +35,6 @@ public class AttackController : MonoBehaviour
         //Initialize bullet from pool
         if (fireAction.IsPressed() && nextTimeToShoot > cooldownWindow && _bulletPool != null)
         {
-            Debug.Log("Enter if");
             Projectile bulletObject = _bulletPool.pool.Get();
 
             if (bulletObject == null)

@@ -1,27 +1,43 @@
-﻿using System;
-using System.Collections;
+﻿using Entity.Boss;
+using Entity.Player;
+using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class GameManager : MonoBehaviour
+namespace Combat
 {
-    public static GameManager Instance { get; set; }
-    private Player _player;
-
-    private void Awake()
+    public class GameManager : NetworkBehaviour
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
+        [SerializeField] private CombatHUD _combatHUD;
+        [SerializeField] private GameSettings.GameSettings _settings;
     
-    public int GetHealth() => _player.CurrentHealth;
+        public static GameManager Instance { get; set; }
+        private Player _player;
+        private Boss _boss;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            
+            _boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
+            _boss.OnTakeDamage.AddListener(OnBossTakeDamage);
+        }
+
+        public GameSettings.GameSettings GetSettings()
+        {
+            return _settings;
+        }
+
+        private void OnBossTakeDamage(int currentHealth)
+        {
+            _combatHUD.UpdateBossHealth(currentHealth);
+        }
+    }
 }

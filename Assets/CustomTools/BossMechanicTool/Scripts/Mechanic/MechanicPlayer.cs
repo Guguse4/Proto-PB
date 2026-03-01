@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BossMechanicTool.Timeline;
+using Entity.Player;
 using UnityEngine;
 using UnityEngine.Playables;
 

@@ -1,6 +1,5 @@
-using System;
+using Combat;
 using TMPro;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class PlayerHUD : MonoBehaviour
@@ -9,6 +8,6 @@ public class PlayerHUD : MonoBehaviour
 
     private void Update()
     {
-        healthText.text = $"Health : {GameManager.Instance.GetHealth()}";
+        // healthText.text = $"Health : {GameManager.Instance.GetHealth()}";
     }
 }
