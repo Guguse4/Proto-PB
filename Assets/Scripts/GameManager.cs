@@ -37,7 +37,7 @@ namespace Combat
 
         private void OnBossTakeDamage(int currentHealth)
         {
-            _combatHUD.UpdateBossHealth(currentHealth);
+            _combatHUD.UpdateBossHealthRpc(currentHealth);
         }
     }
 }

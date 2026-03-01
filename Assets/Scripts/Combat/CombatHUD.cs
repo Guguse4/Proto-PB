@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Combat
@@ -6,7 +7,9 @@ namespace Combat
     public class CombatHUD: MonoBehaviour
     {
         [SerializeField] private TMP_Text _bossHealthText;
-        public void UpdateBossHealth(int currentHealth)
+        
+        [Rpc(SendTo.Everyone)]
+        public void UpdateBossHealthRpc(int currentHealth)
         {
             _bossHealthText.SetText("Health: "+currentHealth);
         }

@@ -55,7 +55,7 @@ public class CombatManager : NetworkBehaviour
 
     private void OnBossTakeDamage(int currentHealth)
     {
-        _combatHUD.UpdateBossHealth(currentHealth);
+        _combatHUD.UpdateBossHealthRpc(currentHealth);
     }
     
     public GameSettings.GameSettings GetSettings()
