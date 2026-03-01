@@ -12,7 +12,6 @@ namespace Combat
     
         public static GameManager Instance { get; set; }
         private Player _player;
-        private Boss _boss;
 
         private void Awake()
         {
@@ -25,19 +24,11 @@ namespace Combat
             {
                 Destroy(gameObject);
             }
-            
-            _boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
-            _boss.OnTakeDamage.AddListener(OnBossTakeDamage);
         }
 
         public GameSettings.GameSettings GetSettings()
         {
             return _settings;
-        }
-
-        private void OnBossTakeDamage(int currentHealth)
-        {
-            _combatHUD.UpdateBossHealthRpc(currentHealth);
         }
     }
 }

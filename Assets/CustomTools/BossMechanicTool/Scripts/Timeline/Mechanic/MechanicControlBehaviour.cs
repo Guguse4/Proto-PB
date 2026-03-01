@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Playables;
 
-namespace BossMechanicTool.Timeline
+namespace BossMechanicTool.Timeline.Mechanic
 {
     /*
      * Define the attached source behaviours
@@ -47,7 +47,7 @@ namespace BossMechanicTool.Timeline
     {
         [Header("Mechanic parameters")]
         // The mechanic data reference to play
-        [SerializeField] private Mechanic _mechanicToPlay;
+        [SerializeField] private BossMechanicTool.Mechanic _mechanicToPlay;
         
         // Define the global spawn behaviour of the mechanic  
         [SerializeField] private SpawnBehaviour _spawnBehaviour;
@@ -58,7 +58,7 @@ namespace BossMechanicTool.Timeline
         public float TelegraphDuration{get{return telegraphDuration;}}
 
         // use to do stuff once at the first frame
-        private bool _firstFrameHeppened;
+        private bool _firstFrameHappened;
         // use to save if the mechanic player has already displayed the telegraph of the mechanic
         private bool _telegraphDisplayed;
         // use to save if the mechanic player has already activated the mechanic
@@ -81,9 +81,9 @@ namespace BossMechanicTool.Timeline
             }
 
             // Do once at the first frame
-            if (_firstFrameHeppened == false)
+            if (_firstFrameHappened == false)
             {
-                _firstFrameHeppened = true;
+                _firstFrameHappened = true;
 
                 // Generate random id
                 uniqueMechanicId = Guid.NewGuid().ToString();
@@ -120,7 +120,7 @@ namespace BossMechanicTool.Timeline
         public override void OnBehaviourPause(Playable playable, FrameData info)
         {
             // Reset do once booleans
-            _firstFrameHeppened = false;
+            _firstFrameHappened = false;
             _telegraphDisplayed = false;
             _activationDone = false;
 

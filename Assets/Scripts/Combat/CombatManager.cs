@@ -1,6 +1,4 @@
-using System;
 using Combat;
-using Entity.Boss;
 using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,8 +14,12 @@ public class CombatManager : NetworkBehaviour
     
     private GameObject _playerPrefabInstance;
     private bool _loaded = false;
-    private Boss _boss;
-    
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -25,14 +27,11 @@ public class CombatManager : NetworkBehaviour
         {
             if (_loaded)
                 return;
-
-            Instance = this;
+            
             _loaded = true;
             if (IsServer)
             {
                 SpawnAllPlayerInScene();
-                _boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
-                _boss.OnTakeDamage.AddListener(OnBossTakeDamage);
             }
         };
     }
@@ -52,14 +51,14 @@ public class CombatManager : NetworkBehaviour
         GameObject player = Instantiate(_playerPrefab, position, Quaternion.identity);
         player.GetComponent<NetworkObject>().SpawnAsPlayerObject(cliendId);
     }
-
-    private void OnBossTakeDamage(int currentHealth)
-    {
-        _combatHUD.UpdateBossHealthRpc(currentHealth);
-    }
     
     public GameSettings.GameSettings GetSettings()
     {
         return _settings;
+    }
+
+    public CombatHUD GetCombatHUD()
+    {
+        return _combatHUD;
     }
 }

@@ -67,7 +67,12 @@ namespace BossMechanicTool.Action
          */
         public override void ActivateAction(Vector3 position, Vector3 direction)
         {
-            playerLayer = CombatManager.Instance.GetSettings()._playerLayerMask;
+            #if UNITY_EDITOR
+            if (CombatManager.Instance != null)
+                playerLayer = CombatManager.Instance.GetSettings()._playerLayerMask;
+            else
+                playerLayer = 7;
+            #endif
             
             // Activation according to the shape
             switch (shape)

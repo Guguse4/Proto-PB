@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using BossMechanicTool.Timeline;
+using BossMechanicTool.Timeline.Mechanic;
 
 [CustomPropertyDrawer(typeof(SpawnBehaviour))]
 public class SpawnBehaviourDrawer : PropertyDrawer

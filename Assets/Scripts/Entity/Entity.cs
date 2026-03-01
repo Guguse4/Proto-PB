@@ -14,7 +14,7 @@ namespace Entity
             _currentHealth = _data.maxHealth;
         }
 
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             _currentHealth -= damage;
             Debug.Log(gameObject.name + " take damage: "+_currentHealth+" left.");

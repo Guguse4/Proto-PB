@@ -2,7 +2,7 @@
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-namespace BossMechanicTool.Timeline
+namespace BossMechanicTool.Timeline.Mechanic
 {
     public class MechanicControlClip: PlayableAsset, ITimelineClipAsset
     {
