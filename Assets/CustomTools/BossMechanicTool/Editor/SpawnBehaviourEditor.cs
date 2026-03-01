@@ -21,9 +21,12 @@ public class SpawnBehaviourDrawer : PropertyDrawer
         height += line + space;
 
         // spawnPosition (conditional)
-        if ((SpawnPositionBehaviour)spawnPositionBehaviour.enumValueIndex 
-            == SpawnPositionBehaviour.OnGivenPosition)
+        if ((SpawnPositionBehaviour)spawnPositionBehaviour.enumValueIndex == SpawnPositionBehaviour.OnGivenPosition
+            || (SpawnPositionBehaviour)spawnPositionBehaviour.enumValueIndex == SpawnPositionBehaviour.OnNearestPlayerFrom)
         {
+            // Vector 3
+            height += line + space;
+            // GameObject
             height += line + space;
         }
 
@@ -47,6 +50,7 @@ public class SpawnBehaviourDrawer : PropertyDrawer
 
         var spawnPositionBehaviour = property.FindPropertyRelative("spawnPositionBehaviour");
         var spawnPosition = property.FindPropertyRelative("spawnPosition");
+        var attachedObject = property.FindPropertyRelative("attachedObject");
         var movementBehaviour = property.FindPropertyRelative("movementBehaviour");
 
         // ===== Position Header =====
@@ -58,10 +62,13 @@ public class SpawnBehaviourDrawer : PropertyDrawer
         rect.y += line + space;
 
         // spawnPosition (conditional)
-        if ((SpawnPositionBehaviour)spawnPositionBehaviour.enumValueIndex 
-            == SpawnPositionBehaviour.OnGivenPosition)
+        if ((SpawnPositionBehaviour)spawnPositionBehaviour.enumValueIndex == SpawnPositionBehaviour.OnGivenPosition
+            || (SpawnPositionBehaviour)spawnPositionBehaviour.enumValueIndex == SpawnPositionBehaviour.OnNearestPlayerFrom)
         {
             EditorGUI.PropertyField(rect, spawnPosition);
+            rect.y += line + space;
+            
+            EditorGUI.PropertyField(rect, attachedObject);
             rect.y += line + space;
         }
 

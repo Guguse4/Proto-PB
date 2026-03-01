@@ -9,13 +9,12 @@ namespace BossMechanicTool.Timeline
      */
     public enum SpawnPositionBehaviour
     {
-        OnGivenPosition,    // The mechanic will be centered on the given position
-        OnNearestPlayer,    // The mechanic will be centered on the nearest player
-        OnRandomPlayer,     // The mechanic will be centered on a random player
-        OnAllPlayers,       // The mechanic will be spawned on all players
-        OnAllPlayersAlive,  // The mechanic will be spawned on all alive players
-        OnAllPlayersDead,   // The mechanic will be spawned on all dead players
-        OnGivenObject,      // The mechanic will be centered on a given object/position
+        OnGivenPosition,        // The mechanic will be centered on the given position
+        OnNearestPlayerFrom,    // The mechanic will be centered on the nearest player
+        OnRandomPlayer,         // The mechanic will be centered on a random player
+        OnAllPlayers,           // The mechanic will be spawned on all players
+        // OnAllPlayersAlive,   // The mechanic will be spawned on all alive players
+        // OnAllPlayersDead,    // The mechanic will be spawned on all dead players
     }
 
     /*
@@ -35,6 +34,7 @@ namespace BossMechanicTool.Timeline
     {
         public SpawnPositionBehaviour spawnPositionBehaviour;
         public Vector3 spawnPosition;   // if spawnPositionBehaviour is set OnGivenPosition
+        public ExposedReference<GameObject> attachedObject;
         public MovementBehaviour movementBehaviour; 
     }
     

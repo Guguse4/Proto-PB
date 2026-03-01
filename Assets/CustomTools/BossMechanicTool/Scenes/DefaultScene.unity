@@ -705,16 +705,60 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 5211181baab385d4ba9316f57a738a5d, type: 2}
     - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].key
       value: 
       objectReference: {fileID: 8307594297906287217, guid: 5211181baab385d4ba9316f57a738a5d, type: 2}
     - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_SceneBindings.Array.data[1].key
+      value: 
+      objectReference: {fileID: -1105677868879576031, guid: 5211181baab385d4ba9316f57a738a5d, type: 2}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].key
+      value: 
+      objectReference: {fileID: 2422456045530486073, guid: 5211181baab385d4ba9316f57a738a5d, type: 2}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].key
+      value: 
+      objectReference: {fileID: 7564772490400745992, guid: 5211181baab385d4ba9316f57a738a5d, type: 2}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
       value: 
       objectReference: {fileID: 1556271385}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_SceneBindings.Array.data[1].value
+      value: 
+      objectReference: {fileID: 1556271385}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].value
+      value: 
+      objectReference: {fileID: 1556271385}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].value
+      value: 
+      objectReference: {fileID: 1556271385}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[0].first
+      value: 0ad67b2ff545bf24eb3135dab242884b
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[1].first
+      value: ee69289236cc7194fb0a3f50c29b538d
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[0].second
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407536047189874619, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[1].second
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4462837189051555068, guid: 21c0bb9a2943dcd499a0142014fcf996, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -814,7 +858,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: 165dc9cf-a6a6-4f93-ad2b-0d042017643c
+  m_DefaultActionMap: Tool
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1001 &2009598424

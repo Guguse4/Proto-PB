@@ -17,8 +17,33 @@ MonoBehaviour:
     _spawnBehaviour:
       spawnPositionBehaviour: 0
       spawnPosition: {x: 0, y: 0, z: 0}
+      attachedObject:
+        exposedName: 0ad67b2ff545bf24eb3135dab242884b
+        defaultValue: {fileID: 0}
       movementBehaviour: 0
     telegraphDuration: 0.5
+--- !u!114 &-8614954013336142939
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2ce8125993487d982b51fab77aedcf, type: 3}
+  m_Name: MechanicControlClip(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Timeline.MechanicControlClip
+  _template:
+    _mechanicToPlay: {fileID: 11400000, guid: 27cdcd1772d4c6747ac0ded7612fdfd1, type: 2}
+    _spawnBehaviour:
+      spawnPositionBehaviour: 0
+      spawnPosition: {x: 0, y: 0, z: 0}
+      attachedObject:
+        exposedName: 5686c0d5ffc35cc44bf87e5436040844
+        defaultValue: {fileID: 0}
+      movementBehaviour: 1
+    telegraphDuration: 0.514
 --- !u!114 &-8307668019286335168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -35,6 +60,50 @@ MonoBehaviour:
   emitter:
     exposedName: 
     defaultValue: {fileID: 0}
+--- !u!114 &-8085682289257315323
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2ce8125993487d982b51fab77aedcf, type: 3}
+  m_Name: MechanicControlClip(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Timeline.MechanicControlClip
+  _template:
+    _mechanicToPlay: {fileID: 11400000, guid: be1e1b8af87074449ad4b127468fc2e0, type: 2}
+    _spawnBehaviour:
+      spawnPositionBehaviour: 0
+      spawnPosition: {x: 0, y: 0, z: 0}
+      attachedObject:
+        exposedName: 9ebf846ac89de3042b0c4d04d89765b1
+        defaultValue: {fileID: 0}
+      movementBehaviour: 0
+    telegraphDuration: 0.5
+--- !u!114 &-6931678154083528665
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2ce8125993487d982b51fab77aedcf, type: 3}
+  m_Name: MechanicControlClip(Clone)(Clone)
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Timeline.MechanicControlClip
+  _template:
+    _mechanicToPlay: {fileID: 11400000, guid: 27cdcd1772d4c6747ac0ded7612fdfd1, type: 2}
+    _spawnBehaviour:
+      spawnPositionBehaviour: 0
+      spawnPosition: {x: 0, y: 0, z: 0}
+      attachedObject:
+        exposedName: 420ad2c8c0b1d2143aafc72388c5ecfb
+        defaultValue: {fileID: 0}
+      movementBehaviour: 1
+    telegraphDuration: 0.514
 --- !u!114 &-4494146714835623362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,8 +121,103 @@ MonoBehaviour:
     _spawnBehaviour:
       spawnPositionBehaviour: 0
       spawnPosition: {x: 0, y: 0, z: 0}
-      movementBehaviour: 0
-    telegraphDuration: 0.5
+      attachedObject:
+        exposedName: ee69289236cc7194fb0a3f50c29b538d
+        defaultValue: {fileID: 0}
+      movementBehaviour: 1
+    telegraphDuration: 0.514
+--- !u!114 &-1105677868879576031
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b6f48f19f749abb4b78c68a702fe0c, type: 3}
+  m_Name: Mechanic Control Track (1)
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Timeline.MechanicControlTrack
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 1032536325181778075}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 7.55
+    m_ClipIn: 0
+    m_Asset: {fileID: 9063978688592214241}
+    m_Duration: 1.5666666666666667
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -1105677868879576031}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: MechanicControlClip
+  m_Markers:
+    m_Objects: []
 --- !u!114 &-52182995307804830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,12 +249,131 @@ MonoBehaviour:
   m_Version: 0
   m_Tracks:
   - {fileID: 8307594297906287217}
-  m_FixedDuration: 3.5166666666666666
+  - {fileID: 1032536325181778075}
+  m_FixedDuration: 14.183333333333334
   m_EditorSettings:
     m_Framerate: 60
     m_ScenePreview: 1
   m_DurationMode: 1
   m_MarkerTrack: {fileID: 6314827181218359745}
+--- !u!114 &1032536325181778075
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fc6f5187a81dc47999eefade6f0935, type: 3}
+  m_Name: Random_A
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.GroupTrack
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children:
+  - {fileID: -1105677868879576031}
+  - {fileID: 2422456045530486073}
+  - {fileID: 7564772490400745992}
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
+--- !u!114 &2422456045530486073
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b6f48f19f749abb4b78c68a702fe0c, type: 3}
+  m_Name: Mechanic Control Track (2)
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Timeline.MechanicControlTrack
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 1032536325181778075}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 7.55
+    m_ClipIn: 0
+    m_Asset: {fileID: -6931678154083528665}
+    m_Duration: 4.016666666666667
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 2422456045530486073}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: MechanicControlClip
+  m_Markers:
+    m_Objects: []
 --- !u!114 &6314827181218359745
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,6 +395,167 @@ MonoBehaviour:
   m_Parent: {fileID: 11400000}
   m_Children: []
   m_Clips: []
+  m_Markers:
+    m_Objects: []
+--- !u!114 &7564772490400745992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b6f48f19f749abb4b78c68a702fe0c, type: 3}
+  m_Name: Mechanic Control Track (3)
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Timeline.MechanicControlTrack
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 1032536325181778075}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 7.55
+    m_ClipIn: 0
+    m_Asset: {fileID: -8614954013336142939}
+    m_Duration: 4.016666666666667
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 7564772490400745992}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: MechanicControlClip
+  - m_Version: 1
+    m_Start: 11.566666666666666
+    m_ClipIn: 0
+    m_Asset: {fileID: -8085682289257315323}
+    m_Duration: 1.5666666666666667
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 7564772490400745992}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: MechanicControlClip
   m_Markers:
     m_Objects: []
 --- !u!114 &8307594297906287217
@@ -139,7 +583,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -4494146714835623362}
-    m_Duration: 1.5666666666666667
+    m_Duration: 4.016666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: 8307594297906287217}
     m_EaseInDuration: 0
@@ -205,7 +649,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: MechanicControlClip
   - m_Version: 1
-    m_Start: 1.5666666666666667
+    m_Start: 4.016666666666667
     m_ClipIn: 0
     m_Asset: {fileID: -9127727325643870294}
     m_Duration: 1.5666666666666667
@@ -273,5 +717,118 @@ MonoBehaviour:
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
     m_DisplayName: MechanicControlClip
+  - m_Version: 1
+    m_Start: 5.583333333333333
+    m_ClipIn: 0
+    m_Asset: {fileID: 8985452299062753163}
+    m_Duration: 1.5666666666666667
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 8307594297906287217}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: MechanicControlClip
   m_Markers:
     m_Objects: []
+--- !u!114 &8985452299062753163
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2ce8125993487d982b51fab77aedcf, type: 3}
+  m_Name: MechanicControlClip(Clone)(Clone)
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Timeline.MechanicControlClip
+  _template:
+    _mechanicToPlay: {fileID: 11400000, guid: be1e1b8af87074449ad4b127468fc2e0, type: 2}
+    _spawnBehaviour:
+      spawnPositionBehaviour: 0
+      spawnPosition: {x: 0, y: 0, z: 0}
+      attachedObject:
+        exposedName: 69728b5617b3c4143a430975e4a6f02e
+        defaultValue: {fileID: 0}
+      movementBehaviour: 0
+    telegraphDuration: 0.5
+--- !u!114 &9063978688592214241
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2ce8125993487d982b51fab77aedcf, type: 3}
+  m_Name: MechanicControlClip(Clone)(Clone)
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Timeline.MechanicControlClip
+  _template:
+    _mechanicToPlay: {fileID: 11400000, guid: be1e1b8af87074449ad4b127468fc2e0, type: 2}
+    _spawnBehaviour:
+      spawnPositionBehaviour: 0
+      spawnPosition: {x: 0, y: 0, z: 0}
+      attachedObject:
+        exposedName: 7580dd1fdea760047be9b0b8183bea23
+        defaultValue: {fileID: 0}
+      movementBehaviour: 0
+    telegraphDuration: 0.5

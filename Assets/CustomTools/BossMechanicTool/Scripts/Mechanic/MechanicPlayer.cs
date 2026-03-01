@@ -2,6 +2,7 @@
 using System.Linq;
 using BossMechanicTool.Timeline;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace BossMechanicTool
 {
@@ -21,16 +22,20 @@ namespace BossMechanicTool
     /*
      * Main mechanic class used to play all mechanics in the game
      */
+    [RequireComponent(typeof(PlayableDirector))]
     public class MechanicPlayer: MonoBehaviour
     {
         // Save already computed mechanics
         private Dictionary<string, List<MechanicObject>> _idToMechanic = new Dictionary<string, List<MechanicObject>>();
         // List of all players
         List<Player> _players = new List<Player>();
+        // Object resolver
+        PlayableDirector _playableDirector;
         
         private void Start()
         {
             _players = FindObjectsByType<Player>(FindObjectsSortMode.None).ToList();
+            _playableDirector = GetComponent<PlayableDirector>();
             _idToMechanic = new Dictionary<string, List<MechanicObject>>();
         }
 
@@ -202,11 +207,20 @@ namespace BossMechanicTool
         private List<Vector3> ComputeSpawnPosition(SpawnBehaviour spawnBehaviour)
         {
             List<Vector3> positions = new List<Vector3>();
+            GameObject attachedObject;
             
             switch (spawnBehaviour.spawnPositionBehaviour)
             {
                 case SpawnPositionBehaviour.OnGivenPosition:
-                    positions.Add(spawnBehaviour.spawnPosition);
+                    attachedObject = spawnBehaviour.attachedObject.Resolve(_playableDirector);
+                    if (attachedObject != null)
+                    {
+                        positions.Add(attachedObject.transform.position);
+                    }
+                    else
+                    {
+                        positions.Add(spawnBehaviour.spawnPosition);
+                    }
                     break;
                 case SpawnPositionBehaviour.OnAllPlayers:
                     foreach (Player player in _players)
@@ -217,6 +231,18 @@ namespace BossMechanicTool
                 case SpawnPositionBehaviour.OnRandomPlayer:
                     if(_players.Count > 0)
                         positions.Add(_players[Random.Range(0, _players.Count)].transform.position);
+                    break;
+                case SpawnPositionBehaviour.OnNearestPlayerFrom:
+                    attachedObject = spawnBehaviour.attachedObject.Resolve(_playableDirector);
+                    if (attachedObject != null)
+                    {
+                        positions.Add(FindNearestPlayerFrom(attachedObject.transform.position).transform.position);
+                    }
+                    else
+                    {
+                        positions.Add(FindNearestPlayerFrom(spawnBehaviour.spawnPosition).transform.position);
+                    }
+
                     break;
             }
 
@@ -229,11 +255,16 @@ namespace BossMechanicTool
         private List<GameObject> ComputeSpawnTarget(SpawnBehaviour spawnBehaviour)
         {
             List<GameObject> targets = new List<GameObject>();
+            GameObject attachedObject;
             
             switch (spawnBehaviour.spawnPositionBehaviour)
             {
-                case SpawnPositionBehaviour.OnGivenObject:
-                    targets.Add(null);
+                case SpawnPositionBehaviour.OnGivenPosition:
+                    attachedObject = spawnBehaviour.attachedObject.Resolve(_playableDirector);
+                    if (attachedObject != null)
+                    {
+                        targets.Add(attachedObject);
+                    }
                     break;
                 case SpawnPositionBehaviour.OnAllPlayers:
                     foreach (Player player in _players)
@@ -245,9 +276,39 @@ namespace BossMechanicTool
                     if(_players.Count > 0)
                         targets.Add(_players[Random.Range(0, _players.Count)].gameObject);
                     break;
+                case  SpawnPositionBehaviour.OnNearestPlayerFrom:
+                    attachedObject = spawnBehaviour.attachedObject.Resolve(_playableDirector);
+                    if (attachedObject != null)
+                    {
+                        targets.Add(FindNearestPlayerFrom(attachedObject.transform.position).gameObject);
+                    }
+                    else
+                    {
+                        targets.Add(FindNearestPlayerFrom(spawnBehaviour.spawnPosition).gameObject);
+                    }
+                    break;
             }
             
             return targets;
+        }
+
+        private Player FindNearestPlayerFrom(Vector3 position)
+        {
+            if (_players.Count <= 0)
+                return null;
+            
+            Player nearestPlayer = null;
+            float nearestDistance =  float.MaxValue;
+            foreach (Player player in _players)
+            {
+                if (Vector3.Distance(player.transform.position, position) < nearestDistance)
+                {
+                    nearestDistance = Vector3.Distance(player.transform.position, position);
+                    nearestPlayer = player;
+                }
+            }
+            
+            return nearestPlayer;
         }
         #endregion
     }
