@@ -1,10 +1,8 @@
-using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Pool;
 
-public class AttackController : MonoBehaviour
+public class AttackController : NetworkBehaviour
 {
     PlayerInput playerInput;
     InputAction fireAction;
@@ -38,6 +36,7 @@ public class AttackController : MonoBehaviour
         if (fireAction.IsPressed() && nextTimeToShoot > cooldownWindow /*&& _bulletPool != null*/)
         {
             // GameObject bulletObject = _bulletPool.pool.Get();
+            
             SpawnBulletRpc(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
             
             // bulletObject.transform.SetPositionAndRotation(muzzlePosition.position, muzzlePosition.rotation);
@@ -47,14 +46,35 @@ public class AttackController : MonoBehaviour
         nextTimeToShoot += Time.deltaTime;
     }
 
-    [ServerRpc]
     private void SpawnBulletRpc(GameObject prefab, Vector3 position, Quaternion rotation)
     {
-        GameObject bulletObject = Instantiate(prefab, position, rotation);
-        if (bulletObject == null)
+        if (IsServer)
         {
+            GameObject bulletObject = Instantiate(prefab, position, rotation);
+            if (bulletObject == null) 
+            { 
+                return;
+            }
+
+            bulletObject.gameObject.SetActive(true);
+            bulletObject.GetComponent<Projectile>().Deactivate();
+            bulletObject.GetComponent<NetworkObject>().Spawn();
+        }
+        else
+        {
+            SpawnBulletServerRpc(prefab, position, rotation);
+        }
+    }
+
+    [ServerRpc]
+    private void SpawnBulletServerRpc(GameObject prefab, Vector3 position, Quaternion rotation)
+    {
+        GameObject bulletObject = Instantiate(prefab, position, rotation);
+        if (bulletObject == null) 
+        { 
             return;
         }
+
         bulletObject.gameObject.SetActive(true);
         bulletObject.GetComponent<Projectile>().Deactivate();
         bulletObject.GetComponent<NetworkObject>().Spawn();
