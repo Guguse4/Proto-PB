@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f126166857817459cc296c137ba93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackController
-  _bulletPool: {fileID: 0}
+  projectilePrefab: {fileID: 4735388975482847777, guid: 12acaa48572deef4bb3efa115b0cc6d1, type: 3}
   muzzlePosition: {fileID: 6492822381456980937}
   speedBullet: 50
   cooldownWindow: 0.25

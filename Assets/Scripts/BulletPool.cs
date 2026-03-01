@@ -35,7 +35,7 @@ public class BulletPool : NetworkBehaviour
     {
         GameObject projectileGO = Instantiate(projectilePrefab);
         projectileGO.gameObject.SetActive(false);
-        projectileGO.GetComponent<Projectile>().ObjectPool = this;
+        // projectileGO.GetComponent<Projectile>().ObjectPool = this;
         return projectileGO;
     }
 
