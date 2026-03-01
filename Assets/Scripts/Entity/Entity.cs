@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Netcode;
+using UnityEngine;
 
 namespace Entity
 {
@@ -26,7 +27,7 @@ namespace Entity
 
         private void Die()
         {
-            Destroy(gameObject);
+            GetComponent<NetworkObject>().Despawn(true);
         }
     }
 }
