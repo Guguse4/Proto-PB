@@ -37,7 +37,7 @@ public class AttackController : NetworkBehaviour
         {
             // GameObject bulletObject = _bulletPool.pool.Get();
             
-            SpawnBulletRpc(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
+            SpawnBullet(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
             
             // bulletObject.transform.SetPositionAndRotation(muzzlePosition.position, muzzlePosition.rotation);
             
@@ -45,8 +45,8 @@ public class AttackController : NetworkBehaviour
         }
         nextTimeToShoot += Time.deltaTime;
     }
-
-    private void SpawnBulletRpc(GameObject prefab, Vector3 position, Quaternion rotation)
+    
+    private void SpawnBullet(GameObject prefab, Vector3 position, Quaternion rotation)
     {
         if (IsServer)
         {
@@ -62,14 +62,14 @@ public class AttackController : NetworkBehaviour
         }
         else
         {
-            SpawnBulletServerRpc(prefab, position, rotation);
+            SpawnBulletServerRpc();
         }
     }
 
     [ServerRpc]
-    private void SpawnBulletServerRpc(GameObject prefab, Vector3 position, Quaternion rotation)
+    private void SpawnBulletServerRpc()
     {
-        GameObject bulletObject = Instantiate(prefab, position, rotation);
+        GameObject bulletObject = Instantiate(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
         if (bulletObject == null) 
         { 
             return;
