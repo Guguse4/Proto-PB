@@ -9,12 +9,11 @@ public class BulletPool : NetworkBehaviour
 {
     [Tooltip("Prefab to shoot")]
     [SerializeField] private GameObject projectilePrefab;
-
-    public ObjectPool<Projectile> pool;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public ObjectPool<GameObject> pool;
+    
     void Awake()
     {
-        pool = new ObjectPool<Projectile>(
+        pool = new ObjectPool<GameObject>(
             createFunc: CreateProjectile,
             actionOnGet: OnGetFromPool,
             actionOnRelease: OnReleaseToPool,
@@ -28,29 +27,30 @@ public class BulletPool : NetworkBehaviour
     private void Start()
     {
         var customHandler = new NetworkBulletHandler();
+        customHandler.SetPool(this);
         NetworkManager.PrefabHandler.AddHandler(projectilePrefab, customHandler);
     }
 
-    private Projectile CreateProjectile()
+    private GameObject CreateProjectile()
     {
         GameObject projectileGO = Instantiate(projectilePrefab);
-        projectileGO.GetComponent<NetworkObject>().Spawn();
         projectileGO.gameObject.SetActive(false);
         projectileGO.GetComponent<Projectile>().ObjectPool = this;
-        return projectileGO.GetComponent<Projectile>();
+        return projectileGO;
     }
 
-    private void OnGetFromPool(Projectile pooledObject)
+    private void OnGetFromPool(GameObject pooledObject)
     {
-        pooledObject.gameObject.SetActive(true);
+        
     }
 
-    private void OnReleaseToPool(Projectile pooledObject)
+    private void OnReleaseToPool(GameObject pooledObject)
     {
         pooledObject.gameObject.SetActive(false);
+        pooledObject.GetComponent<NetworkObject>().Despawn(true);
     }
 
-    private void OnDestroyPooledObject(Projectile pooledObject)
+    private void OnDestroyPooledObject(GameObject pooledObject)
     {
         Destroy(pooledObject);
     }

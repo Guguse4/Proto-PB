@@ -26,12 +26,12 @@ public class Projectile : NetworkBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        objectPool.pool.Release(this);
+        objectPool.pool.Release(gameObject);
     }
 
     private void OnTriggerEnter(Collider collider)
     {
         collider.gameObject.GetComponent<Boss>().TakeDamage(1);
-        objectPool.pool.Release(this);
+        objectPool.pool.Release(gameObject);
     }
 }

@@ -36,7 +36,7 @@ public class AttackController : MonoBehaviour
         //Initialize bullet from pool
         if (fireAction.IsPressed() && nextTimeToShoot > cooldownWindow && _bulletPool != null)
         {
-            Projectile bulletObject = _bulletPool.pool.Get();
+            GameObject bulletObject = _bulletPool.pool.Get();
 
             if (bulletObject == null)
             {
@@ -44,7 +44,10 @@ public class AttackController : MonoBehaviour
             }
 
             bulletObject.transform.SetPositionAndRotation(muzzlePosition.position, muzzlePosition.rotation);
-            bulletObject.Deactivate();
+            bulletObject.gameObject.SetActive(true);
+            bulletObject.GetComponent<NetworkObject>().Spawn();
+            
+            bulletObject.GetComponent<Projectile>().Deactivate();
 
             nextTimeToShoot = 0;
         }

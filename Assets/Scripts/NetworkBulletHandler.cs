@@ -5,14 +5,25 @@ namespace Combat
 {
     public class NetworkBulletHandler: INetworkPrefabInstanceHandler
     {
+        private BulletPool pool;
+        
         public NetworkObject Instantiate(ulong ownerClientId, Vector3 position, Quaternion rotation)
         {
-            throw new System.NotImplementedException();
+            GameObject bullet = pool.pool.Get();
+            bullet.SetActive(true);
+            bullet.transform.position = position;
+            bullet.transform.rotation = rotation;
+            return bullet.GetComponent<NetworkObject>();
         }
 
         public void Destroy(NetworkObject networkObject)
         {
-            throw new System.NotImplementedException();
+            networkObject.gameObject.SetActive(false);
+        }
+
+        public void SetPool(BulletPool in_pool)
+        {
+            pool = in_pool;
         }
     }
 }
