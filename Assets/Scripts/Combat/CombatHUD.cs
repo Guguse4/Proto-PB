@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Combat
 {
-    public class CombatHUD: MonoBehaviour
+    public class CombatHUD: NetworkBehaviour
     {
         [SerializeField] private TMP_Text _bossHealthText;
         

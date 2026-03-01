@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.InputSystem;
 using System;
+using Unity.Netcode;
 
-public class BulletPool : MonoBehaviour
+public class BulletPool : NetworkBehaviour
 {
     [Tooltip("Prefab to shoot")]
     [SerializeField] private Projectile projectilePrefab;
@@ -28,6 +29,7 @@ public class BulletPool : MonoBehaviour
     private Projectile CreateProjectile()
     {
         Projectile projectileGO = Instantiate(projectilePrefab);
+        projectileGO.GetComponent<NetworkObject>().Spawn();
         projectileGO.gameObject.SetActive(false);
         projectileGO.ObjectPool = this;
         return projectileGO;

@@ -1,10 +1,11 @@
 using System.Collections;
 using Entity.Boss;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Projectile : MonoBehaviour
+public class Projectile : NetworkBehaviour
 {
     [SerializeField] private float timeoutDelay = 3f;
     [SerializeField] private float speed = 3f;
