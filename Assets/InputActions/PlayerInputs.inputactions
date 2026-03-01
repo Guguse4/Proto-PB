@@ -113,34 +113,6 @@
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "Tool",
-            "id": "165dc9cf-a6a6-4f93-ad2b-0d042017643c",
-            "actions": [
-                {
-                    "name": "StartTimeline",
-                    "type": "Button",
-                    "id": "50ec1582-535e-4898-b69c-5c16180f4a51",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "28d3df33-5abb-47a2-b2a9-96eb22e0f9ca",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "StartTimeline",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
         }
     ],
     "controlSchemes": [
