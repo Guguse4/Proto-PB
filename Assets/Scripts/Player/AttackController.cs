@@ -38,26 +38,25 @@ public class AttackController : MonoBehaviour
         if (fireAction.IsPressed() && nextTimeToShoot > cooldownWindow /*&& _bulletPool != null*/)
         {
             // GameObject bulletObject = _bulletPool.pool.Get();
-            GameObject bulletObject = Instantiate(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
+            SpawnBulletRpc(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
             
-            if (bulletObject == null)
-            {
-                return;
-            }
-
             // bulletObject.transform.SetPositionAndRotation(muzzlePosition.position, muzzlePosition.rotation);
-            bulletObject.gameObject.SetActive(true);
-            bulletObject.GetComponent<Projectile>().Deactivate();
-            nextTimeToShoot = 0;
             
-            SpawnBulletRpc(bulletObject);
+            nextTimeToShoot = 0;
         }
         nextTimeToShoot += Time.deltaTime;
     }
 
     [Rpc(SendTo.Server)]
-    private void SpawnBulletRpc(GameObject bulletObject)
+    private void SpawnBulletRpc(GameObject prefab, Vector3 position, Quaternion rotation)
     {
+        GameObject bulletObject = Instantiate(prefab, position, rotation);
+        if (bulletObject == null)
+        {
+            return;
+        }
+        bulletObject.gameObject.SetActive(true);
+        bulletObject.GetComponent<Projectile>().Deactivate();
         bulletObject.GetComponent<NetworkObject>().Spawn();
     }
 }
