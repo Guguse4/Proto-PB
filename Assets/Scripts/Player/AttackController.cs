@@ -47,7 +47,7 @@ public class AttackController : MonoBehaviour
         nextTimeToShoot += Time.deltaTime;
     }
 
-    [Rpc(SendTo.Server)]
+    [ServerRpc]
     private void SpawnBulletRpc(GameObject prefab, Vector3 position, Quaternion rotation)
     {
         GameObject bulletObject = Instantiate(prefab, position, rotation);
