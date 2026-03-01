@@ -53,8 +53,6 @@ namespace BossMechanicTool
             RegisterMechanic(id, mechanicObject);
             return mechanicObject;
         }
-
-        #region Telegraph
         
         /*
          * Function called to draw mechanic telegraph phase
@@ -66,6 +64,7 @@ namespace BossMechanicTool
         {
             #if UNITY_EDITOR
             _players = FindObjectsByType<Player>(FindObjectsSortMode.None).ToList();
+            _playableDirector = GetComponent<PlayableDirector>();
             #endif
             
             // Init a new mechanic save information
@@ -78,9 +77,7 @@ namespace BossMechanicTool
                 mechanicObject.ShowTelegraph();
             }
         }
-        #endregion
 
-        #region Activation
         /*
          * Function called to activate mechanic
          * id: unique mechanic id for save
@@ -91,6 +88,7 @@ namespace BossMechanicTool
         {
             #if UNITY_EDITOR
             _players = FindObjectsByType<Player>(FindObjectsSortMode.None).ToList();
+            _playableDirector = GetComponent<PlayableDirector>();
             #endif
 
             // Try to find mechanic information if available, or compute it if necessary
@@ -113,7 +111,6 @@ namespace BossMechanicTool
                 }
             }
         }
-        #endregion
         
         #region Hide
         public void HideMechanicTelegraph(string id)
