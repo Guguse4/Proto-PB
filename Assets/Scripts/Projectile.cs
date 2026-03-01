@@ -1,9 +1,7 @@
 using System.Collections;
 using Entity.Boss;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class Projectile : NetworkBehaviour
 {
@@ -13,7 +11,7 @@ public class Projectile : NetworkBehaviour
     private BulletPool objectPool;
 
     public BulletPool ObjectPool { set => objectPool = value; }
-
+    
     private void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;

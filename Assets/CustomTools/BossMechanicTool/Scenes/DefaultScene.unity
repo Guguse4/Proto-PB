@@ -1351,8 +1351,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1640292783}
-  - component: {fileID: 1640292784}
   - component: {fileID: 1640292785}
+  - component: {fileID: 1640292784}
   m_Layer: 0
   m_Name: BulletPool
   m_TagString: Untagged
@@ -1388,8 +1388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletPool
   ShowTopMostFoldoutHeaderGroup: 1
-  projectilePrefab: {fileID: 7148849708249262724, guid: 12acaa48572deef4bb3efa115b0cc6d1, type: 3}
-  projectileDataSO: {fileID: 0}
+  projectilePrefab: {fileID: 4735388975482847777, guid: 12acaa48572deef4bb3efa115b0cc6d1, type: 3}
 --- !u!114 &1640292785
 MonoBehaviour:
   m_ObjectHideFlags: 0

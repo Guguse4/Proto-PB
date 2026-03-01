@@ -2,14 +2,13 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.InputSystem;
 using System;
+using Combat;
 using Unity.Netcode;
 
 public class BulletPool : NetworkBehaviour
 {
     [Tooltip("Prefab to shoot")]
-    [SerializeField] private Projectile projectilePrefab;
-
-    [SerializeField] private ScriptableObject projectileDataSO;
+    [SerializeField] private GameObject projectilePrefab;
 
     public ObjectPool<Projectile> pool;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,13 +25,19 @@ public class BulletPool : NetworkBehaviour
             );
     }
 
+    private void Start()
+    {
+        var customHandler = new NetworkBulletHandler();
+        NetworkManager.PrefabHandler.AddHandler(projectilePrefab, customHandler);
+    }
+
     private Projectile CreateProjectile()
     {
-        Projectile projectileGO = Instantiate(projectilePrefab);
+        GameObject projectileGO = Instantiate(projectilePrefab);
         projectileGO.GetComponent<NetworkObject>().Spawn();
         projectileGO.gameObject.SetActive(false);
-        projectileGO.ObjectPool = this;
-        return projectileGO;
+        projectileGO.GetComponent<Projectile>().ObjectPool = this;
+        return projectileGO.GetComponent<Projectile>();
     }
 
     private void OnGetFromPool(Projectile pooledObject)
@@ -48,12 +53,5 @@ public class BulletPool : NetworkBehaviour
     private void OnDestroyPooledObject(Projectile pooledObject)
     {
         Destroy(pooledObject);
-    }
-
-    private System.Collections.IEnumerator ReturnAfter(Projectile pooledObject, float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        // Give it back to the pool.
-        pool.Release(pooledObject);
     }
 }

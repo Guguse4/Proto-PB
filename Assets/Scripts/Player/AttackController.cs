@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
@@ -43,7 +44,6 @@ public class AttackController : MonoBehaviour
             }
 
             bulletObject.transform.SetPositionAndRotation(muzzlePosition.position, muzzlePosition.rotation);
-
             bulletObject.Deactivate();
 
             nextTimeToShoot = 0;
