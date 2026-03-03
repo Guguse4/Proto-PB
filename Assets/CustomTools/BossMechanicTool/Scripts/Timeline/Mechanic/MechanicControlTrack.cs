@@ -1,4 +1,6 @@
-﻿using UnityEngine.Timeline;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Timeline;
 
 namespace BossMechanicTool.Timeline.Mechanic
 {
@@ -7,6 +9,6 @@ namespace BossMechanicTool.Timeline.Mechanic
     [TrackClipType(typeof(MechanicControlClip))]
     public class MechanicControlTrack : TrackAsset
     {
-        
+        public int randomGroup = -1;
     }
 }
