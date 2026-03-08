@@ -114,6 +114,7 @@ namespace BossMechanicTool.Editor
                 case ActionType.DamageArea:
                     SerializedProperty damageAreaProp = property.FindPropertyRelative("_damageArea");
                     SerializedProperty telegraphProp = property.FindPropertyRelative("_telegraphPrefab");
+                    SerializedProperty activationProp = property.FindPropertyRelative("_activationVFX");
                     if (property.FindPropertyRelative("_useDefaultTelegraph").boolValue)
                     {
                         SerializedProperty shape = damageAreaProp.FindPropertyRelative("shape");
@@ -125,7 +126,8 @@ namespace BossMechanicTool.Editor
                                 objectPath = "DefaultRectangleTelegraph.prefab";
                                 break;
                         }
-                        telegraphProp.objectReferenceValue = AssetDatabase.LoadAssetAtPath<GameObject>(basePath+objectPath);    
+                        telegraphProp.objectReferenceValue = AssetDatabase.LoadAssetAtPath<GameObject>(basePath+objectPath);
+                        activationProp.objectReferenceValue = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/CustomTools/BossMechanicTool/Prefabs/DefaultTelegraph/OurExplosion.prefab");
                     }
                     
                     return damageAreaProp;
