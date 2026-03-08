@@ -27,6 +27,7 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
+    _useDefaultTelegraph: 1
     _telegraphPrefab: {fileID: 4566031297166048307, guid: 32017ecc005fcd441ad11087053dcbce, type: 3}
     _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   - _sourceRelativePosition: {x: -1.5727236, y: 0, z: 4.7462134}
@@ -43,6 +44,7 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
+    _useDefaultTelegraph: 1
     _telegraphPrefab: {fileID: 4566031297166048307, guid: 32017ecc005fcd441ad11087053dcbce, type: 3}
     _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   - _sourceRelativePosition: {x: 1.572724, y: 0, z: 4.7462134}
@@ -59,6 +61,7 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
+    _useDefaultTelegraph: 1
     _telegraphPrefab: {fileID: 4566031297166048307, guid: 32017ecc005fcd441ad11087053dcbce, type: 3}
     _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   - _sourceRelativePosition: {x: 4.0957603, y: 0, z: 2.867882}
@@ -75,6 +78,7 @@ MonoBehaviour:
       angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
+    _useDefaultTelegraph: 1
     _telegraphPrefab: {fileID: 4566031297166048307, guid: 32017ecc005fcd441ad11087053dcbce, type: 3}
     _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   activationDelay: 0

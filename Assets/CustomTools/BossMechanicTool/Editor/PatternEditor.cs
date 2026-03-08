@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using BossMechanicTool;
+using BossMechanicTool.Action;
 
 namespace BossMechanicTool.Editor
 {
@@ -9,6 +9,7 @@ namespace BossMechanicTool.Editor
     {
         private static readonly float LineHeight = EditorGUIUtility.singleLineHeight;
         private const float Spacing = 2f;
+        private bool firstInitHappened = false;
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
@@ -31,6 +32,7 @@ namespace BossMechanicTool.Editor
                 height += EditorGUI.GetPropertyHeight(actionProp, true) + Spacing;
             }
 
+            height += LineHeight + Spacing; // Boolean
             height += LineHeight + Spacing; // Telegraph
             height += LineHeight + Spacing; // activation vfx
 
@@ -67,6 +69,7 @@ namespace BossMechanicTool.Editor
             SerializedProperty positionProp = property.FindPropertyRelative("_sourceRelativePosition");
             SerializedProperty directionProp = property.FindPropertyRelative("_sourceRelativeDirection");
             SerializedProperty actionTypeProp = property.FindPropertyRelative("_actionType");
+            SerializedProperty useDefaultTelegraphProp = property.FindPropertyRelative("_useDefaultTelegraph");
             SerializedProperty telegraphProp = property.FindPropertyRelative("_telegraphPrefab");
             SerializedProperty activationVFXProp = property.FindPropertyRelative("_activationVFX");
 
@@ -92,9 +95,13 @@ namespace BossMechanicTool.Editor
             }
 
             // Telegraph
-            y = DrawField(position, y, telegraphProp);
-            y = DrawField(position, y, activationVFXProp);
-
+            y = DrawField(position, y, useDefaultTelegraphProp);
+            using (new EditorGUI.DisabledScope(useDefaultTelegraphProp.boolValue))
+            {
+                y = DrawField(position, y, telegraphProp);
+                y = DrawField(position, y, activationVFXProp);
+            }
+            
             EditorGUI.indentLevel--;
             
             EditorGUI.EndProperty();
@@ -105,7 +112,23 @@ namespace BossMechanicTool.Editor
             switch (type)
             {
                 case ActionType.DamageArea:
-                    return property.FindPropertyRelative("_damageArea");
+                    SerializedProperty damageAreaProp = property.FindPropertyRelative("_damageArea");
+                    SerializedProperty telegraphProp = property.FindPropertyRelative("_telegraphPrefab");
+                    if (property.FindPropertyRelative("_useDefaultTelegraph").boolValue)
+                    {
+                        SerializedProperty shape = damageAreaProp.FindPropertyRelative("shape");
+                        string basePath = "Assets/CustomTools/BossMechanicTool/Prefabs/DefaultTelegraph/";
+                        string objectPath = "DefaultCircleTelegraph.prefab";
+                        switch ((ShapeType)shape.enumValueIndex)
+                        {
+                            case ShapeType.Rectangle:
+                                objectPath = "DefaultRectangleTelegraph.prefab";
+                                break;
+                        }
+                        telegraphProp.objectReferenceValue = AssetDatabase.LoadAssetAtPath<GameObject>(basePath+objectPath);    
+                    }
+                    
+                    return damageAreaProp;
 
                 case ActionType.SpawnMob:
                     return property.FindPropertyRelative("_spawnMob");

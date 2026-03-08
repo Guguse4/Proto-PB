@@ -15,7 +15,7 @@ namespace BossMechanicTool
 
         void OnDrawGizmos()
         {
-            if (_mechanic == null)
+            if (_mechanic == null || _mechanic.patterns == null)
                 return;
             
             Gizmos.color = Color.blue;

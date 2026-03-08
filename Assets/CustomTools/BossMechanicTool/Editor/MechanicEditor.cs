@@ -44,7 +44,7 @@ namespace BossMechanicTool.Editor
         SerializedProperty patternsProp;
         private SerializedProperty activationDelayProp;
         #endregion
-
+        
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -79,20 +79,16 @@ namespace BossMechanicTool.Editor
                 TranslateAllPatterns(mechanic);
             }
             
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Previsualization", EditorStyles.boldLabel);
-            if (GUILayout.Button("Previsualize"))
+            // Auto display visualization
+            MechanicVisualizer visualizer = FindFirstObjectByType<MechanicVisualizer>();
+            if (visualizer == null)
             {
-                MechanicVisualizer visualizer = FindFirstObjectByType<MechanicVisualizer>();
-                if (visualizer == null)
-                {
-                    Debug.LogError("No MechanicVisualizer found in scene. You must add MechanicManager");
-                    return;
-                }
-
-                visualizer.SetMechanic(mechanic);
-                EditorUtility.SetDirty(visualizer);
+                Debug.LogError("No MechanicVisualizer found in scene. You must add MechanicManager");
+                return;
             }
+
+            visualizer.SetMechanic(mechanic);
+            EditorUtility.SetDirty(visualizer);
         }
         
         private void DrawLayoutSettings()

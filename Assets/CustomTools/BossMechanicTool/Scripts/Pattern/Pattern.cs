@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using BossMechanicTool.Action;
+using Unity.VisualScripting;
 
 namespace BossMechanicTool
 {
@@ -64,6 +65,8 @@ namespace BossMechanicTool
                 }
             }
         }
+        
+        [SerializeField] private bool _useDefaultTelegraph = true;
 
         // VFX asset to use has telegraph
         [SerializeField]
