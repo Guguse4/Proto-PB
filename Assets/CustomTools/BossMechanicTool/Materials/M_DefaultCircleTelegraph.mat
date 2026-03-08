@@ -66,9 +66,6 @@ Material:
     - _Degrees: 360
     - _Fade_Intensity: 1
     - _Gap_Width: 0
-    - _InlineRadius: 0.1
-    - _InlineThickness: 0.05
-    - _InnerThickness: 0
     - _Inner_Radius: 0
     - _Number_Of_Cuttoffs: 4
     - _Outer_Radius: 0

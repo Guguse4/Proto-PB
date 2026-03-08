@@ -35,8 +35,7 @@ namespace BossMechanicTool.Timeline.Mechanic
         public SpawnPositionBehaviour spawnPositionBehaviour;
         public Vector3 spawnPosition;   // if spawnPositionBehaviour is set OnGivenPosition
         public ExposedReference<GameObject> attachedObject;
-        public MovementBehaviour movementBehaviour;
-        public Vector3 translationOffset;
+        public MovementBehaviour movementBehaviour; 
     }
     
     /*
@@ -58,10 +57,6 @@ namespace BossMechanicTool.Timeline.Mechanic
         [SerializeField][Range(0,1)] private float telegraphDuration = 0.5f;
         public float TelegraphDuration{get{return telegraphDuration;}}
 
-        // Translate Offset
-        private Vector3 _translateVector = Vector3.zero;
-        //_translateVector = EditorGUILayout.Vector3Field("Translation", _translateVector);
-            
         // use to do stuff once at the first frame
         private bool _firstFrameHappened;
         // use to save if the mechanic player has already displayed the telegraph of the mechanic
@@ -143,15 +138,6 @@ namespace BossMechanicTool.Timeline.Mechanic
             uniqueMechanicId = null;
             
             base.OnBehaviourPause(playable, info);
-        }
-        
-
-        private void TranslateAllPatterns(BossMechanicTool.Mechanic mechanic)
-        {
-            foreach (var pattern in mechanic.patterns)
-            {
-                pattern.SetRelativePosition(pattern.SourceRelativePosition + _translateVector);
-            }
         }
     }
 }

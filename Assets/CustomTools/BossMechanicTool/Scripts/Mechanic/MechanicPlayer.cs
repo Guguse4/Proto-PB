@@ -244,16 +244,7 @@ namespace BossMechanicTool
 
                     break;
             }
-            Debug.Log("Pre translate pos 0 : " + positions[0]);
-            if (spawnBehaviour.translationOffset != Vector3.zero)
-            {
-                for(int i = 0; i < positions.Count; i++)
-                {
-                   positions[i] += spawnBehaviour.translationOffset;
-                   Debug.Log("Translate added : " + positions[i]);
-                }
-            }
-            
+
             return positions;
         }
 

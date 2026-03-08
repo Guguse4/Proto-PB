@@ -37,9 +37,6 @@ public class SpawnBehaviourDrawer : PropertyDrawer
         // movementBehaviour
         height += line + space;
 
-        //Translation offset
-        height += line + space;
-        
         return height;
     }
 
@@ -56,7 +53,6 @@ public class SpawnBehaviourDrawer : PropertyDrawer
         var spawnPosition = property.FindPropertyRelative("spawnPosition");
         var attachedObject = property.FindPropertyRelative("attachedObject");
         var movementBehaviour = property.FindPropertyRelative("movementBehaviour");
-        var translationOffset =  property.FindPropertyRelative("translationOffset");
 
         // ===== Position Header =====
         EditorGUI.LabelField(rect, "Position", EditorStyles.boldLabel);
@@ -83,10 +79,6 @@ public class SpawnBehaviourDrawer : PropertyDrawer
 
         // movementBehaviour
         EditorGUI.PropertyField(rect, movementBehaviour);
-        rect.y += line + space;
-        
-        // translationOffset
-        EditorGUI.PropertyField(rect, translationOffset);
 
         EditorGUI.EndProperty();
     }
