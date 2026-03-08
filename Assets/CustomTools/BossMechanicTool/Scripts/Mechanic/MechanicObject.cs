@@ -8,8 +8,9 @@ namespace BossMechanicTool
     {
         private GameObject _target;
         private Mechanic _mechanic;
+        private bool _following = false;
         Queue<GameObject> _telegraphVFX = new Queue<GameObject>();
-        private bool isMechanicActivated = false;
+        private bool _isMechanicActivated = false;
 
         public void SetMechanic(Mechanic mechanic)
         {
@@ -49,7 +50,7 @@ namespace BossMechanicTool
 
         public void ActivateMechanic()
         {
-            isMechanicActivated = true;
+            _isMechanicActivated = true;
             
             if (_mechanic.activationDelay <= 0)
             {
@@ -109,9 +110,19 @@ namespace BossMechanicTool
             _telegraphVFX.Clear();
         }
 
+        public void StartFollowing()
+        {
+            _following = true;
+        }
+
+        public void StopFollowing()
+        {
+            _following = false;
+        }
+
         private void Update()
         {
-            if (_target != null && isMechanicActivated == false)
+            if (_following && _target != null && _isMechanicActivated == false)
             {
                 transform.position = _target.transform.position;
             }

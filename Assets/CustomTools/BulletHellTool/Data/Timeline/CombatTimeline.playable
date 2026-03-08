@@ -242,6 +242,7 @@ MonoBehaviour:
         defaultValue: {fileID: 0}
       movementBehaviour: 0
     telegraphDuration: 0.75
+    followDuration: 1
 --- !u!114 &-8307668019286335168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -666,6 +667,7 @@ MonoBehaviour:
         defaultValue: {fileID: 0}
       movementBehaviour: 0
     telegraphDuration: 0.75
+    followDuration: 1
 --- !u!114 &6314827181218359745
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -803,6 +805,7 @@ MonoBehaviour:
         defaultValue: {fileID: 0}
       movementBehaviour: 0
     telegraphDuration: 0.75
+    followDuration: 1
 --- !u!114 &6744542763262453788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -818,13 +821,14 @@ MonoBehaviour:
   _template:
     _mechanicToPlay: {fileID: 11400000, guid: be1e1b8af87074449ad4b127468fc2e0, type: 2}
     _spawnBehaviour:
-      spawnPositionBehaviour: 0
+      spawnPositionBehaviour: 2
       spawnPosition: {x: 0, y: 0, z: 0}
       attachedObject:
         exposedName: f5d67aecca165694f9a2447eb04e8c9c
         defaultValue: {fileID: 0}
-      movementBehaviour: 0
-    telegraphDuration: 0.75
+      movementBehaviour: 1
+    telegraphDuration: 0.9
+    followDuration: 0.5
 --- !u!114 &6786819691524240953
 MonoBehaviour:
   m_ObjectHideFlags: 1

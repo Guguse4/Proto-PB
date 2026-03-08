@@ -20,11 +20,23 @@ namespace BossMechanicTool.Editor
             MechanicControlBehaviour behaviour = mechanicControlClip.GetTemplate();
             
             Rect rect = region.position;
-            Rect left = new Rect(rect.x, rect.y + 3*rect.height/4, rect.width * behaviour.TelegraphDuration, rect.height/4);
-            Rect right = new Rect(rect.x + rect.width * behaviour.TelegraphDuration, rect.y + 3*rect.height/4, rect.width * (1-behaviour.TelegraphDuration), rect.height/4);
+            float y = rect.y + 3 * rect.height / 4;
+            float height = rect.height/4;
+
+            Rect telegraph = new Rect(rect.x, y, rect.width * behaviour.TelegraphDuration, height);
+            EditorGUI.DrawRect(telegraph, Color.darkOliveGreen);
             
-            EditorGUI.DrawRect(left, Color.aquamarine);
-            EditorGUI.DrawRect(right, Color.brown);
+            if (behaviour.SpawnBehaviour.movementBehaviour == MovementBehaviour.FollowSpawnPositionObject)
+            {
+                Rect follow = new Rect(
+                    rect.x, y, 
+                    rect.width * behaviour.FollowDuration * behaviour.TelegraphDuration, height);
+                EditorGUI.DrawRect(follow, Color.aquamarine);
+            }
+
+            
+            Rect activation = new Rect(rect.x + rect.width * behaviour.TelegraphDuration, y, rect.width * (1-behaviour.TelegraphDuration), height);
+            EditorGUI.DrawRect(activation, Color.brown);
         }
     }
 }

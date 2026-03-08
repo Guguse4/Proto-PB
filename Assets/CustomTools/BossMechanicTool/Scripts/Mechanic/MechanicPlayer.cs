@@ -80,6 +80,32 @@ namespace BossMechanicTool
             }
         }
 
+        public void FollowMechanic(string id)
+        {
+            if (_idToMechanic.ContainsKey(id) == false)
+            {
+                return;
+            }
+            List<MechanicObject> mechanicObjects = _idToMechanic[id];
+            foreach (MechanicObject mechanicObject in mechanicObjects)
+            {
+                mechanicObject.StartFollowing();
+            }
+        }
+
+        public void StopFollowingMechanic(string id)
+        {
+            if (_idToMechanic.ContainsKey(id) == false)
+            {
+                return;
+            }
+            List<MechanicObject> mechanicObjects = _idToMechanic[id];
+            foreach (MechanicObject mechanicObject in mechanicObjects)
+            {
+                mechanicObject.StopFollowing();
+            }
+        }
+
         /*
          * Function called to activate mechanic
          * id: unique mechanic id for save

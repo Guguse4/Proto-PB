@@ -51,16 +51,22 @@ namespace BossMechanicTool.Timeline.Mechanic
         
         // Define the global spawn behaviour of the mechanic  
         [SerializeField] private SpawnBehaviour _spawnBehaviour;
+        public SpawnBehaviour SpawnBehaviour { get { return _spawnBehaviour; } }
         
         [Header("Durations parameters")]
         // Percent duration of telegraph phase in total clip duration
         [SerializeField][Range(0,1)] private float telegraphDuration = 0.5f;
         public float TelegraphDuration{get{return telegraphDuration;}}
 
+        [SerializeField] [Range(0, 1)] private float followDuration = 1.0f;
+        public float FollowDuration{get{return followDuration;}}
+
         // use to do stuff once at the first frame
         private bool _firstFrameHappened;
         // use to save if the mechanic player has already displayed the telegraph of the mechanic
         private bool _telegraphDisplayed;
+        // 
+        private bool _isFollowing;
         // use to save if the mechanic player has already activated the mechanic
         private bool _activationDone;
         
@@ -98,6 +104,17 @@ namespace BossMechanicTool.Timeline.Mechanic
                     _telegraphDisplayed = true;
                     _mechanicPlayer.ShowMechanicTelegraph(uniqueMechanicId, _mechanicToPlay, _spawnBehaviour);
                 }
+                // Follow object if necessary
+                if (playable.GetTime() < followDuration * telegraphDuration * playable.GetDuration())
+                {
+                    _isFollowing = true;
+                    _mechanicPlayer.FollowMechanic(uniqueMechanicId);
+                }
+                else
+                {
+                    _isFollowing = false;
+                    _mechanicPlayer.StopFollowingMechanic(uniqueMechanicId);
+                }
             }
             // If the current frame time is in the range of the activation phase
             else
@@ -107,6 +124,8 @@ namespace BossMechanicTool.Timeline.Mechanic
                 {
                     _telegraphDisplayed = false;
                     _mechanicPlayer.HideMechanicTelegraph(uniqueMechanicId);
+                    _isFollowing = false;
+                    _mechanicPlayer.StopFollowingMechanic(uniqueMechanicId);
                 }
                 // Activate mechanic if not already done
                 if (_activationDone == false)
