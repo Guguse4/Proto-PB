@@ -241,6 +241,7 @@ MonoBehaviour:
         exposedName: 910ed8a5473bd3b4eb41c169b52f79ca
         defaultValue: {fileID: 0}
       movementBehaviour: 0
+      translationOffset: {x: 0, y: 0, z: 0}
     telegraphDuration: 0.75
 --- !u!114 &-8307668019286335168
 MonoBehaviour:
@@ -665,6 +666,7 @@ MonoBehaviour:
         exposedName: dc6b37deae3e2d74bb5e3038c4057029
         defaultValue: {fileID: 0}
       movementBehaviour: 0
+      translationOffset: {x: 0, y: 0, z: 0}
     telegraphDuration: 0.75
 --- !u!114 &6314827181218359745
 MonoBehaviour:
@@ -802,6 +804,7 @@ MonoBehaviour:
         exposedName: 3d74b078bc45da4469aba71e8f88250e
         defaultValue: {fileID: 0}
       movementBehaviour: 0
+      translationOffset: {x: 10, y: 0, z: 0}
     telegraphDuration: 0.75
 --- !u!114 &6744542763262453788
 MonoBehaviour:
@@ -824,6 +827,7 @@ MonoBehaviour:
         exposedName: f5d67aecca165694f9a2447eb04e8c9c
         defaultValue: {fileID: 0}
       movementBehaviour: 0
+      translationOffset: {x: 0, y: 0, z: 0}
     telegraphDuration: 0.75
 --- !u!114 &6786819691524240953
 MonoBehaviour:

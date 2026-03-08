@@ -35,9 +35,6 @@ namespace BossMechanicTool.Editor
         // Arc
         private float _arcRadius = 5f;
         private float _arcAngle = 180f;
-        
-        // Translate
-        private Vector3 _translateVector = Vector3.zero;
         #endregion
         
         #region Default properties
@@ -70,13 +67,6 @@ namespace BossMechanicTool.Editor
             if (GUILayout.Button("Apply Layout"))
             {
                 ApplyLayout(mechanic);
-            }
-            
-            EditorGUILayout.Space();
-            _translateVector = EditorGUILayout.Vector3Field("Translation", _translateVector);
-            if (GUILayout.Button("Translate all"))
-            {
-                TranslateAllPatterns(mechanic);
             }
             
             EditorGUILayout.Space();
@@ -237,14 +227,6 @@ namespace BossMechanicTool.Editor
             {
                 Vector3 dir = -position.normalized;
                 pattern.SetRelativeDirection(dir);
-            }
-        }
-
-        private void TranslateAllPatterns(Mechanic mechanic)
-        {
-            foreach (var pattern in mechanic.patterns)
-            {
-                pattern.SetRelativePosition(pattern.SourceRelativePosition + _translateVector);
             }
         }
         #endregion

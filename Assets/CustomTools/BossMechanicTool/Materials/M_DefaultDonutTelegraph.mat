@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_DefaultCircleTelegraph
+  m_Name: M_DefaultDonutTelegraph
   m_Shader: {fileID: -6465566751694194690, guid: 79546cdcc7c8c434381719b30d60bb2a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -67,11 +67,11 @@ Material:
     - _Fade_Intensity: 1
     - _Gap_Width: 0
     - _InlineRadius: 0.1
-    - _InlineThickness: 0.05
+    - _InlineThickness: 0.1
     - _InnerThickness: 0
-    - _Inner_Radius: 0
+    - _Inner_Radius: 0.2
     - _Number_Of_Cuttoffs: 4
-    - _Outer_Radius: 0
+    - _Outer_Radius: 0.2
     - _Outline_Gap_Width: 0
     - _Outline_Number_Of_Cuttoffs: 0
     - _Outline_Rotation: 0
