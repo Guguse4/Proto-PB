@@ -150,6 +150,9 @@ namespace BossMechanicTool
             GameObject visual;
             if (isTelegraph)
             {
+                if (pattern.TelegraphPrefab == null)
+                    return;
+                
                 // Instantiate vfx
                 visual = Instantiate(
                     pattern.TelegraphPrefab,
@@ -164,6 +167,12 @@ namespace BossMechanicTool
             }
             else
             {
+                // activate action
+                pattern.Action.ActivateAction(origin, direction);
+                
+                if (pattern.ActivationVFX == null)
+                    return;
+                
                 visual = Instantiate(
                     pattern.ActivationVFX,
                     origin,
@@ -172,8 +181,6 @@ namespace BossMechanicTool
                 );
                 // Scale it
                 visual.transform.localScale = pattern.GetActionSize();
-                // activate action
-                pattern.Action.ActivateAction(origin, direction);
             }
         }
     }

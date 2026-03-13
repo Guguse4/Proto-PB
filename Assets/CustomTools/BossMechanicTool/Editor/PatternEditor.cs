@@ -9,7 +9,6 @@ namespace BossMechanicTool.Editor
     {
         private static readonly float LineHeight = EditorGUIUtility.singleLineHeight;
         private const float Spacing = 2f;
-        private bool firstInitHappened = false;
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {

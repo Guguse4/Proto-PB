@@ -65,8 +65,6 @@ namespace BossMechanicTool.Timeline.Mechanic
         private bool _firstFrameHappened;
         // use to save if the mechanic player has already displayed the telegraph of the mechanic
         private bool _telegraphDisplayed;
-        // 
-        private bool _isFollowing;
         // use to save if the mechanic player has already activated the mechanic
         private bool _activationDone;
         
@@ -107,12 +105,10 @@ namespace BossMechanicTool.Timeline.Mechanic
                 // Follow object if necessary
                 if (playable.GetTime() < followDuration * telegraphDuration * playable.GetDuration())
                 {
-                    _isFollowing = true;
                     _mechanicPlayer.FollowMechanic(uniqueMechanicId);
                 }
                 else
                 {
-                    _isFollowing = false;
                     _mechanicPlayer.StopFollowingMechanic(uniqueMechanicId);
                 }
             }
@@ -124,7 +120,6 @@ namespace BossMechanicTool.Timeline.Mechanic
                 {
                     _telegraphDisplayed = false;
                     _mechanicPlayer.HideMechanicTelegraph(uniqueMechanicId);
-                    _isFollowing = false;
                     _mechanicPlayer.StopFollowingMechanic(uniqueMechanicId);
                 }
                 // Activate mechanic if not already done

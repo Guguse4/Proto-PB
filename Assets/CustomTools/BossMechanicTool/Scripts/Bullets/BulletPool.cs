@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.Pool;
-using BulletHell.Emitter;
+using BossMechanicTool.BulletSystem;
 
-namespace BulletHell.Bullet
+namespace BossMechanicTool.BulletSystem
 {
     public class BulletPool : MonoBehaviour
     {
+        /*
         public Bullet bulletPrefab;
         private IObjectPool<Bullet> _pool;
 
@@ -56,5 +57,6 @@ namespace BulletHell.Bullet
         {
             _pool.Release(bullet);
         }
+        */
     }
 }
