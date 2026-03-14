@@ -21,61 +21,37 @@ public class AttackController : NetworkBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // _bulletPool = FindFirstObjectByType<BulletPool>();
         playerInput = GetComponent<PlayerInput>();
         fireAction = playerInput.actions.FindAction("Fire");
-
-        if (Mouse.current == null)
-            return;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!IsOwner) return;
+        
         //Initialize bullet from pool
-        if (fireAction.IsPressed() && nextTimeToShoot > cooldownWindow /*&& _bulletPool != null*/)
+        if (fireAction.IsPressed() && nextTimeToShoot > cooldownWindow)
         {
-            // GameObject bulletObject = _bulletPool.pool.Get();
-            
-            SpawnBullet(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
-            
-            // bulletObject.transform.SetPositionAndRotation(muzzlePosition.position, muzzlePosition.rotation);
+            PredictLocalBullet();
+            SpawnBulletServerRpc(muzzlePosition.position, muzzlePosition.rotation);
             
             nextTimeToShoot = 0;
         }
-        nextTimeToShoot += Time.deltaTime;
+        
+        nextTimeToShoot += Time.fixedDeltaTime;
     }
-    
-    private void SpawnBullet(GameObject prefab, Vector3 position, Quaternion rotation)
-    {
-        if (IsServer)
-        {
-            GameObject bulletObject = Instantiate(prefab, position, rotation);
-            if (bulletObject == null) 
-            { 
-                return;
-            }
 
-            bulletObject.gameObject.SetActive(true);
-            bulletObject.GetComponent<Projectile>().Deactivate();
-            bulletObject.GetComponent<NetworkObject>().Spawn();
-        }
-        else
-        {
-            SpawnBulletServerRpc();
-        }
+    private void PredictLocalBullet()
+    {
+        GameObject bullet = Instantiate(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
+        Destroy(bullet.GetComponent<NetworkObject>());
     }
 
     [ServerRpc]
-    private void SpawnBulletServerRpc()
+    private void SpawnBulletServerRpc(Vector3 position, Quaternion rotation)
     {
-        GameObject bulletObject = Instantiate(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
-        if (bulletObject == null) 
-        { 
-            return;
-        }
-
-        bulletObject.gameObject.SetActive(true);
+        GameObject bulletObject = Instantiate(projectilePrefab, position, rotation);
         bulletObject.GetComponent<Projectile>().Deactivate();
         bulletObject.GetComponent<NetworkObject>().Spawn();
     }
