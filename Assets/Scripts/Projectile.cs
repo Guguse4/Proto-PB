@@ -7,6 +7,7 @@ public class Projectile : NetworkBehaviour
 {
     [SerializeField] private float timeoutDelay = 3f;
     [SerializeField] private float speed = 3f;
+    public float Speed => speed;
 
     // private BulletPool objectPool;
     // public BulletPool ObjectPool { set => objectPool = value; }
@@ -35,4 +36,5 @@ public class Projectile : NetworkBehaviour
         // objectPool.pool.Release(gameObject);
         GetComponent<NetworkObject>().Despawn(true);
     }
+    
 }

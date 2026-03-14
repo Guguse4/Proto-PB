@@ -36,7 +36,7 @@ public class AttackController : NetworkBehaviour
         if (fireAction.IsPressed() && nextTimeToShoot > cooldownWindow)
         {
             PredictLocalBullet();
-            SpawnBulletServerRpc(muzzlePosition.position, muzzlePosition.rotation);
+            SpawnBulletServerRpc(muzzlePosition.position, muzzlePosition.rotation, (float)NetworkManager.ServerTime.Time);
             
             nextTimeToShoot = 0;
         }
@@ -51,9 +51,15 @@ public class AttackController : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void SpawnBulletServerRpc(Vector3 position, Quaternion rotation)
+    private void SpawnBulletServerRpc(Vector3 position, Quaternion rotation, float clientTime)
     {
-        GameObject bulletObject = Instantiate(projectilePrefab, position, rotation);
+        float serverTime = (float)NetworkManager.ServerTime.Time;
+        float lag = serverTime - clientTime;
+
+        float distance = projectilePrefab.GetComponent<Projectile>().Speed * lag;
+        Vector3 compensatedPosition = position + rotation * Vector3.forward * distance;
+        
+        GameObject bulletObject = Instantiate(projectilePrefab, compensatedPosition, rotation);
         bulletObject.GetComponent<Projectile>().Deactivate();
         bulletObject.GetComponent<NetworkObject>().Spawn();
         ConfirmSpawnClientRpc();
