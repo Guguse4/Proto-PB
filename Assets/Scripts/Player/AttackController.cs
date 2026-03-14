@@ -18,6 +18,8 @@ public class AttackController : NetworkBehaviour
 
     [SerializeField] private float cooldownWindow = 0.25f;
 
+    private GameObject _currentBullet;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,8 +46,8 @@ public class AttackController : NetworkBehaviour
 
     private void PredictLocalBullet()
     {
-        GameObject bullet = Instantiate(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
-        Destroy(bullet.GetComponent<NetworkObject>());
+        _currentBullet = Instantiate(projectilePrefab, muzzlePosition.position, muzzlePosition.rotation);
+        Destroy(_currentBullet.GetComponent<NetworkObject>());
     }
 
     [ServerRpc]
@@ -54,5 +56,12 @@ public class AttackController : NetworkBehaviour
         GameObject bulletObject = Instantiate(projectilePrefab, position, rotation);
         bulletObject.GetComponent<Projectile>().Deactivate();
         bulletObject.GetComponent<NetworkObject>().Spawn();
+        ConfirmSpawnClientRpc();
+    }
+
+    [ClientRpc]
+    private void ConfirmSpawnClientRpc()
+    {
+        Destroy(_currentBullet);
     }
 }
