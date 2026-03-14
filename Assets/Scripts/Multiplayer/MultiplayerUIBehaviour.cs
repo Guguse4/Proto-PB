@@ -8,7 +8,7 @@ public class MultiplayerUIBehaviour : NetworkBehaviour
     {
         if (IsServer)
         {
-            Debug.Log("Play !");
+            Debug.Log("Select boss");
             NetworkManager.Singleton.SceneManager.LoadScene(
                 SceneUtility.GetScenePathByBuildIndex(1),
                 LoadSceneMode.Single

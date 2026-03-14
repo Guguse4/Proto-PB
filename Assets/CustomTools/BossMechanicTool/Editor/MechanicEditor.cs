@@ -83,7 +83,6 @@ namespace BossMechanicTool.Editor
             MechanicVisualizer visualizer = FindFirstObjectByType<MechanicVisualizer>();
             if (visualizer == null)
             {
-                Debug.LogError("No MechanicVisualizer found in scene. You must add MechanicManager");
                 return;
             }
 

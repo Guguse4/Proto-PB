@@ -168,7 +168,7 @@ namespace BossMechanicTool
             else
             {
                 // activate action
-                pattern.Action.ActivateAction(origin, direction);
+                pattern.Action.ActivateAction(origin, direction, this);
                 
                 if (pattern.ActivationVFX == null)
                     return;

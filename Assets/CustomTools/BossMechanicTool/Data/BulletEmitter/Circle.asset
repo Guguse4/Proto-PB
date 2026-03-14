@@ -39,7 +39,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     speedMultiplier: 10
     maximumLifeTime: 5
-  count: 8
+  count: 16
   fireInterval: 0.01
   duration: -1
   isBurst: 1
@@ -48,6 +48,3 @@ MonoBehaviour:
   shotShape: 0
   arcAngle: 360
   lineLength: 12.52
-  useTelegraph: 1
-  telegraphDuration: 0.5
-  telegraphPrefab: {fileID: 1839680576288587297, guid: 910bd5816fbd59e4aa2f9d5465b9c46d, type: 3}

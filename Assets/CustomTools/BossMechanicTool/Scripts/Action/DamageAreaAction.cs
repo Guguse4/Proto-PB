@@ -80,7 +80,7 @@ namespace BossMechanicTool.Action
         /*
          * Function called when mechanic containing this pattern action need to activate it
          */
-        public override void ActivateAction(Vector3 position, Vector3 direction)
+        public override void ActivateAction(Vector3 position, Vector3 direction, MechanicObject mechanicObject)
         {
             #if UNITY_EDITOR
             if (CombatManager.Instance != null)

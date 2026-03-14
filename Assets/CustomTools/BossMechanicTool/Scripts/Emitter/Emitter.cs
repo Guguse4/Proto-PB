@@ -6,7 +6,6 @@ namespace BossMechanicTool.BulletSystem
     {
         private Bullet _bulletPrefab;
         // public BulletHell.Bullet.BulletPool bulletPool;
-
         private EmitterData _emitterData;
 
         public void Init(Bullet bulletPrefab, EmitterData emitterData)
