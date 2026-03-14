@@ -7,7 +7,6 @@ namespace Multiplayer
 {
     public class MultiplayerPlayerBehaviour: NetworkBehaviour
     {
-        /*
         [SerializeField] PlayerInput _playerInput;
         [SerializeField] AttackController _attackController;
         [SerializeField] PlayerController _playerController;
@@ -30,6 +29,6 @@ namespace Multiplayer
                 _playerController.enabled = true;
             }
         }
-        */
+        
     }
 }
