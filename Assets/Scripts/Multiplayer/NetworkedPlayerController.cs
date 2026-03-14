@@ -70,7 +70,7 @@ namespace Multiplayer
             MoveServerRpc(inputData);
         }
 
-        [ServerRpc]
+        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
         private void MoveServerRpc(PlayerInputData input)
         {
             Vector3 moveDirection = new Vector3(input.MoveInput.x, 0f, input.MoveInput.y);
