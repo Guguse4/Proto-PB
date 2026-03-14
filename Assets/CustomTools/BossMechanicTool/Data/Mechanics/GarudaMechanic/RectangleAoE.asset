@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: decee734d2844d9cb79e003bba96c368, type: 3}
-  m_Name: FrontCleave
+  m_Name: RectangleAoE
   m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Mechanic
   patterns:
   - _sourceRelativePosition: {x: 0, y: 0, z: 0}
-    _sourceRelativeDirection: {x: 0, y: 0, z: -1}
+    _sourceRelativeDirection: {x: 0, y: 0, z: 0}
     _actionType: 0
     _damageArea:
-      shape: 2
+      shape: 1
       damage: 0
-      width: 0
-      height: 0
-      innerRadius: 1
-      outerRadius: 6
-      angle: 140
+      width: 12
+      height: 30
+      innerRadius: 0
+      outerRadius: 0
+      angle: 0
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
     _bullet:
       bulletPrefab: {fileID: 0}
       _emitterData: {fileID: 0}
     _useDefaultTelegraph: 1
-    _telegraphPrefab: {fileID: 7964172533017538653, guid: 7161a4ed458f6894aa231c0e45d58610, type: 3}
+    _telegraphPrefab: {fileID: 4566031297166048307, guid: 32017ecc005fcd441ad11087053dcbce, type: 3}
     _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
   activationDelay: 0

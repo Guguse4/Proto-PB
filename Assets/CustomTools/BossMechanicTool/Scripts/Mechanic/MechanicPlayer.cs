@@ -143,6 +143,9 @@ namespace BossMechanicTool
         #region Hide
         public void HideMechanicTelegraph(string id)
         {
+            if (id == null)
+                return;
+            
             if (_idToMechanic.ContainsKey(id))
             {
                 List<MechanicObject> mechanics = _idToMechanic[id];

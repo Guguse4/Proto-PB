@@ -67,7 +67,7 @@ Material:
     - _Fade_Intensity: 1
     - _Gap_Width: 0
     - _InlineThickness: 0.1
-    - _Inner_Radius: 0.25
+    - _Inner_Radius: 0.16666667
     - _Number_Of_Cuttoffs: 4
     - _Outer_Radius: 0
     - _Outline_Gap_Width: 0
