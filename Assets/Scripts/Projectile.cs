@@ -32,6 +32,11 @@ public class Projectile : NetworkBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        if (collider.gameObject.GetComponent<Boss>() == null)
+        {
+            return;
+        }
+        
         collider.gameObject.GetComponent<Boss>().TakeDamage(1);
         // objectPool.pool.Release(gameObject);
         GetComponent<NetworkObject>().Despawn(true);
