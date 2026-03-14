@@ -56,7 +56,7 @@ public class AttackController : NetworkBehaviour
         float serverTime = (float)NetworkManager.ServerTime.Time;
         float lag = serverTime - clientTime;
 
-        float distance = projectilePrefab.GetComponent<Projectile>().Speed * lag * 2;
+        float distance = projectilePrefab.GetComponent<Projectile>().Speed * lag;
         Vector3 compensatedPosition = position + rotation * Vector3.forward * distance;
         
         GameObject bulletObject = Instantiate(projectilePrefab, compensatedPosition, rotation);
