@@ -6,6 +6,6 @@ namespace BossMechanicTool.Action
     {
         public virtual void ActivateAction(Vector3 position, Vector3 direction){}
         public virtual void DrawGizmos(Vector3 position, Vector3 direction){}
-        public virtual Vector3 GetSize(){return Vector3.zero;}
+        public virtual SizeInformation GetSize(){return new SizeInformation();}
     }
 }

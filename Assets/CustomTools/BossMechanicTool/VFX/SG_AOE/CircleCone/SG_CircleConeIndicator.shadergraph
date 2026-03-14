@@ -4792,8 +4792,8 @@
     "m_ObjectId": "138208c006814f0a8592f4b9d012d63e",
     "m_Title": "Outline",
     "m_Position": {
-        "x": -570.0,
-        "y": 46.0
+        "x": -570.8571166992188,
+        "y": 44.57147216796875
     }
 }
 
@@ -4951,8 +4951,8 @@
     "m_ObjectId": "17d17857340c4a1ab36c91a860d6e55d",
     "m_Title": "Calculate Outline Triangle Pattern",
     "m_Position": {
-        "x": 394.0,
-        "y": -1727.0
+        "x": 393.14288330078127,
+        "y": -1728.571533203125
     }
 }
 
@@ -5498,7 +5498,7 @@
     },
     "m_Slots": [
         {
-            "m_Id": "4dd2e63f2c46417986c429de9e8b476a"
+            "m_Id": "9cb580dc5fb3450090204613e5b59001"
         },
         {
             "m_Id": "c641fe8f127046809242a4ea358a6af3"
@@ -5516,8 +5516,8 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "_maskInput": "x",
-    "convertedMask": "x"
+    "_maskInput": "y",
+    "convertedMask": "y"
 }
 
 {
@@ -6077,8 +6077,8 @@
     "m_ObjectId": "2a8661a1de4445639deb3358c1c6250b",
     "m_Title": "Outline Angular Distance",
     "m_Position": {
-        "x": -493.0,
-        "y": -1621.0
+        "x": -493.71429443359377,
+        "y": -1622.28564453125
     }
 }
 
@@ -6274,8 +6274,8 @@
     "m_ObjectId": "2d36f85fc96b41d380211ad3c5dce984",
     "m_Title": "Cone/circle angle - InnerRadius for Fade",
     "m_Position": {
-        "x": 834.0,
-        "y": 113.0
+        "x": 833.1430053710938,
+        "y": 111.428466796875
     }
 }
 
@@ -6582,8 +6582,8 @@
     "m_ObjectId": "33053ed3dd3c4ebc951911d093100ee7",
     "m_Title": "Cone/Circle angle",
     "m_Position": {
-        "x": -1321.0,
-        "y": -703.0
+        "x": -1321.7142333984375,
+        "y": -704.5714111328125
     }
 }
 
@@ -6767,8 +6767,8 @@
     "m_ObjectId": "37a48b0e032742e9b9c3069d90880cea",
     "m_Title": "Calculated Full circle",
     "m_Position": {
-        "x": -1179.0,
-        "y": -206.0
+        "x": -1179.4285888671875,
+        "y": -207.42852783203126
     }
 }
 
@@ -7261,8 +7261,8 @@
     "m_ObjectId": "3c6b37f08c9346aba1e4629d20e02201",
     "m_Title": "Multiply InlineThickness +  InnerRadius to make OuterRadius start after InlineThickness ends  => Outer Radius starts at InlineThickness + InnerRadius + OutlineThickness",
     "m_Position": {
-        "x": 93.0,
-        "y": 2017.0
+        "x": 92.5714111328125,
+        "y": 2015.428466796875
     }
 }
 
@@ -7781,8 +7781,8 @@
     "m_ObjectId": "4518b09e07bc419097e62a30b6808e47",
     "m_Title": "Cone Side Outline",
     "m_Position": {
-        "x": 755.0,
-        "y": -703.0
+        "x": 754.2858276367188,
+        "y": -704.5714111328125
     }
 }
 
@@ -8474,22 +8474,6 @@
         "z": 0.0,
         "w": 0.0
     },
-    "m_LiteralMode": false
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "4dd2e63f2c46417986c429de9e8b476a",
-    "m_Id": 0,
-    "m_DisplayName": "In",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "In",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": [],
     "m_LiteralMode": false
 }
 
@@ -9801,7 +9785,7 @@
     },
     "m_Slots": [
         {
-            "m_Id": "983193cc442f4ce883d415a4f86b4d7f"
+            "m_Id": "8029cae92273412fa56a3e5092035cf5"
         },
         {
             "m_Id": "11acfcfe0769436bafe65af17f947269"
@@ -9819,8 +9803,8 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "_maskInput": "y",
-    "convertedMask": "y"
+    "_maskInput": "x",
+    "convertedMask": "x"
 }
 
 {
@@ -10894,8 +10878,8 @@
     "m_ObjectId": "70bedab5cba5466095f5a436234dd95d",
     "m_Title": "Color Fade",
     "m_Position": {
-        "x": 107.0,
-        "y": 494.0
+        "x": 106.28570556640625,
+        "y": 492.57135009765627
     }
 }
 
@@ -11626,8 +11610,8 @@
     "m_ObjectId": "7db0415ab7e24f73891f7ac6f04eb718",
     "m_Title": "Outer Radius",
     "m_Position": {
-        "x": -1958.0,
-        "y": 1806.0
+        "x": -1958.857177734375,
+        "y": 1804.571533203125
     }
 }
 
@@ -11816,6 +11800,22 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "8029cae92273412fa56a3e5092035cf5",
+    "m_Id": 0,
+    "m_DisplayName": "In",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "In",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.RedirectNodeData",
     "m_ObjectId": "806b6ad6258f4e8fa086f1d973269f2c",
     "m_Group": {
@@ -11856,8 +11856,8 @@
     "m_ObjectId": "80700301529a4bdc85d3525ae30a6058",
     "m_Title": "Get Center of Texture",
     "m_Position": {
-        "x": -2197.0,
-        "y": -206.0
+        "x": -2197.71435546875,
+        "y": -207.42852783203126
     }
 }
 
@@ -13488,27 +13488,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
-    "m_ObjectId": "983193cc442f4ce883d415a4f86b4d7f",
-    "m_Id": 0,
-    "m_DisplayName": "In",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "In",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "98630c52d706417f82a453d834c06eed",
     "m_Id": 1,
@@ -13792,6 +13771,27 @@
         "w": 0.0
     },
     "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
+    "m_ObjectId": "9cb580dc5fb3450090204613e5b59001",
+    "m_Id": 0,
+    "m_DisplayName": "In",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "In",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -14141,8 +14141,8 @@
     "m_ObjectId": "a2aebfa4da554550bfc2ed3b3406693d",
     "m_Title": "0 < Outline Thickness < 0.5 => Divide and Sub to be between 0 and 1 ",
     "m_Position": {
-        "x": -2196.0,
-        "y": 244.0
+        "x": -2196.571533203125,
+        "y": 242.28558349609376
     }
 }
 
@@ -14542,8 +14542,8 @@
     "m_ObjectId": "a7e75a49c9394ed889e87ead0208e918",
     "m_Title": "InnerOutlineMask",
     "m_Position": {
-        "x": -643.0,
-        "y": 606.0
+        "x": -643.4285888671875,
+        "y": 604.5713500976563
     }
 }
 
@@ -14914,8 +14914,8 @@
     "m_ObjectId": "af55b38c8b7a414fba4557ea48c0e632",
     "m_Title": "Inner Radius",
     "m_Position": {
-        "x": -1947.0,
-        "y": 1260.0
+        "x": -1947.4287109375,
+        "y": 1258.28564453125
     }
 }
 
@@ -15162,8 +15162,8 @@
     "m_ObjectId": "b380717df5fe4b738a9f3740258f1a8f",
     "m_Title": "Calculate Triangle Pattern For Fill / Triangle Pattern",
     "m_Position": {
-        "x": 386.0,
-        "y": -1225.0
+        "x": 385.14288330078127,
+        "y": -1226.28564453125
     }
 }
 
@@ -15447,8 +15447,8 @@
     "m_ObjectId": "b9ab47e9863a4a9594017527074f5673",
     "m_Title": "Angular Distance",
     "m_Position": {
-        "x": -493.0,
-        "y": -1198.0
+        "x": -493.71429443359377,
+        "y": -1199.428466796875
     }
 }
 
@@ -16337,8 +16337,8 @@
     "m_ObjectId": "c563d6f9c71d4167a80e4be6c1e2c3be",
     "m_Title": "Make Fill",
     "m_Position": {
-        "x": 3011.0,
-        "y": 620.0
+        "x": 3010.28564453125,
+        "y": 618.2857055664063
     }
 }
 
@@ -17049,8 +17049,8 @@
     "m_ObjectId": "caaf69630d764e199bbd25f4da8e1208",
     "m_Title": "Inner and Outer Outline",
     "m_Position": {
-        "x": 419.0,
-        "y": -36.0
+        "x": 418.28570556640627,
+        "y": -37.71429443359375
     }
 }
 
@@ -17613,8 +17613,8 @@
     "m_ObjectId": "d10b8605b9124ec690db5a1a926da91d",
     "m_Title": "Cone Outline",
     "m_Position": {
-        "x": 3262.0,
-        "y": -333.0
+        "x": 3261.142822265625,
+        "y": -334.28570556640627
     }
 }
 
@@ -19422,10 +19422,10 @@
     "m_Name": "",
     "m_ChildObjectList": [
         {
-            "m_Id": "afeae23d4ea44f51a69bf22c77bc9683"
+            "m_Id": "93d250c32561490d84d812c118561799"
         },
         {
-            "m_Id": "93d250c32561490d84d812c118561799"
+            "m_Id": "afeae23d4ea44f51a69bf22c77bc9683"
         },
         {
             "m_Id": "c32e942c77da457487e3a6afddc7e88a"
@@ -19682,8 +19682,8 @@
     "m_ObjectId": "f0d0093c3ec74295bb08ec7ad9364535",
     "m_Title": "Check if do Cone Outline or Circle Outline",
     "m_Position": {
-        "x": 3545.0,
-        "y": -914.0
+        "x": 3544.571533203125,
+        "y": -915.4286499023438
     }
 }
 
@@ -19851,8 +19851,8 @@
     "m_ObjectId": "f478e2ece55d4aa2b4f8b7b26c22c6c8",
     "m_Title": "Calculated inner circle",
     "m_Position": {
-        "x": -1179.0,
-        "y": 244.0
+        "x": -1179.4285888671875,
+        "y": 242.28558349609376
     }
 }
 

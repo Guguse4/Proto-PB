@@ -4,12 +4,18 @@ using UnityEngine;
 
 namespace BossMechanicTool.Action
 {
+    public struct SizeInformation
+    {
+        public float InnerRadius;
+        public Vector3 Scale;
+        public float Angle;
+    }
+    
     // Available shape to define the damage area
     public enum ShapeType
     {
         Circle,
         Rectangle,
-        Donut,
         Pizza,
         Mesh
     }
@@ -27,14 +33,11 @@ namespace BossMechanicTool.Action
         public int damage = 1;
         
         // Parameters according to the given shape
-        // Circle parameters
-        public float radius;
-        
         // Rectangle parameters
         public float width;
         public float height;
         
-        // Donut
+        // Circle parameters
         public float innerRadius;
         public float outerRadius;
         
@@ -48,17 +51,29 @@ namespace BossMechanicTool.Action
         private LayerMask playerLayer;
 
         // Return the pattern action shape according to the current shape
-        public override Vector3 GetSize()
+        public override SizeInformation GetSize()
         {
+            SizeInformation info = new SizeInformation();
             switch (shape)
             {
                 case ShapeType.Circle:
-                    return new Vector3(radius, 1, radius);
+                    info.InnerRadius = innerRadius / outerRadius;
+                    info.Scale = new Vector3(outerRadius, 1, outerRadius);
+                    info.Angle = 360;
+                    break;
                 case ShapeType.Rectangle:
-                    return new Vector3(width, 1, height);
-                default:
-                    return Vector3.one;
+                    info.InnerRadius = -1;
+                    info.Scale = new Vector3(width, 1, height);
+                    info.Angle = -1;
+                    break;
+                case ShapeType.Pizza:
+                    info.InnerRadius = innerRadius / outerRadius;
+                    info.Scale = new Vector3(outerRadius, 1, outerRadius);
+                    info.Angle = angle;
+                    break;
             }
+
+            return info;
         }
 
         #region Activation
@@ -83,9 +98,6 @@ namespace BossMechanicTool.Action
                 case ShapeType.Rectangle:
                     ActivateRectangle(position, direction);
                     break;
-                case ShapeType.Donut:
-                    ActivateDonut(position);
-                    break;
                 case ShapeType.Pizza:
                     ActivatePizza(position, direction);
                     break;
@@ -97,8 +109,15 @@ namespace BossMechanicTool.Action
          */
         private void ActivateCircle(Vector3 origin)
         {
-            Collider[] hits = Physics.OverlapSphere(origin, radius, playerLayer);
-            ApplyDamage(hits);
+            Collider[] hits = Physics.OverlapSphere(origin, outerRadius, playerLayer);
+            foreach (var col in hits)
+            {
+                float dist = Vector3.Distance(origin, col.transform.position);
+                if (dist >= innerRadius)
+                {
+                    ApplyDamage(col);
+                }
+            }
         }
 
         /*
@@ -113,27 +132,11 @@ namespace BossMechanicTool.Action
         }
 
         /*
-         *  Find players in donut range and apply damage
-         */
-        private void ActivateDonut(Vector3 origin)
-        {
-            Collider[] hits = Physics.OverlapSphere(origin, radius, playerLayer);
-            foreach (var col in hits)
-            {
-                float dist = Vector3.Distance(origin, col.transform.position);
-                if (dist >= innerRadius)
-                {
-                    ApplyDamage(col);
-                }
-            }
-        }
-
-        /*
          *  Find players in pizza range and apply damage
          */
         private void ActivatePizza(Vector3 origin,  Vector3 direction)
         {
-            Collider[] hits = Physics.OverlapSphere(origin, radius, playerLayer);
+            Collider[] hits = Physics.OverlapSphere(origin, outerRadius, playerLayer);
 
             foreach (var col in hits)
             {
@@ -187,9 +190,6 @@ namespace BossMechanicTool.Action
                 case ShapeType.Rectangle:
                     DrawRectangle(position, direction);
                     break;
-                case ShapeType.Donut:
-                    DrawDonut(position);
-                    break;
                 case ShapeType.Pizza:
                     DrawPizza(position, direction);
                     break;
@@ -202,7 +202,8 @@ namespace BossMechanicTool.Action
 
         private void DrawCircle(Vector3 position)
         {
-            Gizmos.DrawWireSphere(position, radius);
+            Gizmos.DrawWireSphere(position, outerRadius);
+            Gizmos.DrawWireSphere(position, innerRadius);
         }
 
         private void DrawRectangle(Vector3 origin, Vector3 direction)
@@ -222,12 +223,6 @@ namespace BossMechanicTool.Action
             Gizmos.matrix = oldMatrix;
         }
 
-        private void DrawDonut(Vector3 origin)
-        {
-            Gizmos.DrawWireSphere(origin, outerRadius);
-            Gizmos.DrawWireSphere(origin, innerRadius);
-        }
-
         private void DrawPizza(Vector3 origin, Vector3 direction)
         {
             if (direction == Vector3.zero)
@@ -241,7 +236,7 @@ namespace BossMechanicTool.Action
 
             Quaternion baseRotation = Quaternion.LookRotation(direction, Vector3.up);
 
-            Vector3 previousPoint = origin + (baseRotation * Quaternion.Euler(0, -halfAngle, 0) * Vector3.forward) * radius;
+            Vector3 previousPoint = origin + (baseRotation * Quaternion.Euler(0, -halfAngle, 0) * Vector3.forward) * outerRadius;
 
             for (int i = 1; i <= segments; i++)
             {
@@ -249,7 +244,7 @@ namespace BossMechanicTool.Action
 
                 Vector3 nextPoint =
                     origin +
-                    (baseRotation * Quaternion.Euler(0, currentAngle, 0) * Vector3.forward) * radius;
+                    (baseRotation * Quaternion.Euler(0, currentAngle, 0) * Vector3.forward) * outerRadius;
 
                 Gizmos.DrawLine(previousPoint, nextPoint);
                 previousPoint = nextPoint;
@@ -259,8 +254,8 @@ namespace BossMechanicTool.Action
             Vector3 leftDir = baseRotation * Quaternion.Euler(0, -halfAngle, 0) * Vector3.forward;
             Vector3 rightDir = baseRotation * Quaternion.Euler(0, halfAngle, 0) * Vector3.forward;
 
-            Gizmos.DrawLine(origin, origin + leftDir * radius);
-            Gizmos.DrawLine(origin, origin + rightDir * radius);
+            Gizmos.DrawLine(origin, origin + leftDir * outerRadius);
+            Gizmos.DrawLine(origin, origin + rightDir * outerRadius);
         }
 
         private void DrawMesh(Vector3 origin, Vector3 direction)

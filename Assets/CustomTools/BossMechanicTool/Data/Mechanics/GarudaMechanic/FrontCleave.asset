@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: decee734d2844d9cb79e003bba96c368, type: 3}
+  m_Name: FrontCleave
+  m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Mechanic
+  patterns:
+  - _sourceRelativePosition: {x: 0, y: 0, z: 0}
+    _sourceRelativeDirection: {x: 0, y: 0, z: 0}
+    _actionType: 0
+    _damageArea:
+      shape: 2
+      damage: 0
+      width: 0
+      height: 0
+      innerRadius: 1
+      outerRadius: 4
+      angle: 140
+      meshRef: {fileID: 0}
+      scale: {x: 0, y: 0, z: 0}
+    _bullet:
+      bulletPrefab: {fileID: 0}
+      _emitterData: {fileID: 0}
+    _useDefaultTelegraph: 1
+    _telegraphPrefab: {fileID: 7964172533017538653, guid: 7161a4ed458f6894aa231c0e45d58610, type: 3}
+    _activationVFX: {fileID: 358637981425055526, guid: cc1c3bb7d6408784d8032243a35b6cfa, type: 3}
+  activationDelay: 0

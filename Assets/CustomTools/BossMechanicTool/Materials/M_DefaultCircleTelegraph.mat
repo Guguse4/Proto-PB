@@ -63,10 +63,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Degrees: 360
+    - _Degrees: 140
     - _Fade_Intensity: 1
     - _Gap_Width: 0
-    - _Inner_Radius: 0
+    - _InlineThickness: 0.1
+    - _Inner_Radius: 0.25
     - _Number_Of_Cuttoffs: 4
     - _Outer_Radius: 0
     - _Outline_Gap_Width: 0

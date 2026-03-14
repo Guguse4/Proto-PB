@@ -93,11 +93,11 @@ namespace BossMechanicTool
              * Return the global visual size of the current action
              * i.e: for damage area, return the size of the shape
              */
-            public Vector3 GetActionSize()
+            public SizeInformation GetActionSize()
             {
                 if(Action != null)
                     return Action.GetSize();
-                return Vector3.zero;
+                return new SizeInformation();
             }
 
         #endregion

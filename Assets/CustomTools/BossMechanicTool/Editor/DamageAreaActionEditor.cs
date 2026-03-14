@@ -41,20 +41,16 @@ namespace BossMechanicTool.Editor
 
             switch (shape)
             {
-                case ShapeType.Circle:
-                    height += LineHeight + Spacing;
-                    break;
-
                 case ShapeType.Rectangle:
                     height += (LineHeight + Spacing) * 2;
                     break;
 
-                case ShapeType.Donut:
+                case ShapeType.Circle:
                     height += (LineHeight + Spacing) * 2;
                     break;
 
                 case ShapeType.Pizza:
-                    height += (LineHeight + Spacing) * 2;
+                    height += (LineHeight + Spacing) * 3;
                     break;
 
                 case ShapeType.Mesh:
@@ -84,7 +80,6 @@ namespace BossMechanicTool.Editor
 
             SerializedProperty shapeProp = property.FindPropertyRelative("shape");
             SerializedProperty damageProp = property.FindPropertyRelative("damage");
-            SerializedProperty radiusProp = property.FindPropertyRelative("radius");
             SerializedProperty widthProp = property.FindPropertyRelative("width");
             SerializedProperty heightProp = property.FindPropertyRelative("height");
             SerializedProperty innerRadiusProp = property.FindPropertyRelative("innerRadius");
@@ -102,7 +97,8 @@ namespace BossMechanicTool.Editor
             switch (shape)
             {
                 case ShapeType.Circle:
-                    DrawField(ref y, position, radiusProp);
+                    DrawField(ref y, position, innerRadiusProp);
+                    DrawField(ref y, position, outerRadiusProp);
                     break;
 
                 case ShapeType.Rectangle:
@@ -110,13 +106,9 @@ namespace BossMechanicTool.Editor
                     DrawField(ref y, position, heightProp);
                     break;
 
-                case ShapeType.Donut:
+                case ShapeType.Pizza:
                     DrawField(ref y, position, innerRadiusProp);
                     DrawField(ref y, position, outerRadiusProp);
-                    break;
-
-                case ShapeType.Pizza:
-                    DrawField(ref y, position, radiusProp);
                     DrawField(ref y, position, angleProp);
                     break;
 

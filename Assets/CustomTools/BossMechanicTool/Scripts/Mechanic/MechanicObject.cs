@@ -161,7 +161,7 @@ namespace BossMechanicTool
                     transform
                 );
                 // Scale it
-                visual.transform.localScale = pattern.GetActionSize();
+                visual.GetComponent<Telegraph.Telegraph>().SetSizeInformations(pattern.GetActionSize());
                 // Save it
                 _telegraphVFX.Enqueue(visual);
             }
@@ -180,7 +180,7 @@ namespace BossMechanicTool
                     transform
                 );
                 // Scale it
-                visual.transform.localScale = pattern.GetActionSize();
+                visual.transform.localScale = pattern.GetActionSize().Scale;
             }
         }
     }

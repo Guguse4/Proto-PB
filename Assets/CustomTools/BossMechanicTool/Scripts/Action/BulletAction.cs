@@ -20,9 +20,9 @@ namespace BossMechanicTool.Action
             emitter.Init(bulletPrefab, _emitterData);
         }
 
-        public override Vector3 GetSize()
+        public override SizeInformation GetSize()
         {
-            return new Vector3(1, 1, 1);
+            return new SizeInformation();
         }
     }
 }
