@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Interactable;
 
 public enum MovementMode
 {
@@ -12,11 +13,11 @@ public class PlayerController : MonoBehaviour
 {
     PlayerInput playerInput;
     InputAction moveAction;
-    InputAction switchCameraAction;
+    InputAction interactAction;
     public Camera currentCamera; //Change this to change Raycast when phase switch
     public MovementMode currentMovementMode;
     public CameraManager camaraManager;
-
+    private IInteractable _nearestInteractable;
 
     [Header("Movement")]
     [SerializeField] private float maxSpeed = 5f;
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
         moveAction = playerInput.actions.FindAction("Move");
-        switchCameraAction = playerInput.actions.FindAction("CameraSwitch");
+        interactAction = playerInput.actions.FindAction("Interact");
         currentCamera = FindAnyObjectByType<Camera>();
 
         if (Mouse.current == null)
@@ -42,18 +43,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (switchCameraAction.WasPressedThisFrame())
+        
+        if (interactAction.WasPressedThisFrame())
         {
-            if (currentMovementMode == MovementMode.TopDown)
+            if (_nearestInteractable != null)
             {
-                camaraManager.SwitchToSide2D();
-                currentMovementMode = MovementMode.Side2D;
-            }
-            else
-            {
-                camaraManager.SwitchToTopDown();
-                currentMovementMode = MovementMode.TopDown;
-                //transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+                _nearestInteractable.OnInteract();
             }
         }
 
@@ -137,5 +132,10 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log("Hit: " + other.gameObject.name);
+    }
+
+    public void SetNearestInteractable(IInteractable interactable)
+    {
+        _nearestInteractable = interactable;
     }
 }

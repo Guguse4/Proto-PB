@@ -1,17 +1,22 @@
 ﻿using System.Collections.Generic;
 using Unity.Netcode;
+using UnityEditor;
 using UnityEngine;
 
 namespace Hub
 {
-    public class HubUIManager : NetworkBehaviour
+    public class HubUIManager : MonoBehaviour
     {
         public static HubUIManager Instance { get; set; }
         
         [SerializeField]
         private GameObject _interactPopUp;
         
+        [SerializeField]
+        private GameObject _bossInfoWindow;
+        
         private Dictionary<Vector2, GameObject> _popUps = new Dictionary<Vector2, GameObject>();
+        private int _currentSceneIndex = -1;
         
         private void Awake()
         {
@@ -33,7 +38,23 @@ namespace Hub
                 Destroy(_popUps[position]);
                 _popUps.Remove(position);
             }
-                
+        }
+
+        public void ShowBossInfoWindow(int sceneIndex)
+        {
+            _currentSceneIndex = sceneIndex;
+            _bossInfoWindow.SetActive(true);
+        }
+
+        public void HideBossInfoWindow()
+        {
+            _currentSceneIndex = -1;
+            _bossInfoWindow.SetActive(false);
+        }
+
+        public void OnBossStartClick()
+        {
+            HubManager.Instance.BossStart(_currentSceneIndex);
         }
     }
 }

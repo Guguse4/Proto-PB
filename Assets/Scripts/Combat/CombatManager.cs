@@ -29,10 +29,13 @@ public class CombatManager : NetworkBehaviour
                 return;
             
             _loaded = true;
+            /*
             if (IsServer)
             {
                 SpawnAllPlayerInScene();
             }
+            */
+            Manager.GameManager.Instance.RefreshPlayer();
         };
     }
 
