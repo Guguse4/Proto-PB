@@ -25,7 +25,7 @@ public class BossSelectorManager : NetworkBehaviour
             if (!IsServer)
             {
                 button.interactable = false;
-                return;
+                continue;
             }
             
             button.onClick.AddListener(() => OnButtonClick(scene));
