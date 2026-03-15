@@ -44,9 +44,17 @@ namespace BossMechanicTool
         private MechanicObject SpawnMechanicObject(string id, Mechanic mechanic, MechanicSpawnInformation mechanicSpawnInformation)
         {
             GameObject mechanicGO = new GameObject(id);
-            mechanicGO.transform.position = mechanicSpawnInformation.position;
-            mechanicGO.transform.rotation = Quaternion.identity;
             mechanicGO.transform.parent = transform;
+            
+            mechanicGO.transform.position = mechanicSpawnInformation.position;
+            
+            // Set default forward if invalid direction
+            Vector3 direction = mechanicSpawnInformation.direction;
+            if(direction == Vector3.zero)
+                direction = Vector3.forward;
+            direction.y = 0f;
+            direction.Normalize();
+            mechanicGO.transform.rotation = Quaternion.LookRotation(direction,Vector3.up);
             
             MechanicObject mechanicObject = mechanicGO.AddComponent<MechanicObject>();
             mechanicObject.SetMechanic(mechanic);
@@ -206,7 +214,7 @@ namespace BossMechanicTool
                         MechanicSpawnInformation data = new MechanicSpawnInformation();
                         data.position = origin;
                         data.objectToFollow = null;
-                        data.direction = Vector3.zero;
+                        data.direction = spawnBehaviour.spawnDirection;
                         behaviours.Add(data);
                     }
                     return behaviours;
@@ -220,7 +228,7 @@ namespace BossMechanicTool
                         MechanicSpawnInformation data = new MechanicSpawnInformation();
                         data.position = target.transform.position;
                         data.objectToFollow = target;
-                        data.direction = Vector3.zero;
+                        data.direction = spawnBehaviour.spawnDirection;
                         behaviours.Add(data);
                     }
                     return behaviours;

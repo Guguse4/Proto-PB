@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossMechanicTool.Mechanic
   patterns:
   - _sourceRelativePosition: {x: 0, y: 0, z: 0}
-    _sourceRelativeDirection: {x: 0, y: 0, z: -1}
+    _sourceRelativeDirection: {x: 0, y: 0, z: 0}
     _actionType: 0
     _damageArea:
       shape: 2

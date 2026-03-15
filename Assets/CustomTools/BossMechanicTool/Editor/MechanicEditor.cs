@@ -230,7 +230,7 @@ namespace BossMechanicTool.Editor
 
             if (_orientTowardCenter)
             {
-                Vector3 dir = -position.normalized;
+                Vector3 dir = position.normalized;
                 pattern.SetRelativeDirection(dir);
             }
         }

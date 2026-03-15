@@ -9,7 +9,6 @@ public class SpawnBehaviourDrawer : PropertyDrawer
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         var spawnPositionBehaviour = property.FindPropertyRelative("spawnPositionBehaviour");
-        var movementBehaviour = property.FindPropertyRelative("movementBehaviour");
 
         float height = 0f;
         float line = EditorGUIUtility.singleLineHeight;
@@ -30,6 +29,12 @@ public class SpawnBehaviourDrawer : PropertyDrawer
             // GameObject
             height += line + space;
         }
+        
+        // spawnDirectionBehaviour
+        height += line + space;
+        
+        // spawnDirection
+        height += line + space;
 
         // Header Movement
         height += line + space;
@@ -51,6 +56,7 @@ public class SpawnBehaviourDrawer : PropertyDrawer
 
         var spawnPositionBehaviour = property.FindPropertyRelative("spawnPositionBehaviour");
         var spawnPosition = property.FindPropertyRelative("spawnPosition");
+        var spawnDirection = property.FindPropertyRelative("spawnDirection");
         var attachedObject = property.FindPropertyRelative("attachedObject");
         var movementBehaviour = property.FindPropertyRelative("movementBehaviour");
 
@@ -72,8 +78,12 @@ public class SpawnBehaviourDrawer : PropertyDrawer
             EditorGUI.PropertyField(rect, attachedObject);
             rect.y += line + space;
         }
+        
+        // spawn direction
+        EditorGUI.PropertyField(rect, spawnDirection);
+        rect.y += line + space;
 
-        // ===== Movement Header =====
+        // Movement Header
         EditorGUI.LabelField(rect, "Movement", EditorStyles.boldLabel);
         rect.y += line + space;
 

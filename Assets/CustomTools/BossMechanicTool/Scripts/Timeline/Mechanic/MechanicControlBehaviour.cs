@@ -17,6 +17,12 @@ namespace BossMechanicTool.Timeline.Mechanic
         // OnAllPlayersDead,    // The mechanic will be spawned on all dead players
     }
 
+    public enum SpawnDirectionBehaviour
+    {
+        OnGivenDirection,
+        // OnObjectForward
+    }
+
     /*
      * Define if the mechanic should stay static or follow the spawn position object
      */
@@ -34,6 +40,8 @@ namespace BossMechanicTool.Timeline.Mechanic
     {
         public SpawnPositionBehaviour spawnPositionBehaviour;
         public Vector3 spawnPosition;   // if spawnPositionBehaviour is set OnGivenPosition
+        public SpawnDirectionBehaviour spawnDirectionBehaviour;
+        public Vector3 spawnDirection;
         public ExposedReference<GameObject> attachedObject;
         public MovementBehaviour movementBehaviour; 
     }

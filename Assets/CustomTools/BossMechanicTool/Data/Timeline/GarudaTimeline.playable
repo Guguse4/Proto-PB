@@ -539,6 +539,8 @@ MonoBehaviour:
     _spawnBehaviour:
       spawnPositionBehaviour: 0
       spawnPosition: {x: 0, y: 0, z: 0}
+      spawnDirectionBehaviour: 0
+      spawnDirection: {x: 0, y: 0, z: 0}
       attachedObject:
         exposedName: 
         defaultValue: {fileID: 0}
@@ -941,6 +943,8 @@ MonoBehaviour:
     _spawnBehaviour:
       spawnPositionBehaviour: 0
       spawnPosition: {x: 0, y: 0, z: 0}
+      spawnDirectionBehaviour: 0
+      spawnDirection: {x: 0, y: 0, z: -1}
       attachedObject:
         exposedName: d93222582c60011428e23efde4fbb32a
         defaultValue: {fileID: 0}
@@ -1500,6 +1504,8 @@ MonoBehaviour:
     _spawnBehaviour:
       spawnPositionBehaviour: 0
       spawnPosition: {x: 0, y: 0, z: 0}
+      spawnDirectionBehaviour: 0
+      spawnDirection: {x: 0, y: 0, z: -1}
       attachedObject:
         exposedName: 3590bb2242f5495419d8d368f81e3281
         defaultValue: {fileID: 0}
@@ -1561,6 +1567,8 @@ MonoBehaviour:
     _spawnBehaviour:
       spawnPositionBehaviour: 0
       spawnPosition: {x: 0, y: 0, z: 0}
+      spawnDirectionBehaviour: 0
+      spawnDirection: {x: 0, y: 0, z: 0}
       attachedObject:
         exposedName: 17fc6691cf1b30141bf30e5d374f7358
         defaultValue: {fileID: 0}
@@ -1584,6 +1592,8 @@ MonoBehaviour:
     _spawnBehaviour:
       spawnPositionBehaviour: 0
       spawnPosition: {x: 0, y: 0, z: 0}
+      spawnDirectionBehaviour: 0
+      spawnDirection: {x: 0, y: 0, z: -1}
       attachedObject:
         exposedName: d4d196343232a044ca71d565217a1000
         defaultValue: {fileID: 0}
@@ -1607,6 +1617,8 @@ MonoBehaviour:
     _spawnBehaviour:
       spawnPositionBehaviour: 0
       spawnPosition: {x: 0, y: 0, z: 0}
+      spawnDirectionBehaviour: 0
+      spawnDirection: {x: 0, y: 0, z: -1}
       attachedObject:
         exposedName: 663397760f212534e8e2324bbb3aaccc
         defaultValue: {fileID: 0}
@@ -1716,6 +1728,8 @@ MonoBehaviour:
     _spawnBehaviour:
       spawnPositionBehaviour: 0
       spawnPosition: {x: 0, y: 0, z: 0}
+      spawnDirectionBehaviour: 0
+      spawnDirection: {x: 0, y: 0, z: 0}
       attachedObject:
         exposedName: 0cbd5a40b4668154d8574e3d85f8d72d
         defaultValue: {fileID: 0}

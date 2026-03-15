@@ -160,6 +160,7 @@ namespace BossMechanicTool
                     rotation,
                     transform
                 );
+                visual.transform.localRotation = rotation;
                 // Scale it
                 visual.GetComponent<Telegraph.Telegraph>().SetSizeInformations(pattern.GetActionSize());
                 // Save it
