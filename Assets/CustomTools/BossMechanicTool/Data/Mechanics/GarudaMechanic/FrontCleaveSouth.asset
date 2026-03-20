@@ -22,7 +22,7 @@ MonoBehaviour:
       width: 0
       height: 0
       innerRadius: 0
-      outerRadius: 4
+      outerRadius: 14
       angle: 140
       meshRef: {fileID: 0}
       scale: {x: 0, y: 0, z: 0}
